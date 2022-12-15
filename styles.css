@@ -485,6 +485,12 @@ template {
   padding: 4px 10px;
   border-radius: 4px;
   background-color: rgba(196, 196, 196, 0.25);
+  border: 1px solid transparent;
+  transition: ease-in-out 0.4s;
+}
+.filters__btn:hover {
+  color: rgba(255, 255, 255, 0.47);
+  border-color: rgba(255, 255, 255, 0.47);
 }
 .filters__title {
   color: #ffffff;
