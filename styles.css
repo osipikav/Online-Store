@@ -511,10 +511,27 @@ template {
   padding: 4px;
 }
 .category__list {
+  color: #383838;
   height: 146px;
   overflow-y: auto;
 }
+.category__list::-webkit-scrollbar {
+  width: 14px;
+  background-color: #383838;
+  border-radius: 4px;
+}
+.category__list::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4;
+  border-radius: 4px;
+  border: 2px solid #ffffff;
+}
 
+.checkbox-line input {
+  cursor: pointer;
+}
+.checkbox-line label {
+  cursor: pointer;
+}
 .checkbox-line span {
   float: right;
 }
@@ -525,8 +542,20 @@ template {
   padding: 4px;
 }
 .brand__list {
+  color: #383838;
   height: 146px;
+  overflow-x: hidden;
   overflow-y: auto;
+}
+.brand__list::-webkit-scrollbar {
+  width: 14px;
+  background-color: #383838;
+  border-radius: 4px;
+}
+.brand__list::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4;
+  border-radius: 4px;
+  border: 2px solid #ffffff;
 }
 
 .price {
