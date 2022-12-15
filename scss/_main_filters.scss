@@ -1,0 +1,135 @@
+//@import '../helpers/variables';
+
+@font-face {
+    font-family: "Montiran";
+    src: url("../../assets/fonts/Montiran-ywVMV.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.main {
+    margin: 20px 4px;
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2%;
+
+    &__filters {
+        background-color: $color-grey-s-tr;
+        border-radius: 20px;
+        width: 25%;
+    }
+}
+.filters {
+    padding: 4px;
+
+    &__buttons {
+        margin-bottom: 6px;
+        color: $color-white;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+
+    &__btn {
+        padding: 4px 10px;
+        border-radius: 4px;
+        background-color: $color-grey-s-tr;
+        //cursor: pointer;
+    }
+
+    &__buttons-reset {}
+
+    // .filters__buttons-copy
+
+    &__buttons-copy {}
+
+    &__title {
+        color: $color-white;
+        text-align: center;
+        border-bottom: 1px solid $color-white-tr;
+        margin-bottom: 4px;
+    }
+
+    &__category {
+        margin-bottom: 6px;
+    }
+
+    // .filters__brand
+
+    &__brand {
+        margin-bottom: 6px;
+    }
+
+    // .filters__price
+
+    &__price {
+        margin-bottom: 6px;
+    }
+
+    // .filters__stock
+
+    &__stock {
+        margin-bottom: 6px;
+    }
+}
+.category {
+    background-color: $color-grey-s-tr;
+    border-radius: 10px;
+    padding: 4px;
+
+    &__title {
+    }
+
+    // .category__list
+
+    &__list {
+        height: 146px;
+        overflow-y: auto;
+    }
+}
+.checkbox-line {
+    & span {
+        float: right;
+    }
+}
+.item-active {
+}
+.brand {
+    background-color: $color-grey-s-tr;
+    border-radius: 10px;
+    padding: 4px;
+
+    &__title {}
+
+    // .brand__list
+
+    &__list {
+        height: 146px;
+        overflow-y: auto;
+    }
+}
+.price {
+
+    background-color: $color-grey-s-tr;
+    border-radius: 10px;
+    padding: 4px;
+
+    &__title {}
+
+    // .price__list
+
+    &__list {}
+}
+.stock {
+
+    background-color: $color-grey-s-tr;
+    border-radius: 10px;
+    padding: 4px;
+
+    &__title {}
+
+    // .stock__list
+
+    &__list {}
+}

@@ -374,7 +374,7 @@ template {
 
 .header {
   padding: 20px;
-  background-color: rgba(196, 196, 196, 0.25);
+  background-color: rgba(196, 196, 196, 0.1);
   background-image: url(../../assets/images/noise_transparent.png);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -465,15 +465,82 @@ template {
   flex-flow: row wrap;
   gap: 2%;
 }
-
-.filters {
-  background-color: rgba(196, 196, 196, 0.1);
+.main__filters {
+  background-color: rgba(196, 196, 196, 0.25);
   border-radius: 20px;
   width: 25%;
 }
 
+.filters {
+  padding: 4px;
+}
+.filters__buttons {
+  margin-bottom: 6px;
+  color: #ffffff;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+.filters__btn {
+  padding: 4px 10px;
+  border-radius: 4px;
+  background-color: rgba(196, 196, 196, 0.25);
+}
+.filters__title {
+  color: #ffffff;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.47);
+  margin-bottom: 4px;
+}
+.filters__category {
+  margin-bottom: 6px;
+}
+.filters__brand {
+  margin-bottom: 6px;
+}
+.filters__price {
+  margin-bottom: 6px;
+}
+.filters__stock {
+  margin-bottom: 6px;
+}
+
+.category {
+  background-color: rgba(196, 196, 196, 0.25);
+  border-radius: 10px;
+  padding: 4px;
+}
+.category__list {
+  height: 146px;
+  overflow-y: auto;
+}
+
+.checkbox-line span {
+  float: right;
+}
+
+.brand {
+  background-color: rgba(196, 196, 196, 0.25);
+  border-radius: 10px;
+  padding: 4px;
+}
+.brand__list {
+  height: 146px;
+  overflow-y: auto;
+}
+
+.price {
+  background-color: rgba(196, 196, 196, 0.25);
+  border-radius: 10px;
+  padding: 4px;
+}
+.stock {
+  background-color: rgba(196, 196, 196, 0.25);
+  border-radius: 10px;
+  padding: 4px;
+}
 .products {
-  background-color: rgba(196, 196, 196, 0.1);
+  background-color: rgba(196, 196, 196, 0.25);
   border-radius: 20px;
   width: 73%;
 }
@@ -481,7 +548,7 @@ template {
 .footer {
   flex-shrink: 0;
   padding: 20px;
-  background-color: rgba(196, 196, 196, 0.25);
+  background-color: rgba(196, 196, 196, 0.1);
   background-image: url(../../assets/images/noise_transparent.png);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
