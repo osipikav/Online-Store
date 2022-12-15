@@ -1,4 +1,68 @@
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+@font-face {
+  font-family: "Montiran";
+  src: url("../../assets/fonts/Montiran-ywVMV.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Molgan";
+  src: url("../../assets/fonts/Molgan-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  background-color: #383838;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+.section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+button {
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 /* Document
    ========================================================================== */
 /**
@@ -308,54 +372,84 @@ template {
   display: none;
 }
 
-html {
-  scroll-behavior: smooth;
-  box-sizing: border-box;
+.header {
+  padding: 20px;
+  background-color: rgba(196, 196, 196, 0.25);
+  background-image: url(../../assets/images/noise_transparent.png);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: #ffffff;
 }
-
-.wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
-  min-height: 100%;
-  background-image: url(../../assets/images/BG\ stuff.png);
-  background-repeat: no-repeat;
-  background-position: 0 6rem;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-}
-
-a {
-  text-decoration: none;
-  outline: none;
-  color: var(--color-black);
-}
-
-ul {
-  list-style: none;
-}
-
-.section {
+.header__nav {
   display: flex;
-  align-content: center;
+  flex-flow: row wrap;
+  justify-content: space-around;
   align-items: center;
+  gap: 20px;
 }
 
-button {
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  cursor: pointer;
+.nav__logo {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+  justify-content: space-around;
+}
+.nav__link {
+  font-family: Molgan;
+  color: #ffffff;
+  transition: all 0.4s;
+}
+.nav__link:hover {
+  color: rgba(255, 255, 255, 0.47);
+}
+.nav__link:active {
+  color: #EEC353;
+}
+.nav__title {
+  text-align: center;
+}
+
+.order {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+  justify-content: space-around;
+}
+.order__cart {
+  position: relative;
+}
+.order__link > svg {
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  outline: 1px solid transparent;
+  outline-offset: 4px;
+  border-radius: 10%;
+  transition-property: color, outline-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.order__link > svg:hover {
+  color: rgba(255, 255, 255, 0.47);
+}
+.order__link > svg:focus {
+  outline-color: rgba(255, 255, 255, 0.47);
+}
+.order__link > svg:active {
+  color: #EEC353;
+}
+.order__amount {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 10%;
+  left: 50%;
+  color: #ffffff;
+  background-color: #7B6A3F;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  text-align: center;
 }
 
 @font-face {
@@ -364,120 +458,76 @@ button {
   font-weight: normal;
   font-style: normal;
 }
-.header-container {
-  padding: 10px 80px;
+.main {
+  margin: 20px 4px;
+  flex: 1 0 auto;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 2%;
+}
+
+.filters {
+  background-color: rgba(196, 196, 196, 0.1);
+  border-radius: 20px;
+  width: 25%;
+}
+
+.products {
+  background-color: rgba(196, 196, 196, 0.1);
+  border-radius: 20px;
+  width: 73%;
+}
+
+.footer {
+  flex-shrink: 0;
+  padding: 20px;
+  background-color: rgba(196, 196, 196, 0.25);
   background-image: url(../../assets/images/noise_transparent.png);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  color: #ffffff;
 }
-
-.logo {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-.logo__img {
-  max-width: 4.5rem;
-  max-height: 4.5rem;
-  display: inline-block;
-}
-.logo__title {
-  align-self: center;
-}
-.logo__link {
-  font-family: "Montiran";
-  font-size: 3.5rem;
-}
-
-.nav-wrapper {
-  align-self: center;
-}
-
-.nav__list {
-  display: flex;
-  flex-direction: row;
-  gap: 14px;
-}
-.nav__link {
-  padding: 3px 10px 1px 10px;
-  border-bottom: 3px solid rgb(75, 168, 125);
-  border-radius: 4px;
-}
-.nav__link:hover {
-  background-color: rgb(75, 168, 125);
-  transition: 0.4s;
-  color: rgb(255, 255, 255);
-}
-.nav__link-active {
-  background-color: rgb(75, 168, 125);
-  transition: 0.4s;
-  color: rgb(255, 255, 255);
-}
-
-.checkbox {
-  display: none;
-}
-
-@font-face {
-  font-family: "Montiran";
-  src: url("../../assets/fonts/Montiran-ywVMV.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-}
-.header-container {
-  padding: 10px 80px;
+.footer__nav {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
-  background-image: url(../../assets/images/noise_transparent.png);
+}
+.footer__link {
+  font-family: Molgan;
+  color: #ffffff;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.footer__link:hover {
+  color: rgba(255, 255, 255, 0.47);
+}
+.footer__link:active {
+  color: #EEC353;
+}
+.footer__created span {
+  font-family: Molgan;
 }
 
-.logo {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
+.github__link > svg {
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  outline: 1px solid transparent;
+  outline-offset: 4px;
+  border-radius: 50%;
+  transition-property: color, outline-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
-.logo__img {
-  max-width: 4.5rem;
-  max-height: 4.5rem;
-  display: inline-block;
+.github__link > svg:hover {
+  color: rgba(255, 255, 255, 0.47);
 }
-.logo__title {
-  align-self: center;
+.github__link > svg:focus {
+  outline-color: rgba(255, 255, 255, 0.47);
 }
-.logo__link {
-  font-family: "Montiran";
-  font-size: 3.5rem;
-}
-
-.nav-wrapper {
-  align-self: center;
-}
-
-.nav__list {
-  display: flex;
-  flex-direction: row;
-  gap: 14px;
-}
-.nav__link {
-  padding: 3px 10px 1px 10px;
-  border-bottom: 3px solid rgb(75, 168, 125);
-  border-radius: 4px;
-}
-.nav__link:hover {
-  background-color: rgb(75, 168, 125);
-  transition: 0.4s;
-  color: rgb(255, 255, 255);
-}
-.nav__link-active {
-  background-color: rgb(75, 168, 125);
-  transition: 0.4s;
-  color: rgb(255, 255, 255);
-}
-
-.checkbox {
-  display: none;
+.github__link > svg:active {
+  color: #EEC353;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,16 +1,14 @@
 html {
     scroll-behavior: smooth;
     box-sizing: border-box;
+    height: 100%;
 }
 
-.wrapper {
-    max-width: 1440px;
-    margin: 0 auto;
+body {
+    background-color: $color-brown-xl;
     min-height: 100%;
-    //overflow-x: hidden;
-    background-image: url(../../assets/images/BG\ stuff.png);
-    background-repeat: no-repeat;
-    background-position: 0 6rem;
+    display: flex;
+    flex-direction: column;
 }
 
 *,
@@ -28,7 +26,11 @@ html {
 a {
     text-decoration: none;
     outline: none;
-    color: var(--color-black);
+}
+
+svg {
+    max-width: 100%;
+    height: auto;
 }
 
 ul {

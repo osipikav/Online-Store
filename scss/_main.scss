@@ -7,92 +7,21 @@
     font-style: normal;
 }
 
-.header-container {
-    padding: 10px 80px;
+.main {
+    margin: 20px 4px;
+    flex: 1 0 auto;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
-    gap: 20px;
-    background-image: url(../../assets/images/noise_transparent.png);
+    gap: 2%;
 }
-.logo {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
 
-		// .logo__img
-
-		&__img {
-            max-width: 4.5rem;
-            max-height: 4.5rem;
-            display: inline-block;
-        }
-
-        // .logo__title
-    
-            &__title {
-                align-self: center;
-            }
-    
-		// .logo__link
-
-		&__link {
-            font-family: "Montiran";
-            font-size: 3.5rem;
-        }
+.filters{
+    background-color: $color-grey-s-tr;
+    border-radius: 20px;
+    width: 25%;
 }
-.nav-wrapper {
-    align-self: center;
-}
-.nav {
-
-		// .nav__list
-
-		&__list {
-            display: flex;
-            flex-direction: row;
-            gap: 14px;
-        }
-
-		// .nav__item
-
-		&__item {
-            
-        }
-
-		// .nav__link
-
-		&__link {
-            padding: 3px 10px 1px 10px;
-            border-bottom: 3px solid $color-green-l;
-            border-radius: 4px;
-            &:hover {
-                background-color: $color-green-l;
-                transition: 0.4s;
-                color: $color-grey-xs;
-            }
-        }
-
-        // .nav__link-active
-
-        &__link-active {
-            background-color: $color-green-l;
-            transition: 0.4s;
-            color: $color-grey-xs;
-        }
-}
-.checkbox {
-    display: none;
-}
-.burger {
-
-		// .burger__line
-
-		&__line {}
-}
-.line1 {
-}
-.line2 {
-}
-.line3 {
+.products {
+    background-color: $color-grey-s-tr;
+    border-radius: 20px;
+    width: 73%;
 }
