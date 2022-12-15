@@ -533,6 +533,7 @@ template {
 }
 
 .checkbox-line input {
+  accent-color: #A59568;
   cursor: pointer;
 }
 .checkbox-line label {

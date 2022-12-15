@@ -106,6 +106,7 @@
 }
 .checkbox-line {
     & input {
+        accent-color: $color-brown-s;
         cursor: pointer;
     }
     & label {
