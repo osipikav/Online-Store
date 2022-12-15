@@ -396,14 +396,14 @@ template {
 }
 .nav__link {
   font-family: Molgan;
-  color: #ffffff;
+  color: #EEC353;
   transition: all 0.4s;
 }
 .nav__link:hover {
   color: rgba(255, 255, 255, 0.47);
 }
 .nav__link:active {
-  color: #EEC353;
+  color: rgba(196, 196, 196, 0.25);
 }
 .nav__title {
   text-align: center;
@@ -420,7 +420,7 @@ template {
   position: relative;
 }
 .order__link > svg {
-  color: #ffffff;
+  color: #EEC353;
   width: 60px;
   height: 60px;
   outline: 1px solid transparent;
@@ -437,7 +437,7 @@ template {
   outline-color: rgba(255, 255, 255, 0.47);
 }
 .order__link > svg:active {
-  color: #EEC353;
+  color: rgba(196, 196, 196, 0.25);
 }
 .order__amount {
   position: absolute;
@@ -485,7 +485,7 @@ template {
   padding: 4px 10px;
   border-radius: 4px;
   background-color: rgba(196, 196, 196, 0.25);
-  border: 1px solid transparent;
+  border: 1px solid #EEC353;
   transition: ease-in-out 0.4s;
 }
 .filters__btn:hover {
@@ -493,7 +493,7 @@ template {
   border-color: rgba(255, 255, 255, 0.47);
 }
 .filters__title {
-  color: #ffffff;
+  color: #EEC353;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.47);
   margin-bottom: 4px;
@@ -533,7 +533,7 @@ template {
 }
 
 .checkbox-line input {
-  accent-color: #A59568;
+  accent-color: #EEC353;
   cursor: pointer;
 }
 .checkbox-line label {

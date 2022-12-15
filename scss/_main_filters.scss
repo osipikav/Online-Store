@@ -35,7 +35,7 @@
         padding: 4px 10px;
         border-radius: 4px;
         background-color: $color-grey-s-tr;
-        border: 1px solid transparent;
+        border: 1px solid $color-yellow;
         transition: ease-in-out 0.4s;
         &:hover {
             color: $color-white-tr;
@@ -50,7 +50,7 @@
     &__buttons-copy {}
 
     &__title {
-        color: $color-white;
+        color: $color-yellow;
         text-align: center;
         border-bottom: 1px solid $color-white-tr;
         margin-bottom: 4px;
@@ -106,7 +106,7 @@
 }
 .checkbox-line {
     & input {
-        accent-color: $color-brown-s;
+        accent-color: $color-yellow;
         cursor: pointer;
     }
     & label {

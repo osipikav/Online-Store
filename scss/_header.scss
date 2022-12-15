@@ -22,13 +22,13 @@
     }
     &__link {
         font-family: Molgan;
-        color: $color-white;
+        color: $color-yellow;
         transition: all 0.4s;
         &:hover {
             color: $color-white-tr;
         }
         &:active {
-            color: $color-yellow;
+            color: $color-grey-s-tr;
         }
     }
     &__title {
@@ -47,7 +47,7 @@
     }
 
     &__link>svg {
-        color: $color-white;
+        color: $color-yellow;
         width: 60px;
         height: 60px;
         outline: 1px solid transparent;
@@ -64,7 +64,7 @@
             outline-color: $color-white-tr;
         }
         &:active {
-            color: $color-yellow;
+            color: $color-grey-s-tr;
         }
     }
 
