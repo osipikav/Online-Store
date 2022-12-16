@@ -464,6 +464,7 @@ template {
   display: flex;
   flex-flow: row wrap;
   gap: 2%;
+  justify-content: center;
 }
 .main__filters {
   background-color: rgba(196, 196, 196, 0.25);
@@ -480,6 +481,7 @@ template {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  gap: 4px;
 }
 .filters__btn {
   padding: 4px 10px;
@@ -522,7 +524,7 @@ template {
   overflow-y: auto;
 }
 .category__list::-webkit-scrollbar {
-  width: 14px;
+  width: 10px;
   background-color: #383838;
   border-radius: 4px;
 }
@@ -532,6 +534,9 @@ template {
   border: 2px solid #ffffff;
 }
 
+.checkbox-line {
+  font-size: 14px;
+}
 .checkbox-line input {
   accent-color: #EEC353;
   cursor: pointer;
@@ -555,7 +560,7 @@ template {
   overflow-y: auto;
 }
 .brand__list::-webkit-scrollbar {
-  width: 14px;
+  width: 10px;
   background-color: #383838;
   border-radius: 4px;
 }
@@ -633,4 +638,40 @@ template {
 }
 .github__link > svg:active {
   color: #EEC353;
+}
+
+@media (max-width: 768px) {
+  .checkbox-line {
+    font-size: 1.6vw;
+  }
+  .checkbox-line label {
+    vertical-align: super;
+  }
+  .checkbox-line span {
+    display: none;
+  }
+  .filters__btn {
+    padding: 4px 6px;
+    font-size: 1.6vw;
+  }
+  .filters__title {
+    font-size: 2.4vw;
+  }
+  .category__list::-webkit-scrollbar {
+    width: 8px;
+  }
+  .brand__list::-webkit-scrollbar {
+    width: 8px;
+  }
+  .footer__nav {
+    transition: ease-out 0.3s;
+    gap: 12px;
+  }
+}
+.active {
+  display: block;
+}
+
+.not-active {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */
