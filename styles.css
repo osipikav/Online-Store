@@ -464,6 +464,7 @@ template {
   display: flex;
   flex-flow: row wrap;
   gap: 2%;
+  justify-content: center;
 }
 .main__filters {
   background-color: rgba(196, 196, 196, 0.25);
@@ -633,4 +634,12 @@ template {
 }
 .github__link > svg:active {
   color: #EEC353;
+}
+
+.active {
+  display: block;
+}
+
+.not-active {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */
