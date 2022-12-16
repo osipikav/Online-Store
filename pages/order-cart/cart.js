@@ -1,3 +1,18 @@
+let orderAmount = document.querySelector('.order__amount');
+let cartBtn = document.querySelector('.order__link');
+let main = document.querySelector('main');
+
+function isEmpty() {
+    if (orderAmount.innerHTML == '0') {
+        let cartTitle = document.createElement('h2');
+        main.append(cartTitle);
+        cartTitle.innerHTML = 'Your cart is empty';
+        cartTitle.style.setProperty('color', '#EEC353');       
+    } else {
+        main.removeChild(cartTitle);
+    }
+}
+isEmpty();
 /* let cartBtn = document.querySelector('.order__link');
 let main = document.querySelector('main');
 let sections = document.querySelectorAll('section');
