@@ -30,6 +30,7 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
+        gap: 4px;
     }
 
     &__btn {
@@ -94,7 +95,7 @@
         height: 146px;
         overflow-y: auto;
         &::-webkit-scrollbar {
-            width: 14px;
+            width: 10px;
             background-color: $color-brown-xl;
             border-radius: 4px;
         }
@@ -106,6 +107,7 @@
     }
 }
 .checkbox-line {
+    font-size: 14px;
     & input {
         accent-color: $color-yellow;
         cursor: pointer;
@@ -135,7 +137,7 @@
         overflow-x: hidden;
         overflow-y: auto;
         &::-webkit-scrollbar {
-            width: 14px;
+            width: 10px;
             background-color: $color-brown-xl;
             border-radius: 4px;
         }
