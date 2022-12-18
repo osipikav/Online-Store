@@ -1,18 +1,34 @@
-let orderAmount = document.querySelector('.order__amount');
-let cartBtn = document.querySelector('.order__link');
-let main = document.querySelector('main');
+let orderAmount = document.querySelector(".order__amount");
+let cartBtn = document.querySelector(".order__link");
+let main = document.querySelector("main");
 
 function isEmpty() {
-    if (orderAmount.innerHTML == '0') {
-        let cartTitle = document.createElement('h2');
-        main.append(cartTitle);
-        cartTitle.innerHTML = 'Your cart is empty';
-        cartTitle.style.setProperty('color', '#EEC353');       
-    } else {
-        main.removeChild(cartTitle);
-    }
+  if (orderAmount.innerHTML == "0") {
+    let cartTitle = document.createElement("h2");
+    main.append(cartTitle);
+    cartTitle.innerHTML = "Your cart is empty";
+    cartTitle.style.setProperty("color", "#EEC353");
+  } else {
+    main.removeChild(cartTitle);
+  }
 }
 isEmpty();
+
+//let url = "https://fakestoreapi.com/products";
+let url = "https://api.escuelajs.co/api/v1/products";
+
+async function fetchHandler() {
+  try {
+    const response = await fetch(url);
+    const data = response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+fetchHandler();
+console.log(data);
+
 /* let cartBtn = document.querySelector('.order__link');
 let main = document.querySelector('main');
 let sections = document.querySelectorAll('section');
