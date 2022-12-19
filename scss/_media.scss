@@ -1,40 +1,40 @@
 @media (max-width: 768px) {
-    .checkbox-line {
-        font-size: 1.6vw;
-        & label {
-            vertical-align: super;
-        }
-        & span{
-            display: none;
-        }
+  .checkbox-line {
+    font-size: 1.6vw;
+    & label {
+      vertical-align: super;
     }
-    .filters {
-        &__btn {
-            padding: 4px 6px;
-            font-size: 1.6vw;
-        }
-        &__title {
-            font-size: 2.4vw;
-        }
+    & span {
+      display: none;
     }
-    .category {
-        &__list {
-            &::-webkit-scrollbar {
-                width: 8px;
-            }
-        }
+  }
+  .filters {
+    &__btn {
+      padding: 4px 6px;
+      font-size: 1.6vw;
     }
-    .brand {
-        &__list {
-            &::-webkit-scrollbar {
-                width: 8px;
-            }
-        }
+    &__title {
+      font-size: 2.4vw;
     }
-    .footer {
-        &__nav {
-            transition: ease-out 0.3s;
-            gap: 12px;
-        }
+  }
+  .category {
+    &__list {
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
     }
+  }
+  .brand {
+    &__list {
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+    }
+  }
+  .footer {
+    &__nav {
+      transition: ease-out 0.3s;
+      gap: 12px;
+    }
+  }
 }
