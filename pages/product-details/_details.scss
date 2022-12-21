@@ -10,26 +10,31 @@
 .details {
   display: flex;
   flex-direction: column;
+  // justify-content: space-between;
 
   &__title {
-    color: $color-white;
+    color: $color-yellow;
     text-align: center;
     flex-grow: 0.5;
     padding: 20px 0;
     background-color: $color-grey-s-tr;
-    height: 70px;
+    max-height: 70px;
   }
 
   &__info {
     display: flex;
     flex-flow: row wrap;
-    gap: 10px;
-    height: 100%;
-    padding: 6px;
+    justify-content: space-between;
+     padding: 6px;
+     height: 80%;
 
     .info {
       &__small-img {
-        width: 100px;
+        width: 12%;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        gap: 6px;
 
         img {
           width: 100%;
@@ -40,81 +45,96 @@
       }
 
       &__large-img {
-        max-width: 40%;
-        display: flex;
-        align-items: center;
+        width: 45%;
+
+        position: relative;
 
         img {
           width: 100%;
           border: 1px solid $color-brown-s;
           border-radius: 0.5rem;
           cursor: pointer;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
       }
 
       &__descr-items {
-        width: 30%;
+        width: 40%;
         display: flex;
         flex-direction: column;
         gap: 6px;
-        color: $color-yellow;
+        color: $color-white;
+               justify-content: center;
 
         .descr-item {
           background-color: $color-grey-s-tr;
           padding: 0;
           overflow: hidden;
           width: 100%;
-          height: calc(100% / 6);
-          border-radius: 0.5rem;
+           border-radius: 0.5rem;
           text-align: center;
+     
 
           .item-title,
           .item-prop {
-            height: 50%;
+            min-height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid $color-brown-s;
+            padding: 4px 6px;
+          }
+          .item-prop{
+            color: $color-yellow;
           }
           .item-title {
             background-color: $color-grey-s-tr;
           }
         }
       }
-      &__price {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto;
-        gap: 10px;
+    }
+  }
+  &__price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    gap: 50px;
+    width: 100%;
+    height: 20%;
 
-        .price {
-          font-size: 2rem;
-          color: $color-yellow;
-        }
 
-        .buttons {
-          font-size: 1.5rem;
-          padding: 4px 6px;
-          background-color: $color-brown-s;
-          color: $color-white;
-          border-radius: 6px;
-          border: 1px solid $color-yellow;
-          margin: 4px 0;
+    .price {
+      font-size: 2rem;
+      color: $color-yellow;
+      padding: 20px;
+    }
 
-          &:hover {
-            transition: ease-in-out 0.4s;
-            color: $color-white-tr;
-            border: 1px solid $color-white-tr;
-          }
+    .buttons {
+      font-size: 1.5rem;
+      padding: 4px 6px;
+      background-color: $color-brown-s;
+      color: $color-white;
+      border-radius: 6px;
+      border: 1px solid $color-yellow;
+      margin: 4px 0;
+      width: 250px;
+      text-align: center;
 
-          &:active {
-            transition: ease-in-out 0.2s;
-            color: $color-brown-l;
-            border: 1px solid $color-brown-l;
-          }
-        }
+      &:hover {
+        transition: ease-in-out 0.4s;
+        color: $color-white-tr;
+        border: 1px solid $color-white-tr;
+      }
+
+      &:active {
+        transition: ease-in-out 0.2s;
+        color: $color-brown-l;
+        border: 1px solid $color-brown-l;
       }
     }
   }
