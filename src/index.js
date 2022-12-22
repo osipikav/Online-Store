@@ -1,3 +1,6 @@
+import './styles.scss';
+
+
 let products = document.querySelector(".products");
 let url = "https://api.escuelajs.co/api/v1/products";
 let data;
