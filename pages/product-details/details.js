@@ -20,8 +20,8 @@ const product = {
 
 const details = document.querySelector(".details");
 const title = document.querySelector(".details__title");
-const smallImgs = document.querySelector(".info__small-img");
-const largeImg = document.querySelector(".info__large-img");
+const smallImgs = document.querySelector(".info__miniature");
+const thumbnail = document.querySelector(".info__thumbnail");
 const descrItems = document.querySelector(".info__descr-items");
 const price = document.querySelector(".price");
 const descrArr = ["description", "discountPercentage", "rating", "stock", "brand", "category"];
@@ -36,23 +36,15 @@ function createDetails() {
       smli.alt = "img";
       smallImgs.append(smli);
 
-      // console.log("smli :>> ", smli);
-      // //   smli.onclick = (event) => {
-      // //     console.log("i :>> " event.target);
-      // //   };
-      // // }
-      // let sm = document.querySelector(")
-
-      // // debugger
-      // sm.AddEvenListener("click", () => {
-      //   console.log('object :>> ');
-      // });
+      smli.addEventListener("click", (e) => {
+        document.querySelector(".info__thumbnail img").src = e.target.src;
+      });
     }
   });
 
   let lrgi = document.createElement("img");
   lrgi.src = product.thumbnail;
-  largeImg.append(lrgi);
+  thumbnail.append(lrgi);
 
   descrArr.forEach((el) => {
     let descrEl = document.createElement("div");
@@ -73,4 +65,5 @@ function createDetails() {
 
   price.textContent = `${product.price}$`;
 }
+
 createDetails();
