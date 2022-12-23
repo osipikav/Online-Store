@@ -20,47 +20,54 @@ const product = {
 
 const details = document.querySelector(".details");
 const title = document.querySelector(".details__title");
-const smallImgs = document.querySelector(".info__miniature");
-const thumbnail = document.querySelector(".info__thumbnail");
-const descrItems = document.querySelector(".info__descr-items");
+const miniaturesDiv = document.querySelector(".info__miniature");
+const thumbnailDiv = document.querySelector(".info__thumbnail");
+const descrItems = document.querySelector(".info__description-items");
 const price = document.querySelector(".price");
-const descrArr = ["description", "discountPercentage", "rating", "stock", "brand", "category"];
+const descriptionArray = [
+  "description",
+  "discountPercentage",
+  "rating",
+  "stock",
+  "brand",
+  "category",
+];
 
 function createDetails() {
   title.textContent = product.title;
 
   product.images.forEach((img, i) => {
     if (i < product.images.length - 1) {
-      let smli = document.createElement("img");
-      smli.src = img;
-      smli.alt = "img";
-      smallImgs.append(smli);
+      let miniatureImg = document.createElement("img");
+      miniatureImg.src = img;
+      miniatureImg.alt = "img";
+      miniaturesDiv.append(miniatureImg);
 
-      smli.addEventListener("click", (e) => {
-        document.querySelector(".info__thumbnail img").src = e.target.src;
+      miniatureImg.addEventListener("click", (event) => {
+        document.querySelector(".info__thumbnail img").src = event.target.src;
       });
     }
   });
 
-  let lrgi = document.createElement("img");
-  lrgi.src = product.thumbnail;
-  thumbnail.append(lrgi);
+  let thumbnailImg = document.createElement("img");
+  thumbnailImg.src = product.thumbnail;
+  thumbnailDiv.append(thumbnailImg);
 
-  descrArr.forEach((el) => {
-    let descrEl = document.createElement("div");
-    descrEl.classList = `descr-item ${el}`;
-    let h3_1 = document.createElement("div");
-    h3_1.classList = "item-title";
-    h3_1.textContent = `${el}:`;
-    if (el == "discountPercentage") {
-      h3_1.textContent = `discount:`;
+  descriptionArray.forEach((descriptionArrayElement) => {
+    let descriptionElement = document.createElement("div");
+    descriptionElement.classList = `description-item ${descriptionArrayElement}`;
+    let descriptionName = document.createElement("div");
+    descriptionName.classList = "item-title";
+    descriptionName.textContent = `${descriptionArrayElement}:`;
+    if (descriptionArrayElement == "discountPercentage") {
+      descriptionName.textContent = `discount:`;
     }
-    let h3_2 = document.createElement("div");
-    h3_2.classList = "item-prop";
-    h3_2.textContent = `${product[el]}`;
+    let descriptionValue = document.createElement("div");
+    descriptionValue.classList = "item-prop";
+    descriptionValue.textContent = `${product[descriptionArrayElement]}`;
 
-    descrItems.append(descrEl);
-    descrEl.append(h3_1, h3_2);
+    descrItems.append(descriptionElement);
+    descriptionElement.append(descriptionName, descriptionValue);
   });
 
   price.textContent = `${product.price}$`;

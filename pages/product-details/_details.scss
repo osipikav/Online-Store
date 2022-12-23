@@ -10,7 +10,6 @@
 .details {
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
 
   &__title {
     color: $color-yellow;
@@ -25,8 +24,8 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-     padding: 6px;
-     height: 80%;
+    padding: 6px;
+    height: 80%;
 
     .info {
       &__miniature {
@@ -60,22 +59,21 @@
         }
       }
 
-      &__descr-items {
+      &__description-items {
         width: 40%;
         display: flex;
         flex-direction: column;
         gap: 6px;
         color: $color-white;
-               justify-content: center;
+        justify-content: center;
 
-        .descr-item {
+        .description-item {
           background-color: $color-grey-s-tr;
           padding: 0;
           overflow: hidden;
           width: 100%;
-           border-radius: 0.5rem;
+          border-radius: 0.5rem;
           text-align: center;
-     
 
           .item-title,
           .item-prop {
@@ -86,7 +84,7 @@
             border: 1px solid $color-brown-s;
             padding: 4px 6px;
           }
-          .item-prop{
+          .item-prop {
             color: $color-yellow;
           }
           .item-title {
@@ -105,7 +103,6 @@
     gap: 50px;
     width: 100%;
     height: 20%;
-
 
     .price {
       font-size: 2rem;

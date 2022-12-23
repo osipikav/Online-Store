@@ -759,7 +759,7 @@ template {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.details__info .info__descr-items {
+.details__info .info__description-items {
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -767,7 +767,7 @@ template {
   color: #ffffff;
   justify-content: center;
 }
-.details__info .info__descr-items .descr-item {
+.details__info .info__description-items .description-item {
   background-color: rgba(196, 196, 196, 0.25);
   padding: 0;
   overflow: hidden;
@@ -775,8 +775,8 @@ template {
   border-radius: 0.5rem;
   text-align: center;
 }
-.details__info .info__descr-items .descr-item .item-title,
-.details__info .info__descr-items .descr-item .item-prop {
+.details__info .info__description-items .description-item .item-title,
+.details__info .info__description-items .description-item .item-prop {
   min-height: 30px;
   display: flex;
   align-items: center;
@@ -784,10 +784,10 @@ template {
   border: 1px solid #a59568;
   padding: 4px 6px;
 }
-.details__info .info__descr-items .descr-item .item-prop {
+.details__info .info__description-items .description-item .item-prop {
   color: #eec353;
 }
-.details__info .info__descr-items .descr-item .item-title {
+.details__info .info__description-items .description-item .item-title {
   background-color: rgba(196, 196, 196, 0.25);
 }
 .details__price {
