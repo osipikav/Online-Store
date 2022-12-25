@@ -24,7 +24,7 @@ const miniaturesDiv = document.querySelector(".info__miniature");
 const thumbnailDiv = document.querySelector(".info__thumbnail");
 const descrItems = document.querySelector(".info__description-items");
 const price = document.querySelector(".price");
-const descriptionArray = [
+const itemsCategories = [
   "description",
   "discountPercentage",
   "rating",
@@ -53,18 +53,18 @@ function createDetails() {
   thumbnailImg.src = product.thumbnail;
   thumbnailDiv.append(thumbnailImg);
 
-  descriptionArray.forEach((descriptionArrayElement) => {
+  itemsCategories.forEach((itemsCategoriesElement) => {
     let descriptionElement = document.createElement("div");
-    descriptionElement.classList = `description-item ${descriptionArrayElement}`;
+    descriptionElement.classList = `description-item ${itemsCategoriesElement}`;
     let descriptionName = document.createElement("div");
     descriptionName.classList = "item-title";
-    descriptionName.textContent = `${descriptionArrayElement}:`;
-    if (descriptionArrayElement == "discountPercentage") {
+    descriptionName.textContent = `${itemsCategoriesElement}:`;
+    if (itemsCategoriesElement == "discountPercentage") {
       descriptionName.textContent = `discount:`;
     }
     let descriptionValue = document.createElement("div");
     descriptionValue.classList = "item-prop";
-    descriptionValue.textContent = `${product[descriptionArrayElement]}`;
+    descriptionValue.textContent = `${product[itemsCategoriesElement]}`;
 
     descrItems.append(descriptionElement);
     descriptionElement.append(descriptionName, descriptionValue);
