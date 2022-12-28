@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Montiran";
-  src: url("./assets/fonts/Molgan-Regular.otf") format("opentype");
+  src: url("./assets/fonts/Montiran-ywVMV.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -456,7 +456,7 @@ template {
 
 @font-face {
   font-family: "Montiran";
-  src: url("../../assets/fonts/Montiran-ywVMV.otf") format("opentype");
+  src: url("./assets/fonts/Montiran-ywVMV.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }

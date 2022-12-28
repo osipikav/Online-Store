@@ -1,3 +1,4 @@
+import './styles.css';
 import products from './assets/data/data.js';
 
 let numberOfProducts = products.length;
