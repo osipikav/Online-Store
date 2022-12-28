@@ -11,15 +11,15 @@ $color-white: #ffffff;
 $color-white-tr: rgba(255, 255, 255, 0.47);
 
 @font-face {
-  font-family: "Montiran";
-  src: url('./assets/fonts/Molgan-Regular.otf') format("opentype");
+  font-family: 'Montiran';
+  src: url('./assets/fonts/Montiran-ywVMV.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Molgan";
-  src: url("./assets/fonts/Molgan-Regular.otf") format("opentype");
+  font-family: 'Molgan';
+  src: url('./assets/fonts/Molgan-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }

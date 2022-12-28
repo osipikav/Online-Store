@@ -46,147 +46,51 @@
     </header>
     <main class="main">
       <section class="main__filters filters">
-        <div class="filters__buttons">
-          <button class="filters__buttons-reset filters__btn">Reset</button>
-          <button class="filters__buttons-copy filters__btn">Copy Link</button>
-        </div>
-        <div class="filters__category category">
-          <h3 class="filters__title category__title">Category</h3>
-          <div class="category__list">
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="smartphones" />
-              <label for="smartphones">smartphones</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="laptops" />
-              <label for="laptops">laptops</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="fragrances" />
-              <label for="fragrances">fragrances</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="skincare" />
-              <label for="skincare">skincare</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="groceries" />
-              <label for="groceries">groceries</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="home-decoration" />
-              <label for="home-decoration">home-decoration</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="furniture" />
-              <label for="furniture">furniture</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="tops" />
-              <label for="tops">tops</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="womens-dresses" />
-              <label for="womens-dresses">womens-dresses</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="womens-shoes" />
-              <label for="womens-shoes">womens-shoes</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="mens-shirts" />
-              <label for="mens-shirts">mens-shirts</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="mens-shoes" />
-              <label for="mens-shoes">mens-shoes</label>
-              <span>(5/5)</span>
-            </div>
-          </div>
-        </div>
-        <div class="filters__brand brand">
-          <h3 class="filters__title brand__title">Brand</h3>
-          <div class="brand__list">
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="smartphones" />
-              <label for="smartphones">smartphones</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="laptops" />
-              <label for="laptops">laptops</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="fragrances" />
-              <label for="fragrances">fragrances</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="skincare" />
-              <label for="skincare">skincare</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="groceries" />
-              <label for="groceries">groceries</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="home-decoration" />
-              <label for="home-decoration">home-decoration</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="furniture" />
-              <label for="furniture">furniture</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="tops" />
-              <label for="tops">tops</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="womens-dresses" />
-              <label for="womens-dresses">womens-dresses</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="womens-shoes" />
-              <label for="womens-shoes">womens-shoes</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="mens-shirts" />
-              <label for="mens-shirts">mens-shirts</label>
-              <span>(5/5)</span>
-            </div>
-            <div class="checkbox-line item-active">
-              <input type="checkbox" id="mens-shoes" />
-              <label for="mens-shoes">mens-shoes</label>
-              <span>(5/5)</span>
-            </div>
-          </div>
-        </div>
         <div class="filters__price price">
           <h3 class="filters__title price__title">Price</h3>
-          <div class="price__list"></div>
+          <div class="price__list">
+            <div class="price__min">
+              <input class="price__min-input" type="number" value="0" />
+            </div>
+            <div class="price__divider">$</div>
+            <div class="price__max">
+              <input class="price__max-input" type="number" value="3000" />
+            </div>
+          </div>
+          <div class="price__slider">
+            <div class="price__progress"></div>
+          </div>
+          <div class="price__range-input">
+            <input class="price__range-min" type="range" min="0" max="3000" value="0" step="10" />
+            <input
+              class="price__range-max"
+              type="range"
+              min="0"
+              max="2000"
+              value="2000"
+              step="10"
+            />
+          </div>
         </div>
+
         <div class="filters__stock stock">
           <h3 class="filters__title stock__title">Stock</h3>
-          <div class="stock__list"></div>
+          <div class="stock__list">
+            <div class="stock__min">
+              <input class="stock__min-input" type="number" value="0" />
+            </div>
+            <div class="stock__divider">-</div>
+            <div class="stock__max">
+              <input class="stock__max-input" type="number" value="1000" />
+            </div>
+          </div>
+          <div class="stock__slider">
+            <div class="stock__progress"></div>
+          </div>
+          <div class="stock__range-input">
+            <input class="stock__range-min" type="range" min="0" max="1000" value="0" step="10" />
+            <input class="range-max" type="range" min="0" max="1000" value="1000" step="10" />
+          </div>
         </div>
       </section>
 
@@ -240,6 +144,6 @@
         </div>
       </div>
     </footer>
-    <script src="./index.js"></script>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>
