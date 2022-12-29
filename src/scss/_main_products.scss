@@ -65,6 +65,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+    gap: 4px;
     & button {
       font-size: 0.8rem;
       padding: 4px 6px;
