@@ -3,8 +3,8 @@ import products from './assets/data/data.js';
 //import { isConstructorDeclaration } from 'typescript';
 
 const mainPage = () => {
-  const maimContent = document.querySelector('main');
-  maimContent.innerHTML = `<section class="main__filters filters"></section>
+  const mainContent = document.querySelector('main');
+  mainContent.innerHTML = `<section class="main__filters filters"></section>
 <section class="main__products products"></section>`;
 
   let productsField = document.querySelector('.products');
@@ -14,8 +14,6 @@ const mainPage = () => {
   localStorage.setItem('products', JSON.stringify(data));
 
   const showProductCards = () => {
-    //const productItem = document.createElement('div');
-    //productItem.className = 'products__item';
     productsField.innerHTML = products
       .map((product) => {
         return `<div class="products__item">
@@ -31,10 +29,10 @@ const mainPage = () => {
 </div>`;
       })
       .join('');
-    //return productsField;
+    return productsField;
   };
 
-  productsField.append(showProductCards());
+  mainContent.append(showProductCards());
 
   //adding data to filters
   let filters = document.querySelector('.filters');
@@ -50,15 +48,19 @@ const mainPage = () => {
   filters.append(showTopButtons());
   //filter-blocks
   let category = document.createElement('div');
+  let categoryTitle = document.createElement('h3');
+  let categoryList = document.createElement('div');
 
   category.className = 'filters__category category';
-  let categoryTitle = document.createElement('h3');
-  category.append(categoryTitle);
   categoryTitle.className = 'filters__title category__title';
-  categoryTitle.innerHTML = 'Category';
-  let categoryList = document.createElement('div');
-  category.append(categoryList);
   categoryList.className = 'category__list';
+  categoryTitle.innerHTML = 'Category';
+
+  filters.append(category);
+  category.append(categoryTitle);
+  category.append(categoryList);
+
+  category.append(filterMaker(categoryList, categoryArray()));
 
   function categoryArray() {
     return data
@@ -82,28 +84,24 @@ const mainPage = () => {
   </div>`;
       })
       .join('');
-    console.log(filterList.innerHTML);
-    //return categoryList;
+    return filterList;
   }
 
-  categoryList.append(filterMaker(categoryList, categoryArray()));
-
-  console.log(filterMaker);
   let brand = document.createElement('div');
-  //blocks order!!!!!!!!!!!!!!
-  filters.append(category);
-  filters.append(brand);
+  let brandTitle = document.createElement('h3');
+  let brandList = document.createElement('div');
 
   brand.className = 'filters__brand brand';
-  let brandTitle = document.createElement('h3');
-  brand.append(brandTitle);
   brandTitle.className = 'filters__title brand__title';
-  brandTitle.innerHTML = 'Brand';
-  let brandList = document.createElement('div');
-  brand.append(brandList);
   brandList.className = 'brand__list';
+  brandTitle.innerHTML = 'Brand';
 
-  brandList.append(filterMaker(brandList, brandArray()));
+  filters.append(brand);
+  brand.append(brandTitle);
+  brand.append(brandList);
+
+  brand.append(filterMaker(brandList, brandArray()));
+
   //double-pointing bars
   const showRangeBar = (whatTheRange, divider) => {
     const rangeFilter = document.createElement('div');
@@ -145,69 +143,39 @@ const mainPage = () => {
   const priceInput = document.querySelectorAll('.price__list input');
   const priceProgress = document.querySelector('.price__slider .price__progress');
   let priceGap = 10;
-
-  rangeInput.forEach((input) => {
-    input.addEventListener('input', (el) => {
-      let minValue = parseInt(rangeInput[0].value);
-      let maxValue = parseInt(rangeInput[1].value);
-
-      if (maxValue - minValue < priceGap) {
-        if (el.target.className == 'price__range-min') {
-          rangeInput[0].value = maxValue - priceGap;
-        } else {
-          rangeInput[1].value = minValue + priceGap;
-        }
-      } else {
-        priceInput[0].value = minValue;
-        priceInput[1].value = maxValue;
-        priceProgress.style.left = (minValue / rangeInput[0].max) * 100 + '%';
-        priceProgress.style.right = 100 - (maxValue / rangeInput[1].max) * 100 + '%';
-      }
-    });
-  });
-
-  priceInput.forEach((input) => {
-    input.addEventListener('input', (el) => {
-      let minValue = parseInt(priceInput[0].value);
-      let maxValue = parseInt(priceInput[1].value);
-
-      if (maxValue - minValue >= priceGap && maxValue <= 3000) {
-        if (el.target.className == 'price__min-input') {
-          rangeInput[0].value = minValue;
-          priceProgress.style.left = (minValue / rangeInput[0].max) * 100 + '%';
-        } else {
-          rangeInput[1].value = maxValue;
-          priceProgress.style.right = 100 - (maxValue / rangeInput[1].max) * 100 + '%';
-        }
-      }
-    });
-  });
+  let priceSelector = 'price__range-min';
 
   //stock progress-bar
   const stockRangeInput = document.querySelectorAll('.stock__range-input input');
   const stockInput = document.querySelectorAll('.stock__list input');
   const stockProgress = document.querySelector('.stock__slider .stock__progress');
   let stockGap = 10;
+  let stockSelector = 'stock__range-min';
 
-  stockRangeInput.forEach((input) => {
-    input.addEventListener('input', (el) => {
-      let minValue = parseInt(stockRangeInput[0].value);
-      let maxValue = parseInt(stockRangeInput[1].value);
+  function progressBarControls(numberInput, progressBarInput, progressBar, gap, rangeSelector) {
+    numberInput.forEach((input) => {
+      input.addEventListener('input', (el) => {
+        let minValue = parseInt(numberInput[0].value);
+        let maxValue = parseInt(numberInput[1].value);
 
-      if (maxValue - minValue < stockGap) {
-        if (el.target.className == 'stock__range-min') {
-          stockRangeInput[0].value = maxValue - stockGap;
+        if (maxValue - minValue < gap) {
+          if (el.target.className == rangeSelector) {
+            numberInput[0].value = maxValue - gap;
+          } else {
+            numberInput[1].value = minValue + gap;
+          }
         } else {
-          stockRangeInput[1].value = minValue + stockGap;
+          progressBarInput[0].value = minValue;
+          progressBarInput[1].value = maxValue;
+          progressBar.style.left = (minValue / numberInput[0].max) * 100 + '%';
+          progressBar.style.right = 100 - (maxValue / numberInput[1].max) * 100 + '%';
         }
-      } else {
-        stockInput[0].value = minValue;
-        stockInput[1].value = maxValue;
-        stockProgress.style.left = (minValue / stockRangeInput[0].max) * 100 + '%';
-        stockProgress.style.right = 100 - (maxValue / stockRangeInput[1].max) * 100 + '%';
-      }
+      });
     });
-  });
+  }
+
+  progressBarControls(rangeInput, priceInput, priceProgress, priceGap, priceSelector);
+  progressBarControls(stockRangeInput, stockInput, stockProgress, stockGap, stockSelector);
 
   stockInput.forEach((input) => {
     input.addEventListener('input', (el) => {
