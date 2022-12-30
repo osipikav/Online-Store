@@ -507,6 +507,7 @@ template {
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.47);
   margin-bottom: 4px;
+  text-transform: capitalize;
 }
 .filters__category {
   margin-bottom: 6px;
@@ -795,6 +796,7 @@ input[type=range]::-moz-range-thumb {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  gap: 4px;
 }
 .products__options button {
   font-size: 0.8rem;
