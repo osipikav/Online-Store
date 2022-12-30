@@ -2,7 +2,7 @@ import './styles.css';
 import products from './assets/data/data.js';
 //import { isConstructorDeclaration } from 'typescript';
 
-const mainPage = () => {
+const MainPage = () => {
   const mainContent = document.querySelector('main');
   mainContent.innerHTML = `<section class="main__filters filters"></section>
 <section class="main__products products"></section>`;
@@ -17,9 +17,11 @@ const mainPage = () => {
     productsField.innerHTML = products
       .map((product) => {
         return `<div class="products__item">
-  <div class="products__title">${product.title}</div>
+  <div class="products__title">${products.title}</div>
   <div class="products__photo">
-    <img class="products__img" src=${product.images[0] ? product.images[0] : product.images}>
+    <img class="products__img" src=${
+      !!product.images.length && product.images[0] ? product.images[0] : product.images
+    }>
   </div>
   <div class="products__price">${product.price} $</div>
   <div class="products__options">
@@ -60,17 +62,17 @@ const mainPage = () => {
   category.append(categoryTitle);
   category.append(categoryList);
 
-  category.append(filterMaker(categoryList, categoryArray()));
+  category.append(filterMaker(categoryList, getProductsCategories()));
 
-  function categoryArray() {
+  function getProductsCategories() {
     return data
-      .map((el) => el.category)
+      .map((productCategory) => productCategory.category)
       .reduce((arr, item) => (arr.includes(item) ? arr : [...arr, item]), []);
   }
 
-  function brandArray() {
+  function getProductsBrands() {
     return data
-      .map((el) => el.brand)
+      .map((productBrand) => productBrand.brand)
       .reduce((arr, item) => (arr.includes(item) ? arr : [...arr, item]), []);
   }
 
@@ -100,7 +102,7 @@ const mainPage = () => {
   brand.append(brandTitle);
   brand.append(brandList);
 
-  brand.append(filterMaker(brandList, brandArray()));
+  brand.append(filterMaker(brandList, getProductsBrands()));
 
   //double-pointing bars
   const showRangeBar = (whatTheRange, divider) => {
@@ -237,5 +239,5 @@ const mainPage = () => {
     })
   );
 };
-mainPage();
+MainPage();
 //export { product };
