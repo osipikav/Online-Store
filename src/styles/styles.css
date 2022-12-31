@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'Montiran';
-  src: url('../assets/fonts/Molgan-Regular.otf') format('opentype');
+  font-family: "Montiran";
+  src: url("../assets/fonts/Molgan-Regular.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Molgan';
-  src: url('../assets/fonts/Molgan-Regular.otf') format('opentype');
+  font-family: "Molgan";
+  src: url("../assets/fonts/Molgan-Regular.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -32,8 +32,7 @@ body {
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial,
-    sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 a {
@@ -138,7 +137,7 @@ abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
   -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted; /* 2 */
+          text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -237,9 +236,9 @@ select {
    * Correct the inability to style clickable types in iOS and Safari.
    */
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type=button],
+[type=reset],
+[type=submit] {
   -webkit-appearance: button;
 }
 
@@ -247,9 +246,9 @@ button,
    * Remove the inner border and padding in Firefox.
    */
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -258,9 +257,9 @@ button::-moz-focus-inner,
    * Restore the focus styles unset by the previous rule.
    */
 button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -304,8 +303,8 @@ textarea {
    * 1. Add the correct box sizing in IE 10.
    * 2. Remove the padding in IE 10.
    */
-[type='checkbox'],
-[type='radio'] {
+[type=checkbox],
+[type=radio] {
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
@@ -313,8 +312,8 @@ textarea {
 /**
    * Correct the cursor style of increment and decrement buttons in Chrome.
    */
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -322,7 +321,7 @@ textarea {
    * 1. Correct the odd appearance in Chrome and Safari.
    * 2. Correct the outline style in Safari.
    */
-[type='search'] {
+[type=search] {
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -330,7 +329,7 @@ textarea {
 /**
    * Remove the inner padding in Chrome and Safari on macOS.
    */
-[type='search']::-webkit-search-decoration {
+[type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -378,7 +377,7 @@ template {
 .header {
   padding: 20px;
   background-color: rgba(196, 196, 196, 0.1);
-  background-image: url('../assets/images/noise_transparent.png');
+  background-image: url("../assets/images/noise_transparent.png");
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   color: #ffffff;
@@ -456,8 +455,8 @@ template {
 }
 
 @font-face {
-  font-family: 'Montiran';
-  src: url('../assets/fonts/Montiran-ywVMV.otf') format('opentype');
+  font-family: "Montiran";
+  src: url("../assets/fonts/Montiran-ywVMV.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -616,11 +615,12 @@ template {
   margin: 4px;
   color: #ffffff;
   text-align: center;
-  flex-grow: 0.5;
+  flex-grow: 1;
 }
 .products__photo {
   align-self: center;
   width: 98%;
+  flex-grow: 1;
 }
 .products__img {
   width: 100%;
@@ -634,6 +634,7 @@ template {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  gap: 4px;
 }
 .products__options button {
   font-size: 0.8rem;
@@ -658,7 +659,7 @@ template {
   flex-shrink: 0;
   padding: 20px;
   background-color: rgba(196, 196, 196, 0.1);
-  background-image: url('../assets/images/noise_transparent.png');
+  background-image: url("../assets/images/noise_transparent.png");
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   color: #ffffff;
@@ -708,6 +709,89 @@ template {
   color: #eec353;
 }
 
+.main__cart {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.ordered {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(196, 196, 196, 0.25);
+  border-radius: 20px;
+}
+.ordered__header {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 6px;
+  align-items: baseline;
+  justify-content: space-around;
+  color: #eec353;
+  border-bottom: 2px solid #eec353;
+  padding: 10px;
+}
+.ordered__amount input {
+  color: #ffffff;
+  background-color: transparent;
+  text-align: center;
+  width: 40px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.ordered__product {
+  width: 70%;
+  color: #d7d7d7;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  margin: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #eec353;
+}
+.ordered__number {
+  font-size: 18px;
+  font-weight: bold;
+}
+.ordered__item {
+  flex-grow: 1;
+}
+.item {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 4px;
+  cursor: pointer;
+}
+.item__img {
+  border: 1px solid #eec353;
+  border-radius: 6px;
+  max-width: 60px;
+  max-height: 60px;
+}
+.item__info {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item__title {
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #d7d7d7;
+}
+.item__description {
+  text-align: center;
+}
+.item__additionally {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 100%;
+  color: #383838;
+}
 .not-found {
   display: flex;
   align-items: center;
@@ -874,4 +958,4 @@ template {
 
 .not-active {
   display: none;
-} /*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */
