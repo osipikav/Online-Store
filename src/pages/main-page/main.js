@@ -1,6 +1,4 @@
-// import './styles.css';
 import { products } from '../../assets/data/data.js';
-//import { isConstructorDeclaration } from 'typescript';
 
 const mainPage = () => {
   const mainContent = document.querySelector('main');
@@ -8,27 +6,24 @@ const mainPage = () => {
 <section class="main__products products"></section>`;
 
   let productsField = document.querySelector('.products');
-  console.log('object :>> ', JSON.parse(localStorage.getItem('products')));
-  let data = JSON.parse(localStorage.getItem('products'))
-    ? JSON.parse(localStorage.getItem('products'))
-    : products;
 
-  localStorage.setItem('products', JSON.stringify(data));
+  let data = products;
+
+  //localStorage.setItem('products', JSON.stringify(data));
 
   const showProductCards = () => {
     productsField.innerHTML = products
       .map((product) => {
+        const { id, title, images, price } = product;
         return `<div class="products__item">
-  <div class="products__title">${products.title}</div>
+  <div class="products__title">${title}</div>
   <div class="products__photo">
-    <img class="products__img" src=${
-      !!product.images.length && product.images[0] ? product.images[0] : product.images
-    }>
+    <img class="products__img" src=${!!images.length && images[0]}>
   </div>
-  <div class="products__price">${product.price} $</div>
+  <div class="products__price">${price} $</div>
   <div class="products__options">
-    <button class="products__details" id="${product.id}">Details</button>
-    <button class="products__cart" id="${product.id}-adding">Add To Cart</button>
+    <button class="products__details" id="${id}">Details</button>
+    <button class="products__cart" id="${id}-adding">Add To Cart</button>
   </div>
 </div>`;
       })
