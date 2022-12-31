@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Montiran";
-  src: url("./assets/fonts/Montiran-ywVMV.otf") format("opentype");
+  font-family: 'Montiran';
+  src: url('../assets/fonts/Montiran-ywVMV.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -12,7 +12,7 @@
   flex-flow: row wrap;
   gap: 2%;
   justify-content: center;
- 
+
   &__filters {
     background-color: $color-grey-s-tr;
     border-radius: 20px;
