@@ -1,16 +1,18 @@
-import './styles.css';
-import products from './assets/data/data.js';
+// import './styles.css';
+import { products } from '../../assets/data/data.js';
 //import { isConstructorDeclaration } from 'typescript';
 
-const MainPage = () => {
+const mainPage = () => {
   const mainContent = document.querySelector('main');
   mainContent.innerHTML = `<section class="main__filters filters"></section>
 <section class="main__products products"></section>`;
 
   let productsField = document.querySelector('.products');
+  console.log('object :>> ', JSON.parse(localStorage.getItem('products')));
   let data = JSON.parse(localStorage.getItem('products'))
     ? JSON.parse(localStorage.getItem('products'))
     : products;
+
   localStorage.setItem('products', JSON.stringify(data));
 
   const showProductCards = () => {
@@ -239,5 +241,5 @@ const MainPage = () => {
     })
   );
 };
-MainPage();
-//export { product };
+// mainPage();
+export { mainPage };

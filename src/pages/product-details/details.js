@@ -1,69 +1,67 @@
-const product = {
-  id: 1,
-  title: "iPhone 9",
-  description: "An apple mobile which is nothing like apple",
-  price: 549,
-  discountPercentage: 12.96,
-  rating: 4.69,
-  stock: 94,
-  brand: "Apple",
-  category: "smartphones",
-  thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-  images: [
-    "https://i.dummyjson.com/data/products/1/1.jpg",
-    "https://i.dummyjson.com/data/products/1/2.jpg",
-    "https://i.dummyjson.com/data/products/1/3.jpg",
-    "https://i.dummyjson.com/data/products/1/4.jpg",
-    "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-  ],
-};
+function createDetails(product) {
+  const main = document.querySelector('.main');
+  main.innerHTML = `
+  <section class="main__details details">
+    <h2 class="details__title"></h2>
+    <div class="details__info">
+      <div class="info__miniature"></div>
+      <div class="info__thumbnail"></div>
+      <div class="info__description-items"></div>
+    </div>
+    <div class="details__price">
+      <div class="buttons">BUY NOW</div>
+      <div class="price">0$</div>
+      <div class="buttons">ADD TO CARD</div>
+    </div>
+  </section>
+  `;
 
-const details = document.querySelector(".details");
-const title = document.querySelector(".details__title");
-const miniaturesDiv = document.querySelector(".info__miniature");
-const thumbnailDiv = document.querySelector(".info__thumbnail");
-const descrItems = document.querySelector(".info__description-items");
-const price = document.querySelector(".price");
-const itemsCategories = [
-  "description",
-  "discountPercentage",
-  "rating",
-  "stock",
-  "brand",
-  "category",
-];
+  const title = document.querySelector('.details__title');
+  const miniaturesDiv = document.querySelector('.info__miniature');
+  const thumbnailDiv = document.querySelector('.info__thumbnail');
+  const descrItems = document.querySelector('.info__description-items');
+  const price = document.querySelector('.price');
+  const addButton = document.querySelectorAll('.buttons')[1];
+  const buyButton = document.querySelectorAll('.buttons')[0];
+  const itemsCategories = [
+    'description',
+    'discountPercentage',
+    'rating',
+    'stock',
+    'brand',
+    'category',
+  ];
 
-function createDetails() {
   title.textContent = product.title;
 
   product.images.forEach((img, i) => {
     if (i < product.images.length - 1) {
-      let miniatureImg = document.createElement("img");
+      let miniatureImg = document.createElement('img');
       miniatureImg.src = img;
-      miniatureImg.alt = "img";
+      miniatureImg.alt = 'img';
       miniaturesDiv.append(miniatureImg);
 
-      miniatureImg.addEventListener("click", (event) => {
-        document.querySelector(".info__thumbnail img").src = event.target.src;
+      miniatureImg.addEventListener('click', (event) => {
+        document.querySelector('.info__thumbnail img').src = event.target.src;
       });
     }
   });
 
-  let thumbnailImg = document.createElement("img");
+  let thumbnailImg = document.createElement('img');
   thumbnailImg.src = product.thumbnail;
   thumbnailDiv.append(thumbnailImg);
 
   itemsCategories.forEach((itemsCategoriesElement) => {
-    let descriptionElement = document.createElement("div");
+    let descriptionElement = document.createElement('div');
     descriptionElement.classList = `description-item ${itemsCategoriesElement}`;
-    let descriptionName = document.createElement("div");
-    descriptionName.classList = "item-title";
+    let descriptionName = document.createElement('div');
+    descriptionName.classList = 'item-title';
     descriptionName.textContent = `${itemsCategoriesElement}:`;
-    if (itemsCategoriesElement == "discountPercentage") {
+    if (itemsCategoriesElement == 'discountPercentage') {
       descriptionName.textContent = `discount:`;
     }
-    let descriptionValue = document.createElement("div");
-    descriptionValue.classList = "item-prop";
+    let descriptionValue = document.createElement('div');
+    descriptionValue.classList = 'item-prop';
     descriptionValue.textContent = `${product[itemsCategoriesElement]}`;
 
     descrItems.append(descriptionElement);
@@ -71,6 +69,13 @@ function createDetails() {
   });
 
   price.textContent = `${product.price}$`;
+
+  addButton.addEventListener('click', () => {
+    console.log('add');
+  });
+  buyButton.addEventListener('click', () => {
+    console.log('buy');
+  });
 }
 
-createDetails();
+export { createDetails };
