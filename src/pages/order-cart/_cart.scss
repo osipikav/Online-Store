@@ -1,0 +1,142 @@
+.main {
+  &__cart {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+  }
+}
+
+.ordered {
+  display: flex;
+  flex-direction: column;
+
+  background-color: $color-grey-s-tr;
+  border-radius: 20px;
+  &__header {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 6px;
+    align-items: baseline;
+    justify-content: space-around;
+    color: $color-yellow;
+    border-bottom: 2px solid $color-yellow;
+    padding: 10px;
+  }
+
+  &__amount {
+    & input {
+      color: $color-white;
+      background-color: transparent;
+      text-align: center;
+      width: 40px;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+  }
+}
+
+.ordered {
+  &__pages {
+  }
+  &__product {
+    width: 70%;
+    color: $color-grey-s;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    margin: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid $color-yellow;
+  }
+
+  // .ordered__number
+
+  &__number {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  // .ordered__item
+
+  &__item {
+    flex-grow: 1;
+  }
+
+  // .ordered__manage
+
+  &__manage {
+  }
+
+  // .ordered__stock
+
+  &__stock {
+  }
+
+  // .ordered__how-many
+
+  &__how-many {
+  }
+
+  // .ordered__item-price
+
+  &__item-price {
+  }
+}
+
+.item {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 4px;
+  cursor: pointer;
+  &__img {
+    border: 1px solid $color-yellow;
+    border-radius: 6px;
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  // .item__info
+
+  &__info {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // .item__title
+
+  &__title {
+    color: $color-white;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid $color-grey-s;
+  }
+
+  // .item__description
+
+  &__description {
+    text-align: center;
+  }
+
+  // .item__additionally
+
+  &__additionally {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+    color: $color-brown-xl;
+  }
+
+  // .item__rating
+
+  &__rating {
+  }
+
+  // .item__discount
+
+  &__discount {
+  }
+}
