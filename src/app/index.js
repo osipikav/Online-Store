@@ -11,19 +11,25 @@ const product = products[11];
 const routes = {
   404: {
     title: '404',
-    render: create404,
+    render() {
+      create404();
+    },
   },
   main: {
     title: 'Main',
-    render: mainPage,
+    render() {
+      mainPage(products);
+    },
   },
   details: {
     title: 'Product details',
-    render: createDetails,
+    render() {
+      createDetails(product);
+    },
   },
   cart: {
     title: 'Order cart',
-    render: () => {
+    render() {
       console.log('cart');
     },
   },
@@ -43,7 +49,7 @@ const locationHandler = async () => {
     route = routes[location];
   }
   document.title = route.title;
-  route.render(product);
+  route.render();
 };
 
 window.addEventListener('hashchange', locationHandler);
