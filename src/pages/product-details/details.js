@@ -1,5 +1,6 @@
 function createDetails(product) {
   const main = document.querySelector('.main');
+  main.innerHTML = '';
   main.innerHTML = `
   <section class="main__details details">
     <h2 class="details__title"></h2>
@@ -76,6 +77,7 @@ function createDetails(product) {
   buyButton.addEventListener('click', () => {
     console.log('buy');
   });
+  // document.location.href = '#details';
 }
 
 export { createDetails };

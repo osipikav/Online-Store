@@ -6,10 +6,7 @@ const mainPage = () => {
 <section class="main__products products"></section>`;
 
   let productsField = document.querySelector('.products');
-
   let data = products;
-
-  //localStorage.setItem('products', JSON.stringify(data));
 
   const showProductCards = () => {
     productsField.innerHTML = products
@@ -45,6 +42,7 @@ const mainPage = () => {
   };
 
   filters.append(showTopButtons());
+
   //filter-blocks
   let category = document.createElement('div');
   let categoryTitle = document.createElement('h3');
@@ -101,7 +99,7 @@ const mainPage = () => {
 
   brand.append(filterMaker(brandList, getProductsBrands()));
 
-  //double-pointing bars
+  // double-pointing bars
   const showRangeBar = (whatTheRange, divider) => {
     const rangeFilter = document.createElement('div');
     rangeFilter.className = `filters__${whatTheRange} ${whatTheRange}`;
@@ -195,13 +193,11 @@ const mainPage = () => {
 
   //details
   let productDetailsBtns = document.querySelectorAll('.products__details');
-
   productDetailsBtns.forEach((el) =>
     el.addEventListener('click', function (e) {
       let target = e.target;
-      localStorage.setItem('product', JSON.stringify(data[target.id - 1]));
-      //console.log(data[target.id]);
-      document.location.href = './pages/product-page/product.html';
+      localStorage.setItem('currentId', target.id);
+      document.location.href = '#details';
     })
   );
 
