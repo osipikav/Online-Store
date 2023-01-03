@@ -2,8 +2,8 @@ import '../styles/styles.css';
 
 import { createDetails } from '../pages/product-details/details.js';
 import { create404 } from '../pages/page-404/page-404.js';
-import { mainPage } from '../pages/main-page/main.js';
-import { products } from '../assets/data/data.js';
+import { mainPage } from '../pages/main-page/main';
+import { products } from '../assets/data/data';
 
 export const routes = {
   404: {

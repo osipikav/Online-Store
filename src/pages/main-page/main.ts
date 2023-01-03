@@ -1,16 +1,16 @@
-import { products } from '../../assets/data/data.js';
+import { IProduct } from '../../types/types';
 
-const mainPage = () => {
-  const mainContent = document.querySelector('main');
+const mainPage = (products: IProduct[]): void => {
+  const mainContent = document.querySelector('main') as HTMLElement;
   mainContent.innerHTML = `<section class="main__filters filters"></section>
 <section class="main__products products"></section>`;
 
-  let productsField = document.querySelector('.products');
-  let data = products;
+  const productsField = document.querySelector('.products') as HTMLElement;
+  const data: IProduct[] = products;
 
-  const showProductCards = () => {
+  const showProductCards = (): HTMLElement => {
     productsField.innerHTML = products
-      .map((product) => {
+      .map((product: IProduct) => {
         const { id, title, images, price } = product;
         return `<div class="products__item">
   <div class="products__title">${title}</div>
@@ -31,9 +31,9 @@ const mainPage = () => {
   mainContent.append(showProductCards());
 
   //adding data to filters
-  let filters = document.querySelector('.filters');
+  const filters = document.querySelector('.filters') as HTMLElement;
 
-  const showTopButtons = () => {
+  const showTopButtons = (): HTMLDivElement => {
     const topButtons = document.createElement('div');
     topButtons.className = 'filters__buttons';
     topButtons.innerHTML = `<button class="filters__buttons-reset filters__btn">Reset</button>
@@ -44,9 +44,9 @@ const mainPage = () => {
   filters.append(showTopButtons());
 
   //filter-blocks
-  let category = document.createElement('div');
-  let categoryTitle = document.createElement('h3');
-  let categoryList = document.createElement('div');
+  const category = document.createElement('div');
+  const categoryTitle = document.createElement('h3');
+  const categoryList = document.createElement('div');
 
   category.className = 'filters__category category';
   categoryTitle.className = 'filters__title category__title';
@@ -62,16 +62,17 @@ const mainPage = () => {
   function getProductsCategories() {
     return data
       .map((productCategory) => productCategory.category)
-      .reduce((arr, item) => (arr.includes(item) ? arr : [...arr, item]), []);
+      .reduce((arr: string[], item: string): string[] => (arr.includes(item) ? arr : [...arr, item]), []);
   }
 
-  function getProductsBrands() {
+  function getProductsBrands(): string[] {
     return data
       .map((productBrand) => productBrand.brand)
-      .reduce((arr, item) => (arr.includes(item) ? arr : [...arr, item]), []);
+      .reduce((arr: string[], item: string) => (arr.includes(item) ? arr : [...arr, item]), []);
   }
 
-  function filterMaker(filterList, filterFunction) {
+  function filterMaker(filterList: HTMLElement, filterFunction: string[]): HTMLElement {
+
     filterList.innerHTML = filterFunction
       .map((filterItem) => {
         return `<div class="checkbox-line item-active">
@@ -84,9 +85,9 @@ const mainPage = () => {
     return filterList;
   }
 
-  let brand = document.createElement('div');
-  let brandTitle = document.createElement('h3');
-  let brandList = document.createElement('div');
+  const brand = document.createElement('div') as HTMLDivElement;
+  const brandTitle = document.createElement('h3') as HTMLHeadingElement;
+  const brandList = document.createElement('div') as HTMLDivElement;
 
   brand.className = 'filters__brand brand';
   brandTitle.className = 'filters__title brand__title';
@@ -100,8 +101,8 @@ const mainPage = () => {
   brand.append(filterMaker(brandList, getProductsBrands()));
 
   // double-pointing bars
-  const showRangeBar = (whatTheRange, divider) => {
-    const rangeFilter = document.createElement('div');
+  const showRangeBar = (whatTheRange: string, divider: string): HTMLDivElement => {
+    const rangeFilter = document.createElement('div') as HTMLDivElement;
     rangeFilter.className = `filters__${whatTheRange} ${whatTheRange}`;
     rangeFilter.innerHTML = `
   <h3 class="filters__title ${whatTheRange}__title">${whatTheRange}</h3>
@@ -138,95 +139,95 @@ const mainPage = () => {
   //price progress-bar
   const rangeInput = document.querySelectorAll('.price__range-input input');
   const priceInput = document.querySelectorAll('.price__list input');
-  const priceProgress = document.querySelector('.price__slider .price__progress');
-  let priceGap = 10;
-  let priceSelector = 'price__range-min';
+  const priceProgress = document.querySelector('.price__slider .price__progress') as HTMLElement;
+  const priceGap = 10;
+  const priceSelector = 'price__range-min';
 
   //stock progress-bar
   const stockRangeInput = document.querySelectorAll('.stock__range-input input');
   const stockInput = document.querySelectorAll('.stock__list input');
-  const stockProgress = document.querySelector('.stock__slider .stock__progress');
-  let stockGap = 10;
-  let stockSelector = 'stock__range-min';
+  const stockProgress = document.querySelector('.stock__slider .stock__progress') as HTMLElement;
+  const stockGap = 10;
+  const stockSelector = 'stock__range-min';
 
-  function progressBarControls(numberInput, progressBarInput, progressBar, gap, rangeSelector) {
-    numberInput.forEach((input) => {
-      input.addEventListener('input', (el) => {
-        let minValue = parseInt(numberInput[0].value);
-        let maxValue = parseInt(numberInput[1].value);
+  function progressBarControls(numberInput: NodeListOf<HTMLInputElement>, progressBarInput: NodeListOf<HTMLInputElement>, progressBar: HTMLElement, gap: number, rangeSelector: string): void {
+    numberInput.forEach((input): void => {
+      input.addEventListener('input', (el): void => {
+        const minValue = parseInt(numberInput[0].value);
+        const maxValue = parseInt(numberInput[1].value);
 
         if (maxValue - minValue < gap) {
-          if (el.target.className == rangeSelector) {
-            numberInput[0].value = maxValue - gap;
+          if ((el.target as HTMLElement).className == rangeSelector) {
+            numberInput[0].value = maxValue - gap + '';
           } else {
-            numberInput[1].value = minValue + gap;
+            numberInput[1].value = minValue + gap + '';
           }
         } else {
-          progressBarInput[0].value = minValue;
-          progressBarInput[1].value = maxValue;
-          progressBar.style.left = (minValue / numberInput[0].max) * 100 + '%';
-          progressBar.style.right = 100 - (maxValue / numberInput[1].max) * 100 + '%';
+          progressBarInput[0].value = minValue + '';
+          progressBarInput[1].value = maxValue + '';
+          progressBar.style.left = (minValue / +numberInput[0].max) * 100 + '%';
+          progressBar.style.right = 100 - (maxValue / +numberInput[1].max) * 100 + '%';
         }
       });
     });
   }
 
-  progressBarControls(rangeInput, priceInput, priceProgress, priceGap, priceSelector);
-  progressBarControls(stockRangeInput, stockInput, stockProgress, stockGap, stockSelector);
+  progressBarControls(rangeInput as NodeListOf<HTMLInputElement>, priceInput as NodeListOf<HTMLInputElement>, priceProgress, priceGap, priceSelector);
+  progressBarControls(stockRangeInput as NodeListOf<HTMLInputElement>, stockInput as NodeListOf<HTMLInputElement>, stockProgress, stockGap, stockSelector);
 
   stockInput.forEach((input) => {
     input.addEventListener('input', (el) => {
-      let minValue = parseInt(stockInput[0].value);
-      let maxValue = parseInt(stockInput[1].value);
+      const minValue = parseInt((stockInput[0] as HTMLInputElement).value);
+      const maxValue = parseInt((stockInput[1] as HTMLInputElement).value);
 
       if (maxValue - minValue >= stockGap && maxValue <= 1000) {
-        if (el.target.className == 'stock__min-input') {
-          stockRangeInput[0].value = minValue;
-          stockProgress.style.left = (minValue / stockRangeInput[0].max) * 100 + '%';
+        if ((el.target as HTMLElement).className == 'stock__min-input') {
+          (stockRangeInput[0] as HTMLInputElement).value = minValue + '';
+          stockProgress.style.left = (minValue / +(stockRangeInput[0] as HTMLInputElement).max) * 100 + '%';
         } else {
-          stockRangeInput[1].value = maxValue;
-          stockProgress.style.right = 100 - (maxValue / stockRangeInput[1].max) * 100 + '%';
+          (stockRangeInput[1] as HTMLInputElement).value = maxValue + '';
+          stockProgress.style.right = 100 - (maxValue / +(stockRangeInput[0] as HTMLInputElement).max) * 100 + '%';
         }
       }
     });
   });
 
   //details
-  let productDetailsBtns = document.querySelectorAll('.products__details');
+  const productDetailsBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__details');
   productDetailsBtns.forEach((el) =>
-    el.addEventListener('click', function (e) {
-      let target = e.target;
+    el.addEventListener('click', function (e: Event) {
+      const target = e.target as HTMLButtonElement;
       localStorage.setItem('currentId', target.id);
       document.location.href = '#details';
     })
   );
 
   //add to cart
-  let productCartBtns = document.querySelectorAll('.products__cart');
-  let cartProducts = JSON.parse(localStorage.getItem('cartProducts'))
-    ? JSON.parse(localStorage.getItem('cartProducts'))
+  const productCartBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__cart');
+
+  const cartProducts: IProduct[] = JSON.parse((localStorage.getItem('cartProducts') || ""))
+    ? JSON.parse((localStorage.getItem('cartProducts') || ""))
     : [];
 
-  let cartAmount = document.querySelector('.order__amount');
-  cartAmount.innerHTML = JSON.parse(localStorage.getItem('cartAmount'))
-    ? JSON.parse(localStorage.getItem('cartAmount'))
+  const cartAmount = document.querySelector('.order__amount') as HTMLElement;
+  cartAmount.innerHTML = JSON.parse((localStorage.getItem('cartAmount') || ""))
+    ? JSON.parse((localStorage.getItem('cartAmount') || ""))
     : 0;
 
-  let orderSum = document.querySelector('.order__sum');
-  orderSum.innerHTML = JSON.parse(localStorage.getItem('orderSum'))
-    ? JSON.parse(localStorage.getItem('orderSum'))
+  const orderSum = document.querySelector('.order__sum') as HTMLElement;;
+  orderSum.innerHTML = JSON.parse((localStorage.getItem('orderSum') || ""))
+    ? JSON.parse((localStorage.getItem('orderSum') || ""))
     : 0;
 
   productCartBtns.forEach((el) =>
-    el.addEventListener('click', function (e) {
-      let target = e.target;
+    el.addEventListener('click', function (e: Event) {
+      const target = e.target as HTMLButtonElement;
       cartProducts.push(data[parseInt(target.id) - 1]);
       localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
-      console.log(cartProducts);
-      cartAmount.innerHTML = cartProducts.length;
+      cartAmount.innerHTML = '' + cartProducts.length;
       localStorage.setItem('cartAmount', JSON.stringify(cartAmount.innerHTML));
-      orderSum.innerHTML =
-        parseInt(orderSum.innerHTML) + parseInt(data[parseInt(target.id) - 1].price);
+      orderSum.innerHTML = '' +
+        parseInt(orderSum.innerHTML) + parseInt((data[parseInt(target.id) - 1].price) + '');
       localStorage.setItem('orderSum', JSON.stringify(orderSum.innerHTML));
       //e.target.innerHTML = 'Drop From Cart';
     })

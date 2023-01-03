@@ -1,3 +1,5 @@
+// import { IProduct } from "../../types/types";
+
 export const products = [
   {
     id: 1,
