@@ -5,6 +5,8 @@ import { create404 } from '../pages/page-404/page-404.js';
 import { mainPage } from '../pages/main-page/main';
 import { products } from '../assets/data/data';
 
+localStorage.setItem('cartProducts', '[]');
+
 export const routes = {
   404: {
     title: '404',

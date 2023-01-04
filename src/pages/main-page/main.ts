@@ -1,4 +1,5 @@
 import { IProduct } from '../../types/types';
+import { trackingProducts } from '../../features/features';
 
 const mainPage = (products: IProduct[]): void => {
   const mainContent = document.querySelector('main') as HTMLElement;
@@ -12,6 +13,10 @@ const mainPage = (products: IProduct[]): void => {
     productsField.innerHTML = products
       .map((product: IProduct) => {
         const { id, title, images, price } = product;
+        let buttonValue = 'Add To Cart';
+        if (JSON.parse(localStorage.getItem('cartProducts') || '').includes(id)) {
+          buttonValue = 'Drop From Cart';
+        };
         return `<div class="products__item">
   <div class="products__title">${title}</div>
   <div class="products__photo">
@@ -20,7 +25,7 @@ const mainPage = (products: IProduct[]): void => {
   <div class="products__price">${price} $</div>
   <div class="products__options">
     <button class="products__details" id="${id}">Details</button>
-    <button class="products__cart" id="${id}-adding">Add To Cart</button>
+    <button class="products__cart" id="${id}">${buttonValue}</button>
   </div>
 </div>`;
       })
@@ -202,36 +207,7 @@ const mainPage = (products: IProduct[]): void => {
     })
   );
 
-  //add to cart
-  const productCartBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__cart');
-
-  const cartProducts: IProduct[] = JSON.parse((localStorage.getItem('cartProducts') || ""))
-    ? JSON.parse((localStorage.getItem('cartProducts') || ""))
-    : [];
-
-  const cartAmount = document.querySelector('.order__amount') as HTMLElement;
-  cartAmount.innerHTML = JSON.parse((localStorage.getItem('cartAmount') || ""))
-    ? JSON.parse((localStorage.getItem('cartAmount') || ""))
-    : 0;
-
-  const orderSum = document.querySelector('.order__sum') as HTMLElement;;
-  orderSum.innerHTML = JSON.parse((localStorage.getItem('orderSum') || ""))
-    ? JSON.parse((localStorage.getItem('orderSum') || ""))
-    : 0;
-
-  productCartBtns.forEach((el) =>
-    el.addEventListener('click', function (e: Event) {
-      const target = e.target as HTMLButtonElement;
-      cartProducts.push(data[parseInt(target.id) - 1]);
-      localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
-      cartAmount.innerHTML = '' + cartProducts.length;
-      localStorage.setItem('cartAmount', JSON.stringify(cartAmount.innerHTML));
-      orderSum.innerHTML = '' +
-        parseInt(orderSum.innerHTML) + parseInt((data[parseInt(target.id) - 1].price) + '');
-      localStorage.setItem('orderSum', JSON.stringify(orderSum.innerHTML));
-      //e.target.innerHTML = 'Drop From Cart';
-    })
-  );
+  trackingProducts();
 };
-// mainPage();
+
 export { mainPage };
