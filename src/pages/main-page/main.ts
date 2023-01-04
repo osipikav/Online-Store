@@ -207,7 +207,14 @@ const mainPage = (products: IProduct[]): void => {
     })
   );
 
-  trackingProducts();
+  const productCartBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__cart');
+  productCartBtns.forEach((el) =>
+    el.addEventListener('click', function (e: Event) {
+      const target = e.target as HTMLButtonElement;
+      trackingProducts(target)
+    }
+    ))
+
 };
 
 export { mainPage };
