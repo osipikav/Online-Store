@@ -12,7 +12,7 @@ const mainPage = (products: IProduct[]): void => {
   const showProductCards = (): HTMLElement => {
     productsField.innerHTML = products
       .map((product: IProduct) => {
-        const { id, title, images, price } = product;
+        const { id, title, thumbnail, price } = product;
         let buttonValue = 'Add To Cart';
         if (JSON.parse(localStorage.getItem('cartProducts') || '').includes(id)) {
           buttonValue = 'Drop From Cart';
@@ -20,7 +20,7 @@ const mainPage = (products: IProduct[]): void => {
         return `<div class="products__item">
   <div class="products__title">${title}</div>
   <div class="products__photo">
-    <img class="products__img" src=${!!images.length && images[0]}>
+    <img class="products__img" src=${thumbnail}>
   </div>
   <div class="products__price">${price} $</div>
   <div class="products__options">
