@@ -1,10 +1,6 @@
-import products from "../assets/data/data";
-
-
+import products from '../assets/data/data';
 let orderSumValue = 0;
-
 function trackingProducts(target: HTMLButtonElement) {
-
   const cartAmount: HTMLElement | null = document.querySelector('.order__amount');
   const orderSum: HTMLElement | null = document.querySelector('.order__sum');
   const cartProductsArr: number[] = JSON.parse(localStorage.getItem('cartProducts') || '');
@@ -19,11 +15,9 @@ function trackingProducts(target: HTMLButtonElement) {
     orderSumValue -= products[+target.id - 1].price;
   }
   if (cartAmount !== null && orderSum !== null) {
-    cartAmount.textContent = '' + cartProductsArr.length
+    cartAmount.textContent = String(cartProductsArr.length);
     orderSum.textContent = '' + orderSumValue;
   }
   localStorage.setItem('cartProducts', JSON.stringify(cartProductsArr));
 }
-
-
-export { trackingProducts }
+export { trackingProducts };

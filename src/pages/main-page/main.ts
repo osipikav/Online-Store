@@ -7,7 +7,6 @@ const mainPage = (products: IProduct[]): void => {
 <section class="main__products products"></section>`;
 
   const productsField = document.querySelector('.products') as HTMLElement;
-  const data: IProduct[] = products;
 
   const showProductCards = (): HTMLElement => {
     productsField.innerHTML = products
@@ -16,7 +15,7 @@ const mainPage = (products: IProduct[]): void => {
         let buttonValue = 'Add To Cart';
         if (JSON.parse(localStorage.getItem('cartProducts') || '').includes(id)) {
           buttonValue = 'Drop From Cart';
-        };
+        }
         return `<div class="products__item">
   <div class="products__title">${title}</div>
   <div class="products__photo">
@@ -39,7 +38,7 @@ const mainPage = (products: IProduct[]): void => {
   const filters = document.querySelector('.filters') as HTMLElement;
 
   const showTopButtons = (): HTMLDivElement => {
-    const topButtons = document.createElement('div');
+    const topButtons = document.createElement('div') as HTMLDivElement;
     topButtons.className = 'filters__buttons';
     topButtons.innerHTML = `<button class="filters__buttons-reset filters__btn">Reset</button>
         <button class="filters__buttons-copy filters__btn">CopyLink</button>`;
@@ -49,9 +48,9 @@ const mainPage = (products: IProduct[]): void => {
   filters.append(showTopButtons());
 
   //filter-blocks
-  const category = document.createElement('div');
-  const categoryTitle = document.createElement('h3');
-  const categoryList = document.createElement('div');
+  const category = document.createElement('div') as HTMLDivElement;
+  const categoryTitle = document.createElement('h3') as HTMLElement;
+  const categoryList = document.createElement('div') as HTMLDivElement;
 
   category.className = 'filters__category category';
   categoryTitle.className = 'filters__title category__title';
@@ -65,19 +64,21 @@ const mainPage = (products: IProduct[]): void => {
   category.append(filterMaker(categoryList, getProductsCategories()));
 
   function getProductsCategories() {
-    return data
+    return products
       .map((productCategory) => productCategory.category)
-      .reduce((arr: string[], item: string): string[] => (arr.includes(item) ? arr : [...arr, item]), []);
+      .reduce(
+        (arr: string[], item: string): string[] => (arr.includes(item) ? arr : [...arr, item]),
+        []
+      );
   }
 
   function getProductsBrands(): string[] {
-    return data
-      .map((productBrand) => productBrand.brand)
+    return products
+      .map(({ brand }) => brand)
       .reduce((arr: string[], item: string) => (arr.includes(item) ? arr : [...arr, item]), []);
   }
 
   function filterMaker(filterList: HTMLElement, filterFunction: string[]): HTMLElement {
-
     filterList.innerHTML = filterFunction
       .map((filterItem) => {
         return `<div class="checkbox-line item-active">
@@ -145,17 +146,23 @@ const mainPage = (products: IProduct[]): void => {
   const rangeInput = document.querySelectorAll('.price__range-input input');
   const priceInput = document.querySelectorAll('.price__list input');
   const priceProgress = document.querySelector('.price__slider .price__progress') as HTMLElement;
-  const priceGap = 10;
-  const priceSelector = 'price__range-min';
+  const priceGap = 10 as number;
+  const priceSelector = 'price__range-min' as string;
 
   //stock progress-bar
   const stockRangeInput = document.querySelectorAll('.stock__range-input input');
   const stockInput = document.querySelectorAll('.stock__list input');
   const stockProgress = document.querySelector('.stock__slider .stock__progress') as HTMLElement;
-  const stockGap = 10;
-  const stockSelector = 'stock__range-min';
+  const stockGap = 10 as number;
+  const stockSelector = 'stock__range-min' as string;
 
-  function progressBarControls(numberInput: NodeListOf<HTMLInputElement>, progressBarInput: NodeListOf<HTMLInputElement>, progressBar: HTMLElement, gap: number, rangeSelector: string): void {
+  function progressBarControls(
+    numberInput: NodeListOf<HTMLInputElement>,
+    progressBarInput: NodeListOf<HTMLInputElement>,
+    progressBar: HTMLElement,
+    gap: number,
+    rangeSelector: string
+  ): void {
     numberInput.forEach((input): void => {
       input.addEventListener('input', (el): void => {
         const minValue = parseInt(numberInput[0].value);
@@ -163,13 +170,13 @@ const mainPage = (products: IProduct[]): void => {
 
         if (maxValue - minValue < gap) {
           if ((el.target as HTMLElement).className == rangeSelector) {
-            numberInput[0].value = maxValue - gap + '';
+            numberInput[0].value = String(maxValue - gap);
           } else {
-            numberInput[1].value = minValue + gap + '';
+            numberInput[1].value = String(minValue + gap);
           }
         } else {
-          progressBarInput[0].value = minValue + '';
-          progressBarInput[1].value = maxValue + '';
+          progressBarInput[0].value = String(minValue);
+          progressBarInput[1].value = String(maxValue);
           progressBar.style.left = (minValue / +numberInput[0].max) * 100 + '%';
           progressBar.style.right = 100 - (maxValue / +numberInput[1].max) * 100 + '%';
         }
@@ -177,8 +184,20 @@ const mainPage = (products: IProduct[]): void => {
     });
   }
 
-  progressBarControls(rangeInput as NodeListOf<HTMLInputElement>, priceInput as NodeListOf<HTMLInputElement>, priceProgress, priceGap, priceSelector);
-  progressBarControls(stockRangeInput as NodeListOf<HTMLInputElement>, stockInput as NodeListOf<HTMLInputElement>, stockProgress, stockGap, stockSelector);
+  progressBarControls(
+    rangeInput as NodeListOf<HTMLInputElement>,
+    priceInput as NodeListOf<HTMLInputElement>,
+    priceProgress,
+    priceGap,
+    priceSelector
+  );
+  progressBarControls(
+    stockRangeInput as NodeListOf<HTMLInputElement>,
+    stockInput as NodeListOf<HTMLInputElement>,
+    stockProgress,
+    stockGap,
+    stockSelector
+  );
 
   stockInput.forEach((input) => {
     input.addEventListener('input', (el) => {
@@ -188,17 +207,20 @@ const mainPage = (products: IProduct[]): void => {
       if (maxValue - minValue >= stockGap && maxValue <= 1000) {
         if ((el.target as HTMLElement).className == 'stock__min-input') {
           (stockRangeInput[0] as HTMLInputElement).value = minValue + '';
-          stockProgress.style.left = (minValue / +(stockRangeInput[0] as HTMLInputElement).max) * 100 + '%';
+          stockProgress.style.left =
+            (minValue / +(stockRangeInput[0] as HTMLInputElement).max) * 100 + '%';
         } else {
           (stockRangeInput[1] as HTMLInputElement).value = maxValue + '';
-          stockProgress.style.right = 100 - (maxValue / +(stockRangeInput[0] as HTMLInputElement).max) * 100 + '%';
+          stockProgress.style.right =
+            100 - (maxValue / +(stockRangeInput[0] as HTMLInputElement).max) * 100 + '%';
         }
       }
     });
   });
 
   //details
-  const productDetailsBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__details');
+  const productDetailsBtns: NodeListOf<HTMLElement> =
+    document.querySelectorAll('.products__details');
   productDetailsBtns.forEach((el) =>
     el.addEventListener('click', function (e: Event) {
       const target = e.target as HTMLButtonElement;
@@ -211,10 +233,9 @@ const mainPage = (products: IProduct[]): void => {
   productCartBtns.forEach((el) =>
     el.addEventListener('click', function (e: Event) {
       const target = e.target as HTMLButtonElement;
-      trackingProducts(target)
-    }
-    ))
-
+      trackingProducts(target);
+    })
+  );
 };
 
 export { mainPage };
