@@ -16,8 +16,17 @@
     text-align: center;
     flex-grow: 0.5;
     padding: 20px 0;
-    background-color: $color-grey-s-tr;
     max-height: 70px;
+  }
+
+  &__breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: $color-grey-s-tr;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: $color-white;
   }
 
   &__info {
@@ -44,7 +53,6 @@
 
       &__thumbnail {
         width: 45%;
-
         position: relative;
 
         img {

@@ -8,6 +8,15 @@ function createDetails(product: IProduct) {
     main.innerHTML = `
   <section class="main__details details">
     <h2 class="details__title"></h2>
+    <div class="details__breadcrumbs">
+      <div>STORE</div>
+      <div>${'>>'}</div>
+      <div>${product.category.toUpperCase()}</div>
+      <div>${'>>'}</div>
+      <div>${product.brand.toUpperCase()}</div>
+      <div>${'>>'}</div>
+      <div>${product.title.toUpperCase()}</div>
+    </div> 
     <div class="details__info">
       <div class="info__miniature"></div>
       <div class="info__thumbnail"></div>
