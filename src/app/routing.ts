@@ -22,7 +22,7 @@ export const locationHandler = () => {
             title: 'Product details',
             render() {
                 const currentId: string = (localStorage.getItem('currentId') || "")
-                const product = products[+currentId - 1];
+                const product = products[Number(currentId) - 1];
                 createDetails(product);
             },
         },
