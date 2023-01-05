@@ -37,7 +37,7 @@ const mainPage = (products: IProduct[]): void => {
 
   //adding data to filters
   const showTopButtons = (): HTMLDivElement => {
-    const topButtons = document.createElement('div');
+    const topButtons = document.createElement('div') as HTMLDivElement;
     topButtons.className = 'filters__buttons';
     topButtons.innerHTML = `<button class="filters__buttons-reset filters__btn">Reset</button>
         <button class="filters__buttons-copy filters__btn">CopyLink</button>`;
@@ -47,9 +47,9 @@ const mainPage = (products: IProduct[]): void => {
   if (filters !== null) { filters.append(showTopButtons()) };
 
   //filter-blocks
-  const category = document.createElement('div');
-  const categoryTitle = document.createElement('h3');
-  const categoryList = document.createElement('div');
+  const category = document.createElement('div') as HTMLDivElement;
+  const categoryTitle = document.createElement('h3') as HTMLElement;
+  const categoryList = document.createElement('div') as HTMLDivElement;
 
   category.className = 'filters__category category';
   categoryTitle.className = 'filters__title category__title';
@@ -156,7 +156,13 @@ const mainPage = (products: IProduct[]): void => {
   const stockGap = 10;
   const stockSelector = 'stock__range-min';
 
-  function progressBarControls(numberInput: NodeListOf<HTMLInputElement>, progressBarInput: NodeListOf<HTMLInputElement>, progressBar: HTMLElement, gap: number, rangeSelector: string): void {
+  function progressBarControls(
+    numberInput: NodeListOf<HTMLInputElement>,
+    progressBarInput: NodeListOf<HTMLInputElement>,
+    progressBar: HTMLElement,
+    gap: number,
+    rangeSelector: string
+  ): void {
     numberInput.forEach((input): void => {
       input.addEventListener('input', (e): void => {
         const minValue = parseInt(numberInput[0].value);
@@ -188,7 +194,6 @@ const mainPage = (products: IProduct[]): void => {
       input.addEventListener('input', (e): void => {
         const minValue = parseInt((stockInput[0]).value);
         const maxValue = parseInt((stockInput[1]).value);
-
         if (maxValue - minValue >= stockGap && maxValue <= 1000) {
           if (e.target instanceof HTMLElement) {
             if ((e.target).className == 'stock__min-input') {
@@ -205,7 +210,8 @@ const mainPage = (products: IProduct[]): void => {
   }
 
   //details
-  const productDetailsBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__details');
+  const productDetailsBtns: NodeListOf<HTMLElement> =
+    document.querySelectorAll('.products__details');
   productDetailsBtns.forEach((el) =>
     el.addEventListener('click', function (e: Event) {
       if (e.target instanceof HTMLButtonElement) {

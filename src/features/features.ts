@@ -1,7 +1,6 @@
 import products from "../assets/data/data";
 
 let orderSumValue = 0;
-
 function trackingProducts(target: HTMLButtonElement) {
   const cartAmount: HTMLElement | null = document.querySelector('.order__amount');
   const orderSum: HTMLElement | null = document.querySelector('.order__sum');
