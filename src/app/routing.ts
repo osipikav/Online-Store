@@ -17,14 +17,15 @@ export const locationHandler = () => {
                 mainPage(products);
             },
         },
-        details: {
+        'product/': {
             title: 'Product details',
             render() {
-                const currentId: string = (localStorage.getItem('currentId') || "")
-                const product = products[Number(currentId) - 1];
+                const hashId = window.location.hash.slice(9)
+                const product = products[Number(hashId) - 1];
                 createDetails(product);
             },
         },
+
         cart: {
             title: 'Order cart',
             render() {
@@ -38,8 +39,11 @@ export const locationHandler = () => {
     if (!Object.prototype.hasOwnProperty.call(routes, location)) {
         if (location.length == 0) {
             route = routes['main'];
+        } else if (location.startsWith('product/')) {
+            if (products[Number(window.location.hash.slice(9))] !== undefined) {
+                route = routes['product/'];
+            } else route = routes['404'];
         } else {
-            window.location.hash = '404';
             route = routes['404'];
         }
     } else {

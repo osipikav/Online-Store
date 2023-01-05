@@ -215,8 +215,7 @@ const mainPage = (products: IProduct[]): void => {
   productDetailsBtns.forEach((el) =>
     el.addEventListener('click', function (e: Event) {
       if (e.target instanceof HTMLButtonElement) {
-        localStorage.setItem('currentId', e.target.id);
-        document.location.href = '#details';
+        document.location.href = `#product/${e.target.id}`;
       }
     })
   );
