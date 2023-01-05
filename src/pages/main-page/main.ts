@@ -37,7 +37,7 @@ const mainPage = (products: IProduct[]): void => {
 
   //adding data to filters
   const showTopButtons = (): HTMLDivElement => {
-    const topButtons = document.createElement('div') as HTMLDivElement;
+    const topButtons = document.createElement('div');
     topButtons.className = 'filters__buttons';
     topButtons.innerHTML = `<button class="filters__buttons-reset filters__btn">Reset</button>
         <button class="filters__buttons-copy filters__btn">CopyLink</button>`;
@@ -47,9 +47,9 @@ const mainPage = (products: IProduct[]): void => {
   if (filters !== null) { filters.append(showTopButtons()) };
 
   //filter-blocks
-  const category = document.createElement('div') as HTMLDivElement;
-  const categoryTitle = document.createElement('h3') as HTMLElement;
-  const categoryList = document.createElement('div') as HTMLDivElement;
+  const category = document.createElement('div');
+  const categoryTitle = document.createElement('h3');
+  const categoryList = document.createElement('div');
 
   category.className = 'filters__category category';
   categoryTitle.className = 'filters__title category__title';
