@@ -980,8 +980,16 @@ input[type=range]::-moz-range-thumb {
   text-align: center;
   flex-grow: 0.5;
   padding: 20px 0;
-  background-color: rgba(196, 196, 196, 0.25);
   max-height: 70px;
+}
+.details__breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgba(196, 196, 196, 0.25);
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 .details__info {
   display: flex;
