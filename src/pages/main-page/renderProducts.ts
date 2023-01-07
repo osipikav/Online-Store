@@ -8,7 +8,8 @@ function renderProducts(products: IProduct[]) {
   <section class="main__filters filters"></section>
   <section class="main__products">
     <div class="products__top-panel"></div>
-    <div class="products"></div>
+    <div class="products">
+    ТОваров не нашлось</div>
   </section>`;
   }
   const productsField: HTMLDivElement | null = document.querySelector('.products');
@@ -89,12 +90,19 @@ function renderProducts(products: IProduct[]) {
         product.category.toLowerCase().includes(searchValue.toLowerCase())
       )
     });
-    console.log('result1 :>> ', result);
+    // console.log('result1 :>> ', result);
+
+    showProductCards(result);
+
     const quantity: HTMLDivElement | null = document.querySelector('.found');
-    if (quantity !== null) {
+    if (quantity !== null && productsField !== null) {
       quantity.innerHTML = `Found: ${result.length}`
+      if (result.length === 0) {
+        productsField.innerHTML = 'Not found...';
+
+      }
     };
-    showProductCards(result)
+
   });
 
   const showProductCards = (products: IProduct[]): void => {
