@@ -76,22 +76,15 @@ function renderProducts(products: IProduct[]) {
   const search: HTMLInputElement | null = document.querySelector('.search input');
   search?.addEventListener('input', function () {
     const searchValue = this.value;
-
-    // const fieldsComparator = (value: string, searchValue: string) => {
-    //   return value.toLowerCase().includes(searchValue.toLowerCase())
-    // }
-    // const result = products.map(({ title, description, brand, category }) => [title, description, brand, category]).filter(product => fieldsComparator(product.join(''), searchValue))
-    // console.log('result :>> ', result);
-
-    const result = products.filter(product => {
-      return (product.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchValue.toLowerCase()) ||
-        product.brand.toLowerCase().includes(searchValue.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchValue.toLowerCase())
-      )
-    });
-    // console.log('result1 :>> ', result);
-
+    const fieldsComparator = (value: string, searchValue: string) => {
+      return value.toLowerCase().includes(searchValue.toLowerCase())
+    }
+    const result = products.filter((product, index, array) => {
+      const { title, description, price, rating, stock, brand, category } = product;
+      if (fieldsComparator([title, description, price, rating, stock, brand, category].join(''), searchValue)) {
+        return array;
+      }
+    })
     showProductCards(result);
 
     const quantity: HTMLDivElement | null = document.querySelector('.found');
