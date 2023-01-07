@@ -92,10 +92,8 @@ function renderProducts(products: IProduct[]) {
       quantity.innerHTML = `Found: ${result.length}`
       if (result.length === 0) {
         productsField.innerHTML = 'Not found...';
-
       }
     };
-
   });
 
   const showProductCards = (products: IProduct[]): void => {
