@@ -1,3 +1,4 @@
+import { trackingProducts } from '../../features/features';
 import { IProduct } from '../../types/types';
 
 function renderProducts(products: IProduct[]) {
@@ -11,38 +12,39 @@ function renderProducts(products: IProduct[]) {
   </section>`;
   }
   const productsField: HTMLDivElement | null = document.querySelector('.products');
-  console.log('productsField :>> ', productsField);
   const productsTopPanel: HTMLDivElement | null = document.querySelector('.products__top-panel');
   if (productsTopPanel !== null) {
     productsTopPanel.innerHTML = `
-    <div class="sort">
-      <select>
-	    <option>Sort by default</option>
-	    <option>Highest price</option>
-	    <option>Lowest price</option>
-	    <option>Highest rating</option>
-	    <option>Highest discount %</option>
-	  </select>
+  <div class="sort">
+    <select>
+      <option>Sort by default</option>
+      <option>Highest price</option>
+      <option>Lowest price</option>
+      <option>Highest rating</option>
+      <option>Highest discount %</option>
+    </select>
+  </div>
+  <div class="found">Found: ${products.length}</div>
+  <div class="search">
+    <input type="search" placeholder="Search...">
+  </div>
+  <div class="display-options">
+    <div class="tiles options display-active">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    <div class="top-panel__found"> Found: ${products.length}</div>
-    <div class="top-panel__search">search</div>
-    <div class="display-options">
-      <div class="tiles options display-active"> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="list options">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+    <div class="list options">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </div>`;
   }
+
   const displayOptions = document.querySelectorAll(".options");
   displayOptions.forEach((displayValue) => {
     displayValue.addEventListener('click', () => {
@@ -70,6 +72,31 @@ function renderProducts(products: IProduct[]) {
     showProductCards(products)
   });
 
+  const search: HTMLInputElement | null = document.querySelector('.search input');
+  search?.addEventListener('input', function () {
+    const searchValue = this.value;
+
+    // const fieldsComparator = (value: string, searchValue: string) => {
+    //   return value.toLowerCase().includes(searchValue.toLowerCase())
+    // }
+    // const result = products.map(({ title, description, brand, category }) => [title, description, brand, category]).filter(product => fieldsComparator(product.join(''), searchValue))
+    // console.log('result :>> ', result);
+
+    const result = products.filter(product => {
+      return (product.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchValue.toLowerCase()) ||
+        product.brand.toLowerCase().includes(searchValue.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    });
+    console.log('result1 :>> ', result);
+    const quantity: HTMLDivElement | null = document.querySelector('.found');
+    if (quantity !== null) {
+      quantity.innerHTML = `Found: ${result.length}`
+    };
+    showProductCards(result)
+  });
+
   const showProductCards = (products: IProduct[]): void => {
     if (productsField !== null) {
       productsField.innerHTML = products
@@ -91,6 +118,24 @@ function renderProducts(products: IProduct[]) {
         })
         .join('');
     }
+    const productDetailsBtns: NodeListOf<HTMLElement> =
+      document.querySelectorAll('.products__details');
+    productDetailsBtns.forEach((el) =>
+      el.addEventListener('click', function (e: Event) {
+        if (e.target instanceof HTMLButtonElement) {
+          document.location.href = `#product/${e.target.id}`;
+        }
+      })
+    );
+
+    const productCartBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__cart');
+    productCartBtns.forEach((el) =>
+      el.addEventListener('click', function (e: Event) {
+        if (e.target instanceof HTMLButtonElement) {
+          trackingProducts(e.target)
+        }
+      }
+      ))
   };
   showProductCards(products)
 }

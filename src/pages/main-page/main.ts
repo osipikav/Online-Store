@@ -1,5 +1,4 @@
 import { IProduct } from '../../types/types';
-import { trackingProducts } from '../../features/features';
 import { renderProducts } from './renderProducts';
 
 const mainPage = (products: IProduct[]): void => {
@@ -180,24 +179,7 @@ const mainPage = (products: IProduct[]): void => {
   }
 
   //details
-  const productDetailsBtns: NodeListOf<HTMLElement> =
-    document.querySelectorAll('.products__details');
-  productDetailsBtns.forEach((el) =>
-    el.addEventListener('click', function (e: Event) {
-      if (e.target instanceof HTMLButtonElement) {
-        document.location.href = `#product/${e.target.id}`;
-      }
-    })
-  );
 
-  const productCartBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__cart');
-  productCartBtns.forEach((el) =>
-    el.addEventListener('click', function (e: Event) {
-      if (e.target instanceof HTMLButtonElement) {
-        trackingProducts(e.target)
-      }
-    }
-    ))
 };
 
 export { mainPage };

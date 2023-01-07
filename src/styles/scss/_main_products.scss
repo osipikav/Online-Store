@@ -15,7 +15,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: space-between;
+    justify-content: space-around;
 
     &__item {
       display: flex;
@@ -93,7 +93,8 @@
     align-items: center;
     height: 50px;
     width: 100%;
-
+    color: $color-white;
+    gap: 5px;
     .display-options {
       display: flex;
       justify-content: space-between;
@@ -123,14 +124,17 @@
         grid-template-columns: repeat(1, 35px);
       }
     }
-    .sort {
-      select {
-        width: 220px;
-        height: 30px;
-        border-radius: 10px;
+    .sort select,
+    .search input {
+      width: 220px;
+      height: 30px;
+      border-radius: 10px;
+      color: $color-white;
+      border: 1px solid $color-yellow;
+      background-color: $color-grey-s-tr;
+      padding: 0 10px;
+      &::-webkit-input-placeholder {
         color: $color-white;
-        border: 1px solid $color-yellow;
-        background-color: $color-grey-s-tr;
       }
     }
   }
