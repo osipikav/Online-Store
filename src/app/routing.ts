@@ -25,7 +25,6 @@ export const locationHandler = () => {
                 createDetails(product);
             },
         },
-
         cart: {
             title: 'Order cart',
             render() {
@@ -37,7 +36,7 @@ export const locationHandler = () => {
     const location = window.location.hash.slice(1);
     let route;
     if (!Object.prototype.hasOwnProperty.call(routes, location)) {
-        if (location.length == 0) {
+        if (location.length === 0) {
             route = routes['main'];
         } else if (location.startsWith('product/')) {
             if (products[Number(window.location.hash.slice(9))] !== undefined) {

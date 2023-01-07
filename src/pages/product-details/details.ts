@@ -7,7 +7,7 @@ function createDetails(product: IProduct) {
     main.innerHTML = '';
     main.innerHTML = `
   <section class="main__details details">
-    <h2 class="details__title"></h2>
+    <h2 class="details__title">${product.title}</h2>
     <div class="details__breadcrumbs">
       <div>STORE</div>
       <div>${'>>'}</div>
@@ -30,7 +30,6 @@ function createDetails(product: IProduct) {
   </section>`;
   }
 
-  const title: HTMLDivElement | null = document.querySelector('.details__title');
   const miniaturesDiv: HTMLDivElement | null = document.querySelector('.info__miniature');
   const thumbnailDiv: HTMLDivElement | null = document.querySelector('.info__thumbnail');
   const descrItems: HTMLDivElement | null = document.querySelector('.info__description-items');
@@ -45,9 +44,6 @@ function createDetails(product: IProduct) {
     'brand',
     'category',
   ];
-  if (title !== null) {
-    title.textContent = product.title;
-  };
 
   const cartProductsArr: number[] = JSON.parse(localStorage.getItem('cartProducts') || '');
   if (cartProductsArr.includes(product.id)) {
