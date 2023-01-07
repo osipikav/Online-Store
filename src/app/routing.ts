@@ -1,7 +1,6 @@
 import { createDetails } from '../pages/product-details/details';
 import { create404 } from '../pages/page-404/page-404';
 import { mainPage } from '../pages/main-page/main';
-
 import { products } from '../assets/data/data';
 
 export const locationHandler = () => {
@@ -18,11 +17,11 @@ export const locationHandler = () => {
                 mainPage(products);
             },
         },
-        details: {
+        'product/': {
             title: 'Product details',
             render() {
-                const currentId: string = (localStorage.getItem('currentId') || "")
-                const product = products[+currentId - 1];
+                const hashId = window.location.hash.slice(9)
+                const product = products[Number(hashId) - 1];
                 createDetails(product);
             },
         },
@@ -37,10 +36,13 @@ export const locationHandler = () => {
     const location = window.location.hash.slice(1);
     let route;
     if (!Object.prototype.hasOwnProperty.call(routes, location)) {
-        if (location.length == 0) {
+        if (location.length === 0) {
             route = routes['main'];
+        } else if (location.startsWith('product/')) {
+            if (products[Number(window.location.hash.slice(9))] !== undefined) {
+                route = routes['product/'];
+            } else route = routes['404'];
         } else {
-            window.location.hash = '404';
             route = routes['404'];
         }
     } else {
