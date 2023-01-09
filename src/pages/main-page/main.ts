@@ -1,7 +1,8 @@
 import { IProduct } from '../../types/types';
-import { trackingProducts } from '../../features/features';
+import { renderProducts } from './renderProducts';
 
 const mainPage = (products: IProduct[]): void => {
+<<<<<<< HEAD
   const mainContent: HTMLDivElement | null = document.querySelector('.main');
   if (mainContent !== null) {
     mainContent.innerHTML = `<section class="main__filters filters"></section>
@@ -34,6 +35,9 @@ const mainPage = (products: IProduct[]): void => {
       mainContent.append(showProductCards());
     }
   }
+=======
+  renderProducts(products);
+>>>>>>> develop
 
   //adding data to filters
   const showTopButtons = (): HTMLDivElement => {
@@ -242,6 +246,7 @@ const mainPage = (products: IProduct[]): void => {
   }
 
   //details
+<<<<<<< HEAD
   const productDetailsBtns: NodeListOf<HTMLElement> =
     document.querySelectorAll('.products__details');
   productDetailsBtns.forEach((el) =>
@@ -260,6 +265,9 @@ const mainPage = (products: IProduct[]): void => {
       }
     })
   );
+=======
+
+>>>>>>> develop
 };
 
 export { mainPage };
