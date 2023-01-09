@@ -141,33 +141,33 @@ dropThisItem.forEach((button) => {
   button.addEventListener('click', function () {
     if (this.innerHTML == '+') {
       cartProducts.push(Number(button.previousElementSibling.id));
-      if ((button.previousElementSibling.id = this.previousElementSibling.id)) {
-        document.getElementById('numberOfItems').value = `${++amountOfItems}`;
-        document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
-        document.getElementById(Number(button.previousElementSibling.id)).innerHTML = ++dropAmount;
-        document.getElementById(`price${Number(button.previousElementSibling.id)}`).innerHTML =
-          products[this.previousElementSibling.id - 1].price * dropAmount;
-      }
+      //if (button.previousElementSibling.id == this.previousElementSibling.id) {
+      document.getElementById('numberOfItems').value = `${++amountOfItems}`;
+      document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
+      document.getElementById(Number(button.previousElementSibling.id)).innerHTML = ++dropAmount;
+      document.getElementById(`price${Number(button.previousElementSibling.id)}`).innerHTML =
+        products[this.previousElementSibling.id - 1].price * dropAmount;
+      //}
       orderSum.innerHTML = showTotalPrice(cartProducts);
       document.querySelector('.summary__total_amount').innerHTML = showTotalPrice(cartProducts);
       cartAmount.innerHTML = amountOfItems;
     } else {
-      if ((button.nextElementSibling.id = this.nextElementSibling.id)) {
-        --amountOfItems;
-        document.getElementById('numberOfItems').value = `${amountOfItems}`;
-        document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
-        document.getElementById(Number(button.nextElementSibling.id)).innerHTML -= 1;
-        document.getElementById(`price${Number(button.nextElementSibling.id)}`).innerHTML -=
-          products[this.nextElementSibling.id - 1].price;
+      //if (button.nextElementSibling.id == this.nextElementSibling.id) {
+      --amountOfItems;
+      document.getElementById('numberOfItems').value = `${amountOfItems}`;
+      document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
+      document.getElementById(Number(button.nextElementSibling.id)).innerHTML -= 1;
+      document.getElementById(`price${Number(button.nextElementSibling.id)}`).innerHTML -=
+        products[this.nextElementSibling.id - 1].price;
 
-        let indexOfRemovingElement = cartProducts.indexOf(parseInt(this.nextElementSibling.id));
-        cartProducts.splice(indexOfRemovingElement, 1);
+      let indexOfRemovingElement = cartProducts.indexOf(parseInt(this.nextElementSibling.id));
+      cartProducts.splice(indexOfRemovingElement, 1);
 
-        if (document.getElementById(Number(button.nextElementSibling.id)).innerHTML == 0) {
-          document.getElementById(`item${button.nextElementSibling.id}`).remove();
-        }
-        isEmpty();
+      if (document.getElementById(Number(button.nextElementSibling.id)).innerHTML == 0) {
+        document.getElementById(`item${button.nextElementSibling.id}`).remove();
       }
+      isEmpty();
+      //}
       orderSum.innerHTML = showTotalPrice(cartProducts);
       if (cartProducts.length) {
         document.querySelector('.summary__total_amount').innerHTML = showTotalPrice();
