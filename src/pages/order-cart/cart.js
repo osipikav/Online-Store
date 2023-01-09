@@ -140,26 +140,21 @@ dropThisItem.forEach((button) => {
   let dropAmount = 1;
   button.addEventListener('click', function () {
     if (this.innerHTML == '+') {
+      ++amountOfItems;
       cartProducts.push(Number(button.previousElementSibling.id));
-      //if (button.previousElementSibling.id == this.previousElementSibling.id) {
-      document.getElementById('numberOfItems').value = `${++amountOfItems}`;
       document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
       document.getElementById(Number(button.previousElementSibling.id)).innerHTML = ++dropAmount;
       document.getElementById(`price${Number(button.previousElementSibling.id)}`).innerHTML =
         products[this.previousElementSibling.id - 1].price * dropAmount;
-      //}
       orderSum.innerHTML = showTotalPrice(cartProducts);
       document.querySelector('.summary__total_amount').innerHTML = showTotalPrice(cartProducts);
       cartAmount.innerHTML = amountOfItems;
     } else {
-      //if (button.nextElementSibling.id == this.nextElementSibling.id) {
       --amountOfItems;
-      document.getElementById('numberOfItems').value = `${amountOfItems}`;
       document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
       document.getElementById(Number(button.nextElementSibling.id)).innerHTML -= 1;
       document.getElementById(`price${Number(button.nextElementSibling.id)}`).innerHTML -=
         products[this.nextElementSibling.id - 1].price;
-
       let indexOfRemovingElement = cartProducts.indexOf(parseInt(this.nextElementSibling.id));
       cartProducts.splice(indexOfRemovingElement, 1);
 
@@ -167,12 +162,10 @@ dropThisItem.forEach((button) => {
         document.getElementById(`item${button.nextElementSibling.id}`).remove();
       }
       isEmpty();
-      //}
       orderSum.innerHTML = showTotalPrice(cartProducts);
       if (cartProducts.length) {
         document.querySelector('.summary__total_amount').innerHTML = showTotalPrice();
       }
-
       cartAmount.innerHTML = amountOfItems;
     }
     console.log(cartProducts);
