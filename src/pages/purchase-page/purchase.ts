@@ -2,7 +2,7 @@ function createPurchaseModal() {
   const purchase = document.createElement('section')
   document.querySelector('.main')?.append(purchase)
   purchase.innerHTML = `
-    <form id="form" autocomplete="off">
+    <form id="form" >
           <h2 class="form-title">Personal details</h2>
           <div class="form-item">
             <input type="text" name="name" id="name" placeholder="Name" required/>

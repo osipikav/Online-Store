@@ -78,9 +78,6 @@
     border-radius: 5px;
     border: 2px solid $color-yellow;
   }
-  input:-webkit-autofill {
-    -webkit-text-fill-color: yellow !important;
-  }
 
   .error {
     border-color: red;
