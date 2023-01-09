@@ -1006,7 +1006,7 @@ input[type=range]::-moz-range-thumb {
   text-align: center;
 }
 .summary p {
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.47);
 }
 
@@ -1014,7 +1014,6 @@ input[type=range]::-moz-range-thumb {
   width: 80%;
   color: rgba(255, 255, 255, 0.47);
   font-size: 1rem;
-  text-transform: uppercase;
   padding: 6px 10px;
   border: 1px solid #eec353;
   background: #383838;
@@ -1040,6 +1039,21 @@ input[type=range]::-moz-range-thumb {
 }
 .by-now:active {
   background: #a59568;
+}
+
+.add-promo {
+  padding: 4px 8px;
+  color: #ffffff;
+  background-color: rgba(196, 196, 196, 0.25);
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+.add-promo:hover {
+  background-color: #a59568;
+}
+.add-promo:active {
+  background: #7b6a3f;
 }
 
 .not-found {

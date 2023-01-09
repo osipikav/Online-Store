@@ -52,7 +52,7 @@ function orderedSectionSummary() {
     cartProducts
   )}</span></div>
 <div class="summary__promo"><input type="text" id="promo" placeholder="Enter code" /></div>
-<p>promo for test 'RS', 'JS'</p>
+<p class="about-promo">promo for test 'RS', 'JS'</p>
 <button class="by-now">By Now</button>`;
   return summarySection;
 }
@@ -178,3 +178,40 @@ dropThisItem.forEach((button) => {
     console.log(cartProducts);
   });
 });
+
+function showAddingPromoRsButton() {
+  return (document.querySelector('.about-promo').innerHTML =
+    'Rolling Scopes - 20% <button class="add-promo">Add</button>');
+}
+
+function showAddingPromoJsButton() {
+  return (document.querySelector('.about-promo').innerHTML =
+    'Java Script - 10% <button class="add-promo">Add</button>');
+}
+
+function showAddingPromoNoButton() {
+  return (document.querySelector('.about-promo').innerHTML = `promo for test 'RS', 'JS'`);
+}
+//console.log(showAddingPromoButton());
+let inputPromoCode = document.getElementById('promo');
+
+inputPromoCode.oninput = function () {
+  let promoCodeValue = document.getElementById('promo').value;
+
+  switch (promoCodeValue) {
+    case 'RS':
+      return showAddingPromoRsButton();
+    case 'JS':
+      return showAddingPromoJsButton();
+    default:
+      return showAddingPromoNoButton();
+  }
+};
+
+let buttonDiscountAdd = document.querySelector('.add-promo');
+buttonDiscountAdd.addEventListener('click', function () {});
+
+/* function insertPromoCode (newNode) {
+  .parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+ */
