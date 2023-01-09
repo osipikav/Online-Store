@@ -140,6 +140,7 @@ dropThisItem.forEach((button) => {
   let dropAmount = 1;
   button.addEventListener('click', function () {
     if (this.innerHTML == '+') {
+      dropAmount = button.previousElementSibling.textContent;
       ++amountOfItems;
       cartProducts.push(Number(button.previousElementSibling.id));
       document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
@@ -150,16 +151,19 @@ dropThisItem.forEach((button) => {
       document.querySelector('.summary__total_amount').innerHTML = showTotalPrice(cartProducts);
       cartAmount.innerHTML = amountOfItems;
     } else {
+      dropAmount = button.nextElementSibling.textContent;
       --amountOfItems;
       document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
-      document.getElementById(Number(button.nextElementSibling.id)).innerHTML -= 1;
+      document.getElementById(Number(button.nextElementSibling.id)).innerHTML = --dropAmount;
       document.getElementById(`price${Number(button.nextElementSibling.id)}`).innerHTML -=
         products[this.nextElementSibling.id - 1].price;
+
       let indexOfRemovingElement = cartProducts.indexOf(parseInt(this.nextElementSibling.id));
       cartProducts.splice(indexOfRemovingElement, 1);
 
       if (document.getElementById(Number(button.nextElementSibling.id)).innerHTML == 0) {
         document.getElementById(`item${button.nextElementSibling.id}`).remove();
+        document.getElementById('numberOfItems').value -= 1;
       }
       isEmpty();
       orderSum.innerHTML = showTotalPrice(cartProducts);
@@ -202,7 +206,7 @@ inputPromoCode.oninput = function () {
 };
 
 let buttonDiscountAdd = document.querySelector('.add-promo');
-buttonDiscountAdd.addEventListener('click', function () {});
+//uttonDiscountAdd.addEventListener('click', function () {});
 
 /* function insertPromoCode (newNode) {
   .parentNode.insertBefore(newNode, referenceNode.nextSibling);
