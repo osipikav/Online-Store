@@ -1,5 +1,4 @@
 .purchase {
-  // z-index: 2;
   position: fixed;
   top: 0;
   width: 100%;
@@ -10,10 +9,9 @@
   align-items: center;
   text-align: center;
 }
+
 #form {
-  // z-index: 5;
   position: relative;
-  // background-color: $color-grey-m-tr;
   width: 500px;
   height: 500px;
   margin: 0 auto;
@@ -32,6 +30,7 @@
     height: 100%;
     border-radius: 30px;
   }
+
   .form-title {
     margin: 8px auto;
   }
@@ -42,10 +41,8 @@
     justify-content: center;
     width: 300px;
     height: 30px;
-    // border: 2px solid $color-yellow;
     border-radius: 30px;
     margin: 3px auto;
-    //   padding: 10px;
   }
   .card-details {
     margin: 0 auto;
@@ -64,27 +61,35 @@
     .card-expiration,
     .card-cvc {
       width: 100%;
-
       border-radius: 5px;
       margin: 5px;
     }
+
     .card-expiration {
       width: 50%;
     }
+
     .card-cvc {
       width: 30%;
     }
   }
+
   input {
     border-radius: 5px;
     border: 2px solid $color-yellow;
   }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: yellow !important;
+  }
+
   .error {
     border-color: red;
   }
+
   .success {
     border-color: green;
   }
+
   .button {
     padding: 4px 6px;
     background-color: $color-brown-s;

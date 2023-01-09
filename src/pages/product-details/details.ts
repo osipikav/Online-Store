@@ -1,6 +1,5 @@
 import { IProduct } from "../../types/types";
 import { trackingProducts } from "../../features/features"
-
 import { createPurchaseModal } from "../purchase-page/purchase";
 
 function createDetails(product: IProduct) {
