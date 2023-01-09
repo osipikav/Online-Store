@@ -1,6 +1,8 @@
 import { IProduct } from "../../types/types";
 import { trackingProducts } from "../../features/features"
 
+import { createPurchaseModal } from "../purchase-page/purchase";
+
 function createDetails(product: IProduct) {
   const main: HTMLDivElement | null = document.querySelector('.main');
   if (main !== null) {
@@ -102,7 +104,7 @@ function createDetails(product: IProduct) {
   });
 
   buyButton.addEventListener('click', () => {
-    console.log('buy');
+    createPurchaseModal()
   });
 }
 
