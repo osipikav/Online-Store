@@ -1,39 +1,8 @@
 import { IProduct } from '../../types/types';
-import { trackingProducts } from '../../features/features';
+import { renderProducts } from './renderProducts';
 
 const mainPage = (products: IProduct[]): void => {
-  const mainContent: HTMLDivElement | null = document.querySelector('.main');
-  if (mainContent !== null) {
-    mainContent.innerHTML = `<section class="main__filters filters"></section>
-<section class="main__products products"></section>`;
-    const productsField: HTMLDivElement | null = document.querySelector('.products');
-    if (productsField !== null) {
-      const showProductCards = (): HTMLElement => {
-        productsField.innerHTML = products
-          .map((product: IProduct) => {
-            const { id, title, thumbnail, price } = product;
-            let buttonValue = 'Add To Cart';
-            if (JSON.parse(localStorage.getItem('cartProducts') || '').includes(id)) {
-              buttonValue = 'Drop From Cart';
-            };
-            return `<div class="products__item">
-  <div class="products__title">${title}</div>
-  <div class="products__photo">
-    <img class="products__img" src=${thumbnail}>
-  </div>
-  <div class="products__price">${price} $</div>
-  <div class="products__options">
-    <button class="products__details" id="${id}">Details</button>
-    <button class="products__cart" id="${id}">${buttonValue}</button>
-  </div>
-</div>`;
-          })
-          .join('');
-        return productsField;
-      };
-      mainContent.append(showProductCards());
-    }
-  }
+  renderProducts(products);
 
   //adding data to filters
   const showTopButtons = (): HTMLDivElement => {
@@ -210,24 +179,6 @@ const mainPage = (products: IProduct[]): void => {
   }
 
   //details
-  const productDetailsBtns: NodeListOf<HTMLElement> =
-    document.querySelectorAll('.products__details');
-  productDetailsBtns.forEach((el) =>
-    el.addEventListener('click', function (e: Event) {
-      if (e.target instanceof HTMLButtonElement) {
-        document.location.href = `#product/${e.target.id}`;
-      }
-    })
-  );
-
-  const productCartBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.products__cart');
-  productCartBtns.forEach((el) =>
-    el.addEventListener('click', function (e: Event) {
-      if (e.target instanceof HTMLButtonElement) {
-        trackingProducts(e.target)
-      }
-    }
-    ))
 
 };
 
