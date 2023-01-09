@@ -1,110 +1,180 @@
+import products from '../../assets/data/data.js';
+
 let cartProducts = JSON.parse(localStorage.getItem('cartProducts'))
   ? JSON.parse(localStorage.getItem('cartProducts'))
-  : 0;
+  : [3, 4, 7, 14];
 
-console.log(cartProducts);
-let productSection = document.querySelector('.main__ordered');
+let position = 0;
+let amount = 1;
 
 let cartAmount = document.querySelector('.order__amount');
-cartAmount.innerHTML = JSON.parse(localStorage.getItem('cartAmount'))
-  ? JSON.parse(localStorage.getItem('cartAmount'))
-  : 0;
-
-let itemsAmount = document.querySelector('.ordered__amount').querySelector('input');
-itemsAmount.value = JSON.parse(localStorage.getItem('cartAmount'))
-  ? JSON.parse(localStorage.getItem('cartAmount'))
-  : 0;
+let amountOfItems = cartProducts.length;
+cartAmount.innerHTML = amountOfItems;
 
 let orderSum = document.querySelector('.order__sum');
-orderSum.innerHTML = JSON.parse(localStorage.getItem('orderSum'))
-  ? JSON.parse(localStorage.getItem('orderSum'))
-  : 0;
+orderSum.innerHTML = showTotalPrice();
 
-let cartBtn = document.querySelector('.order__link');
 let main = document.querySelector('main');
+let productSection = document.createElement('section');
+let summarySection = document.createElement('section');
+productSection.className = 'main__ordered ordered';
+summarySection.className = 'summary';
+main.append(productSection);
+main.append(orderedSectionSummary());
+productSection.append(orderedSectionHead());
+//summarySection.append(orderedSectionSummary());
+showOrderedItems();
+
+function orderedSectionHead() {
+  let orderedHeader = document.createElement('div');
+  orderedHeader.className = 'ordered__header';
+  orderedHeader.innerHTML = `<h2>Products in cart</h2>
+<div class="ordered__amount">Items: <input type="text" id="numberOfItems" value="${amountOfItems}"></div>
+<div class="ordered__pages">
+  <div>Page: 
+    <button> &lt; </button>
+    <span>1</span>
+    <button> &gt; </button>
+  </div>
+</div>`;
+
+  return orderedHeader;
+}
+
+function orderedSectionSummary() {
+  summarySection.innerHTML = `<div class="summary__header">
+  <h2>Summary</h2>
+</div>
+<div class="summary__products">
+  Products: <span class="summary__products_amount">${amountOfItems}</span>
+</div>
+<div class="summary__total">Total: $<span class="summary__total_amount">${showTotalPrice(
+    cartProducts
+  )}</span></div>
+<div class="summary__promo"><input type="text" id="promo" placeholder="Enter code" /></div>
+<p>promo for test 'RS', 'JS'</p>
+<button class="by-now">By Now</button>`;
+  return summarySection;
+}
+
+function showOrderedItems() {
+  return products.map((product) => {
+    const { id } = product;
+    if (cartProducts.includes(id)) productSection.append(orderedItem(product));
+  });
+}
+
+function showTotalPrice() {
+  return products.reduce((total, product) => {
+    const { id, price } = product;
+    for (let orderedId of cartProducts) {
+      if (orderedId == id) {
+        total += price;
+      }
+    }
+    return total;
+  }, 0);
+}
+
+function orderedItem(product) {
+  position++;
+  const {
+    id,
+    title,
+    description,
+    price,
+    discountPercentage,
+    rating,
+    stock,
+    //brand,
+    //category,
+    images,
+  } = product;
+
+  let orderedProduct = document.createElement('div');
+  orderedProduct.className = 'ordered__product';
+  orderedProduct.id = `item${id}`;
+  orderedProduct.innerHTML = `<div class="ordered__number">${position}</div>
+  <div class="ordered__item item">
+    <img class="item__img" src="${images[0]}">
+      <div class="item__info">
+        <div class="item__title">${title}</div>
+        <div class="item__description">${description}</div>
+        <div class="item__additionally">
+          <div class="item__rating">Rating: ${rating}</div>
+          <div class="item__discount">Discount: ${discountPercentage}%</div>
+        </div>
+      </div>
+  </div>
+  <div class="ordered__manage">
+    <div class="ordered__stock">Stock: ${stock}</div>
+    <div class="ordered__how-many">
+      <button class="ordered__how-many_drop">-</button>
+      <span class="ordered__how-many_amount" id="${id}">${amount}</span>
+      <button class="ordered__how-many_drop">+</button>
+    </div>
+    <div class="ordered__item-price">$ <span id="price${id}">${price}</span></div>
+  </div>`;
+
+  return orderedProduct;
+}
 
 function isEmpty() {
-  let cartTitle = document.createElement('h2');
-
-  if (!cartProducts) {
+  if (cartProducts.length == 0) {
+    document.querySelector('.main__ordered').remove();
+    document.querySelector('.summary').remove();
+    let cartTitle = document.createElement('h2');
     main.append(cartTitle);
-    document.querySelectorAll('section').forEach((el) => el.classList.add('not-active'));
     cartTitle.innerHTML = 'Your cart is empty';
     cartTitle.style.setProperty('color', '#EEC353');
-  } else {
-    if (main.contains(cartTitle)) {
-      main.removeChild(cartTitle);
-      document.querySelectorAll('section').forEach((el) => el.classList.remove('not-active'));
-    }
+    cartAmount.innerHTML = 0;
+    console.log(amountOfItems);
   }
 }
 
 isEmpty();
-let cartProductId = [];
 
-function orderedItems(i) {
-  let orderedProduct = document.createElement('div');
-  let orderedNumber = document.createElement('div');
-  let orderedItem = document.createElement('div');
-  let orderedImg = document.createElement('img');
-  let orderedItemInfo = document.createElement('div');
-  let orderedItemTitle = document.createElement('div');
-  let orderedItemDescription = document.createElement('div');
-  let orderedAdditionally = document.createElement('div');
-  let orderedItemRating = document.createElement('div');
-  let orderedItemDiscount = document.createElement('div');
-  let orderedManage = document.createElement('div');
-  let orderedStock = document.createElement('div');
-  let orderedItemAmount = document.createElement('div');
-  let orderedItemPrice = document.createElement('div');
+let dropThisItem = document.querySelectorAll('.ordered__how-many_drop');
 
-  orderedProduct.className = 'ordered__product';
-  orderedNumber.className = 'ordered__number';
-  orderedItem.className = 'ordered__item item';
-  orderedImg.className = 'item__img';
-  orderedItemInfo.className = 'item__info';
-  orderedItemTitle.className = 'item__title';
-  orderedItemDescription.className = 'item__description';
-  orderedAdditionally.className = 'item__additionally';
-  orderedItemRating.className = 'item__rating';
-  orderedItemDiscount.className = 'item__discount';
-  orderedManage.className = 'ordered__manage';
-  orderedStock.className = 'ordered__stock';
-  orderedItemAmount.className = 'ordered__how-many';
-  orderedItemPrice.className = 'ordered__item-price';
+dropThisItem.forEach((button) => {
+  let dropAmount = 1;
+  button.addEventListener('click', function () {
+    if (this.innerHTML == '+') {
+      cartProducts.push(Number(button.previousElementSibling.id));
+      if ((button.previousElementSibling.id = this.previousElementSibling.id)) {
+        document.getElementById('numberOfItems').value = `${++amountOfItems}`;
+        document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
+        document.getElementById(Number(button.previousElementSibling.id)).innerHTML = ++dropAmount;
+        document.getElementById(`price${Number(button.previousElementSibling.id)}`).innerHTML =
+          products[this.previousElementSibling.id - 1].price * dropAmount;
+      }
+      orderSum.innerHTML = showTotalPrice(cartProducts);
+      document.querySelector('.summary__total_amount').innerHTML = showTotalPrice(cartProducts);
+      cartAmount.innerHTML = amountOfItems;
+    } else {
+      if ((button.nextElementSibling.id = this.nextElementSibling.id)) {
+        --amountOfItems;
+        document.getElementById('numberOfItems').value = `${amountOfItems}`;
+        document.querySelector('.summary__products_amount').innerHTML = `${amountOfItems}`;
+        document.getElementById(Number(button.nextElementSibling.id)).innerHTML -= 1;
+        document.getElementById(`price${Number(button.nextElementSibling.id)}`).innerHTML -=
+          products[this.nextElementSibling.id - 1].price;
 
-  productSection.append(orderedProduct);
-  orderedProduct.append(orderedNumber);
-  orderedProduct.append(orderedItem);
-  orderedProduct.append(orderedManage);
-  orderedItem.append(orderedImg);
-  orderedItem.append(orderedItemInfo);
-  orderedItemInfo.append(orderedItemTitle);
-  orderedItemInfo.append(orderedItemDescription);
-  orderedItemInfo.append(orderedAdditionally);
-  orderedAdditionally.append(orderedItemRating);
-  orderedAdditionally.append(orderedItemDiscount);
+        let indexOfRemovingElement = cartProducts.indexOf(parseInt(this.nextElementSibling.id));
+        cartProducts.splice(indexOfRemovingElement, 1);
 
-  orderedManage.append(orderedStock);
-  orderedManage.append(orderedItemAmount);
-  orderedManage.append(orderedItemPrice);
+        if (document.getElementById(Number(button.nextElementSibling.id)).innerHTML == 0) {
+          document.getElementById(`item${button.nextElementSibling.id}`).remove();
+        }
+        isEmpty();
+      }
+      orderSum.innerHTML = showTotalPrice(cartProducts);
+      if (cartProducts.length) {
+        document.querySelector('.summary__total_amount').innerHTML = showTotalPrice();
+      }
 
-  orderedNumber.innerHTML = i + 1;
-  orderedImg.src = cartProducts[i].images[0] ? cartProducts[i].images[0] : cartProducts[i].images;
-  orderedItemTitle.innerHTML = cartProducts[i].title;
-  orderedItemDescription.innerHTML = cartProducts[i].description;
-  orderedItemRating.innerHTML = `Rating: ${cartProducts[i].rating}`;
-  orderedItemDiscount.innerHTML = `Discount: ${cartProducts[i].discountPercentage}%`;
-
-  cartProductId.push(cartProducts[i].id);
-}
-
-function showOrderedItems() {
-  for (let i = 0; i < cartProducts.length; i++) {
-    if (!cartProductId.includes(cartProducts[i].id)) {
-      orderedItems(i);
+      cartAmount.innerHTML = amountOfItems;
     }
-  }
-}
-
-showOrderedItems();
+    console.log(cartProducts);
+  });
+});

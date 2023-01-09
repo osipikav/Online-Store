@@ -902,8 +902,11 @@ input[type=range]::-moz-range-thumb {
   pointer-events: none;
 }
 
-.ordered__product {
+.ordered {
   width: 70%;
+}
+.ordered__product {
+  width: 96%;
   color: #d7d7d7;
   display: flex;
   flex-direction: row;
@@ -919,6 +922,29 @@ input[type=range]::-moz-range-thumb {
 }
 .ordered__item {
   flex-grow: 1;
+}
+.ordered__manage {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.ordered__stock {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.ordered__how-many {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.ordered__how-many_drop, .ordered__how-many_add {
+  border: 1px solid rgba(196, 196, 196, 0.25);
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
 }
 .item {
   display: flex;
@@ -954,6 +980,68 @@ input[type=range]::-moz-range-thumb {
   width: 100%;
   color: #383838;
 }
+.summary {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(196, 196, 196, 0.25);
+  border-radius: 20px;
+  color: #ffffff;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #eec353;
+  width: 26%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.summary__header {
+  justify-content: space-around;
+  color: #eec353;
+  border-bottom: 2px solid #eec353;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}
+.summary__promo {
+  text-align: center;
+}
+.summary p {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.47);
+}
+
+#promo {
+  width: 80%;
+  color: rgba(255, 255, 255, 0.47);
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 1px solid #eec353;
+  background: #383838;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+}
+
+.by-now {
+  color: rgba(255, 255, 255, 0.47);
+  font-size: 1rem;
+  padding: 6px 10px;
+  border: 1px solid #eec353;
+  background: #383838;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+.by-now:hover {
+  color: #ffffff;
+  background: #7b6a3f;
+}
+.by-now:active {
+  background: #a59568;
+}
+
 .not-found {
   display: flex;
   align-items: center;
