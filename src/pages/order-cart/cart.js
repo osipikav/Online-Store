@@ -5,7 +5,7 @@ let cartProducts = JSON.parse(localStorage.getItem('cartProducts'))
   : [3, 4, 7, 14];
 
 let position = 0;
-let amount = 1;
+let dropAmount = 1;
 
 let cartAmount = document.querySelector('.order__amount');
 let amountOfItems = cartProducts.length;
@@ -110,7 +110,7 @@ function orderedItem(product) {
     <div class="ordered__stock">Stock: ${stock}</div>
     <div class="ordered__how-many">
       <button class="ordered__how-many_drop">-</button>
-      <span class="ordered__how-many_amount" id="${id}">${amount}</span>
+      <span class="ordered__how-many_amount" id="${id}">${dropAmount}</span>
       <button class="ordered__how-many_drop">+</button>
     </div>
     <div class="ordered__item-price">$ <span id="price${id}">${price}</span></div>
@@ -137,7 +137,6 @@ isEmpty();
 let dropThisItem = document.querySelectorAll('.ordered__how-many_drop');
 
 dropThisItem.forEach((button) => {
-  let dropAmount = 1;
   button.addEventListener('click', function () {
     if (this.innerHTML == '+') {
       dropAmount = button.previousElementSibling.textContent;
