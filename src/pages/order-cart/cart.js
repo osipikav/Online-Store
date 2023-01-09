@@ -215,3 +215,44 @@ buttonDiscountAdd.addEventListener('click', function () {});
   .parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
  */
+/* let promoInput = document.querySelector('.about-promo');
+let inputPromoCode = document.getElementById('promo');
+
+function showAddingPromoRsButton() {
+  return (promoInput.innerHTML = 'Rolling Scopes - 20% <button class="add-promo">Add</button>');
+}
+
+function showAddingPromoJsButton() {
+  return (promoInput.innerHTML = 'Java Script - 10% <button class="add-promo">Add</button>');
+}
+
+function showAddingPromoNoButton() {
+  return (promoInput.innerHTML = `promo for test 'RS', 'JS'`);
+}
+//console.log(showAddingPromoButton());
+
+inputPromoCode.oninput = function () {
+  let promoCodeValue = document.getElementById('promo').value;
+
+  switch (promoCodeValue) {
+    case 'RS':
+      return showAddingPromoRsButton();
+    case 'JS':
+      return showAddingPromoJsButton();
+    default:
+      return showAddingPromoNoButton();
+  }
+};
+
+let buttonDiscountAdd = document.querySelector('.add-promo');
+
+if (buttonDiscountAdd.innerHTML == 'Add') {
+  buttonDiscountAdd.addEventListener('click', function () {
+    buttonDiscountAdd.innerHTML = 'Drop';
+  });
+} */
+
+/* function insertPromoCode (newNode) {
+  .parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+ */
