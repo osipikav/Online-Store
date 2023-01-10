@@ -29,7 +29,6 @@
     justify-content: space-around;
     gap: 4px;
   }
-
   &__btn {
     padding: 4px 10px;
     border-radius: 4px;
@@ -47,13 +46,6 @@
       border: 1px solid $color-brown-l;
     }
   }
-
-  &__buttons-reset {
-  }
-
-  &__buttons-copy {
-  }
-
   &__title {
     color: $color-yellow;
     text-align: center;
@@ -61,7 +53,6 @@
     margin-bottom: 4px;
     text-transform: capitalize;
   }
-
   &__category {
     margin-bottom: 6px;
   }
@@ -110,8 +101,6 @@
     float: right;
   }
 }
-.item-active {
-}
 .brand {
   background-color: $color-grey-s-tr;
   border-radius: 10px;
@@ -137,12 +126,6 @@
   background-color: $color-grey-s-tr;
   border-radius: 10px;
   padding: 6px;
-
-  &__title {
-  }
-
-  // .price__list
-
   &__list {
     display: flex;
     flex-flow: row wrap;
@@ -161,29 +144,18 @@
       appearance: none;
     }
   }
-
   &__min {
     width: 25%;
   }
-
-  // .price__min-input
-
   &__min-input {
     width: 100%;
   }
-
-  // .price__max
-
   &__max {
     width: 25%;
   }
-
-  // .price__max-input
-
   &__max-input {
     width: 100%;
   }
-
   &__slider {
     height: 4px;
     background-color: $color-brown-xl;
@@ -191,7 +163,6 @@
     position: relative;
     margin: 10px;
   }
-
   &__progress {
     height: 4px;
     background-color: $color-yellow;
@@ -200,7 +171,6 @@
     left: 0%;
     right: 0%;
   }
-
   &__range-input {
     position: relative;
     margin: 10px;
@@ -221,17 +191,10 @@
     font-size: 1rem;
   }
 }
-
 .stock {
   background-color: $color-grey-s-tr;
   border-radius: 10px;
   padding: 6px;
-
-  &__title {
-  }
-
-  // .price__list
-
   &__list {
     display: flex;
     flex-flow: row wrap;
@@ -250,29 +213,18 @@
       appearance: none;
     }
   }
-
   &__min {
     width: 25%;
   }
-
-  // .price__min-input
-
   &__min-input {
     width: 100%;
   }
-
-  // .price__max
-
   &__max {
     width: 25%;
   }
-
-  // .price__max-input
-
   &__max-input {
     width: 100%;
   }
-
   &__slider {
     height: 4px;
     background-color: $color-brown-xl;
@@ -280,7 +232,6 @@
     position: relative;
     margin: 10px;
   }
-
   &__progress {
     height: 4px;
     background-color: $color-yellow;
@@ -289,7 +240,6 @@
     left: 0%;
     right: 0%;
   }
-
   &__range-input {
     position: relative;
     margin: 10px;
@@ -310,12 +260,10 @@
     font-size: 1rem;
   }
 }
-
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-
 input[type='range']::-webkit-slider-thumb {
   height: 10px;
   width: 10px;

@@ -6,7 +6,6 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   color: $color-white;
-
   &__nav {
     display: flex;
     flex-flow: row wrap;
@@ -42,7 +41,6 @@
     transition-property: color, outline-color;
     transition-duration: 0.2s;
     transition-timing-function: ease-in-out;
-
     &:hover {
       color: $color-white-tr;
     }
