@@ -1114,7 +1114,7 @@ input[type=range]::-moz-range-thumb {
   text-align: center;
 }
 
-.by-now {
+.buy-now {
   color: rgba(255, 255, 255, 0.47);
   font-size: 1rem;
   padding: 6px 10px;
@@ -1125,11 +1125,11 @@ input[type=range]::-moz-range-thumb {
   transition: 0.3s;
   margin-bottom: 10px;
 }
-.by-now:hover {
+.buy-now:hover {
   color: #ffffff;
   background: #7b6a3f;
 }
-.by-now:active {
+.buy-now:active {
   background: #a59568;
 }
 

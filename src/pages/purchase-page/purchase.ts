@@ -46,6 +46,12 @@ function createPurchaseModal() {
   const expiration: HTMLInputElement | null = document.querySelector('#expiration');
   const cvc: HTMLInputElement | null = document.querySelector('#cvc');
 
+  purchase.onclick = function (e) {
+    if (e.target instanceof HTMLElement && e.target.id !== "form") {
+      purchase.remove()
+    };
+  };
+
   const regExpValue = {
     name: /[a-zA-Z]{3,}(\s[a-zA-Z]{3,})+$/,
     phone: /^\+(\d{9,})/,

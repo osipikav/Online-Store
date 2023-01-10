@@ -1,5 +1,6 @@
 import { IProduct } from '../../types/types';
 import { trackingProducts } from '../../features/features';
+import { createPurchaseModal } from '../purchase-page/purchase';
 
 function cartPage(products: IProduct[]) {
   const main: HTMLDivElement | null = document.querySelector('.main');
