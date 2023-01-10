@@ -2,6 +2,7 @@ import { IProduct } from "../../types/types";
 import { trackingProducts } from "../../features/features"
 
 function createDetails(product: IProduct) {
+  console.log('object :>> ', product);
   const main: HTMLDivElement | null = document.querySelector('.main');
   if (main !== null) {
     main.innerHTML = '';
