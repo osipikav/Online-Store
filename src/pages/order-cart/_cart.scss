@@ -36,10 +36,10 @@
 }
 
 .ordered {
-  &__pages {
-  }
+  width: 70%;
+
   &__product {
-    width: 70%;
+    width: 96%;
     color: $color-grey-s;
     display: flex;
     flex-direction: row;
@@ -66,16 +66,34 @@
   // .ordered__manage
 
   &__manage {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
   }
 
   // .ordered__stock
 
   &__stock {
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   // .ordered__how-many
 
   &__how-many {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    &_drop,
+    &_add {
+      border: 1px solid $color-grey-s-tr;
+      border-radius: 50%;
+      padding: 4px;
+      cursor: pointer;
+    }
   }
 
   // .ordered__item-price
@@ -138,5 +156,100 @@
   // .item__discount
 
   &__discount {
+  }
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-grey-s-tr;
+  border-radius: 20px;
+  color: $color-white;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid $color-yellow;
+  width: 26%;
+  height: fit-content;
+  &__header {
+    justify-content: space-around;
+    color: $color-yellow;
+    border-bottom: 2px solid $color-yellow;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  // .summary__products
+
+  &__products {
+    // .summary__products_amount
+
+    &_amount {
+    }
+  }
+
+  // .summary__total
+
+  &__total {
+    // .summary__total_amount
+
+    &_amount {
+    }
+  }
+
+  // .summary__promo
+
+  &__promo {
+    text-align: center;
+  }
+  & p {
+    font-size: 0.8rem;
+    color: $color-white-tr;
+  }
+}
+
+#promo {
+  width: 80%;
+  color: $color-white-tr;
+  font-size: 1rem;
+  padding: 6px 10px;
+  border: 1px solid $color-yellow;
+  background: $color-brown-xl;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+}
+
+.buy-now {
+  color: $color-white-tr;
+  font-size: 1rem;
+  padding: 6px 10px;
+  border: 1px solid $color-yellow;
+  background: $color-brown-xl;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  &:hover {
+    color: $color-white;
+    background: $color-brown-m;
+  }
+  &:active {
+    background: $color-brown-s;
+  }
+}
+
+.add-promo {
+  padding: 4px 8px;
+  color: $color-white;
+  background-color: $color-grey-s-tr;
+  border: 1px solid $color-white;
+  border-radius: 4px;
+  transition: 0.3s;
+  &:hover {
+    background-color: $color-brown-s;
+  }
+  &:active {
+    background: $color-brown-m;
   }
 }
