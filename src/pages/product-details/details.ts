@@ -1,5 +1,6 @@
 import { IProduct } from "../../types/types";
 import { trackingProducts } from "../../features/features"
+import { createPurchaseModal } from "../purchase-page/purchase";
 
 function createDetails(product: IProduct) {
   console.log('object :>> ', product);
@@ -103,7 +104,7 @@ function createDetails(product: IProduct) {
   });
 
   buyButton.addEventListener('click', () => {
-    console.log('buy');
+    createPurchaseModal()
   });
 }
 
