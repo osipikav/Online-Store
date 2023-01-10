@@ -1,5 +1,5 @@
-import products from "../assets/data/data";
-import { cartPage } from "../pages/order-cart/cart";
+import products from '../pages/data/data';
+import { cartPage } from '../pages/order-cart/cart';
 
 function trackingProducts(target: HTMLButtonElement) {
   const cartProductsArr: number[] = JSON.parse(localStorage.getItem('cartProducts') || '');
@@ -7,7 +7,7 @@ function trackingProducts(target: HTMLButtonElement) {
   const orderSum: HTMLElement | null = document.querySelector('.order__sum');
   let orderSumValue = Number(orderSum?.textContent);
 
-  if (target.textContent === '+' || target.textContent === "-") {
+  if (target.textContent === '+' || target.textContent === '-') {
     const orderManage = target.closest('.ordered__manage');
     const itemsQuantity = orderManage?.querySelector('.ordered__how-many span');
     const quantityValue = Number(itemsQuantity?.textContent);
@@ -40,7 +40,9 @@ function trackingProducts(target: HTMLButtonElement) {
       }
     }
     if (itemPrice !== null && itemPrice !== undefined) {
-      itemPrice.textContent = String(products[Number(orderManage?.id) - 1].price * Number(itemsQuantity?.textContent));
+      itemPrice.textContent = String(
+        products[Number(orderManage?.id) - 1].price * Number(itemsQuantity?.textContent)
+      );
     }
   } else if (target.textContent === 'Add To Cart') {
     cartProductsArr.push(Number(target.id));
@@ -54,11 +56,11 @@ function trackingProducts(target: HTMLButtonElement) {
     orderSumValue -= products[Number(target.id) - 1].price;
   }
   if (cartAmount !== null && orderSum !== null) {
-    cartAmount.textContent = String(cartProductsArr.length)
+    cartAmount.textContent = String(cartProductsArr.length);
     orderSum.textContent = String(orderSumValue);
   }
 
   localStorage.setItem('cartProducts', JSON.stringify(cartProductsArr));
 }
 
-export { trackingProducts }
+export { trackingProducts };
