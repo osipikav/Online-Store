@@ -1298,9 +1298,9 @@ input[type=range]::-moz-range-thumb {
   display: flex;
   align-items: center;
   text-align: center;
+  z-index: 2;
 }
-
-#form {
+.purchase #form {
   position: relative;
   width: 500px;
   height: 500px;
@@ -1312,7 +1312,7 @@ input[type=range]::-moz-range-thumb {
   justify-content: center;
   color: #ffffff;
 }
-#form input {
+.purchase #form input {
   background-color: inherit;
   border: none;
   text-align: center;
@@ -1320,10 +1320,10 @@ input[type=range]::-moz-range-thumb {
   height: 100%;
   border-radius: 30px;
 }
-#form .form-title {
+.purchase #form .form-title {
   margin: 8px auto;
 }
-#form .form-item {
+.purchase #form .form-item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1332,7 +1332,7 @@ input[type=range]::-moz-range-thumb {
   border-radius: 30px;
   margin: 3px auto;
 }
-#form .card-details {
+.purchase #form .card-details {
   margin: 0 auto;
   width: 290px;
   height: 180px;
@@ -1345,30 +1345,30 @@ input[type=range]::-moz-range-thumb {
   justify-content: space-between;
   padding: 30px;
 }
-#form .card-details .card-number,
-#form .card-details .card-expiration,
-#form .card-details .card-cvc {
+.purchase #form .card-details .card-number,
+.purchase #form .card-details .card-expiration,
+.purchase #form .card-details .card-cvc {
   width: 100%;
   border-radius: 5px;
   margin: 5px;
 }
-#form .card-details .card-expiration {
+.purchase #form .card-details .card-expiration {
   width: 50%;
 }
-#form .card-details .card-cvc {
+.purchase #form .card-details .card-cvc {
   width: 30%;
 }
-#form input {
+.purchase #form input {
   border-radius: 5px;
   border: 2px solid #eec353;
 }
-#form .error {
+.purchase #form .error {
   border-color: red;
 }
-#form .success {
+.purchase #form .success {
   border-color: green;
 }
-#form .button {
+.purchase #form .button {
   padding: 4px 6px;
   background-color: #a59568;
   color: #ffffff;
@@ -1379,12 +1379,12 @@ input[type=range]::-moz-range-thumb {
   text-align: center;
   cursor: pointer;
 }
-#form .button:hover {
+.purchase #form .button:hover {
   transition: ease-in-out 0.4s;
   color: rgba(255, 255, 255, 0.47);
   border: 1px solid rgba(255, 255, 255, 0.47);
 }
-#form .button:active {
+.purchase #form .button:active {
   transition: ease-in-out 0.2s;
   color: #62573c;
   border: 1px solid #62573c;

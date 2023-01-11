@@ -47,7 +47,7 @@ function createPurchaseModal() {
   const cvc: HTMLInputElement | null = document.querySelector('#cvc');
 
   purchase.onclick = function (e) {
-    if (e.target instanceof HTMLElement && e.target.id !== "form") {
+    if (e.target instanceof HTMLElement && !e.target.closest("#form")) {
       purchase.remove()
     };
   };
