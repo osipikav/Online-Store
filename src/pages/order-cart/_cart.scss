@@ -9,9 +9,9 @@
 .ordered {
   display: flex;
   flex-direction: column;
-
   background-color: $color-grey-s-tr;
   border-radius: 20px;
+
   &__header {
     display: flex;
     flex-flow: row wrap;
@@ -21,10 +21,8 @@
     color: $color-yellow;
     border-bottom: 2px solid $color-yellow;
     padding: 10px;
-  }
 
-  &__amount {
-    & input {
+    #numberOfItems {
       color: $color-white;
       background-color: transparent;
       text-align: center;
@@ -33,10 +31,6 @@
       pointer-events: none;
     }
   }
-}
-
-.ordered {
-  width: 70%;
 
   &__product {
     width: 96%;
@@ -44,7 +38,7 @@
     display: flex;
     flex-direction: row;
     gap: 4px;
-    align-items: center;
+    align-items: space-between;
     margin: 4px;
     padding-bottom: 4px;
     border-bottom: 1px solid $color-yellow;
@@ -85,47 +79,48 @@
       cursor: pointer;
     }
   }
-}
 
-.item {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 4px;
-  cursor: pointer;
-  &__img {
-    border: 1px solid $color-yellow;
-    border-radius: 6px;
-    max-width: 60px;
-    max-height: 60px;
-  }
-
-  &__info {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  &__title {
-    color: $color-white;
-    text-align: center;
-    width: 100%;
-    border-bottom: 1px solid $color-grey-s;
-  }
-
-  &__description {
-    text-align: center;
-  }
-
-  &__additionally {
+  .item {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
-    width: 100%;
-    color: $color-brown-xl;
+    justify-content: space-between;
+    gap: 4px;
+    cursor: pointer;
+    &__img {
+      border: 1px solid $color-yellow;
+      border-radius: 6px;
+      max-width: 60px;
+      max-height: 60px;
+    }
+
+    &__info {
+      margin: 0 auto;
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__title {
+      color: $color-white;
+      text-align: center;
+      width: 100%;
+      border-bottom: 1px solid $color-grey-s;
+    }
+
+    &__description {
+      text-align: center;
+    }
+
+    &__additionally {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      width: 100%;
+      color: $color-brown-xl;
+    }
   }
 }
-
 .summary {
   display: flex;
   flex-direction: column;
@@ -137,7 +132,7 @@
   border: 1px solid $color-yellow;
   width: 26%;
   height: fit-content;
-  
+
   &__header {
     justify-content: space-around;
     color: $color-yellow;
@@ -146,7 +141,7 @@
     width: 100%;
     text-align: center;
   }
-  
+
   &__promo {
     text-align: center;
   }
@@ -155,53 +150,65 @@
     color: $color-white-tr;
   }
 
-}
- .promo-description button{
-    background-color: red;
+  .promo-description button {
+    margin-left: 5px;
+    padding: 3px;
+    border: solid 1px $color-yellow;
+    border-radius: 5px;
+    &:hover {
+      color: $color-white;
+      background: $color-brown-s;
+    }
   }
 
-#promo {
-  width: 80%;
-  color: $color-white-tr;
-  font-size: 1rem;
-  padding: 6px 10px;
-  border: 1px solid $color-yellow;
-  background: $color-brown-xl;
-  border-radius: 8px;
-  outline: none;
-  text-align: center;
-}
-
-.buy-now {
-  color: $color-white-tr;
-  font-size: 1rem;
-  padding: 6px 10px;
-  border: 1px solid $color-yellow;
-  background: $color-brown-xl;
-  border-radius: 8px;
-  text-align: center;
-  transition: 0.3s;
-  margin-bottom: 10px;
-  &:hover {
+  .through {
     color: $color-white;
-    background: $color-brown-m;
+    text-decoration: line-through;
   }
-  &:active {
-    background: $color-brown-s;
-  }
-}
 
-.add-promo {
-  padding: 4px 8px;
-  color: $color-white;
-  background-color: $color-grey-s-tr;
-  border: 1px solid $color-white;
-  border-radius: 4px;
-  transition: 0.3s;
-  &:hover {
-    background-color: $color-brown-s;
+  #promo {
+    width: 80%;
+    color: $color-white-tr;
+    font-size: 1rem;
+    padding: 6px 10px;
+    border: 1px solid $color-yellow;
+    background: $color-brown-xl;
+    border-radius: 8px;
+    outline: none;
+    text-align: center;
   }
-  &:active {
-    background: $color-brown-m;
+
+  .buy-now {
+    color: $color-white-tr;
+    font-size: 1rem;
+    padding: 6px 10px;
+    border: 1px solid $color-yellow;
+    background: $color-brown-xl;
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+    margin-bottom: 10px;
+    &:hover {
+      color: $color-white;
+      background: $color-brown-m;
+    }
+    &:active {
+      background: $color-brown-s;
+    }
+  }
+
+  .add-promo {
+    padding: 4px 8px;
+    color: $color-white;
+    background-color: $color-grey-s-tr;
+    border: 1px solid $color-white;
+    border-radius: 4px;
+    transition: 0.3s;
+    &:hover {
+      background-color: $color-brown-s;
+    }
+    &:active {
+      background: $color-brown-m;
+    }
   }
 }

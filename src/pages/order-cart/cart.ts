@@ -8,9 +8,7 @@ function cartPage(products: IProduct[]) {
     main.innerHTML = ``;
   }
   const cartProducts: number[] = JSON.parse(localStorage.getItem('cartProducts') || '');
-
   let position = 0;
-
   const cartAmount: HTMLDivElement | null = document.querySelector('.order__amount');
   const totalPrice: HTMLDivElement | null = document.querySelector('.order__sum');
 
@@ -28,7 +26,7 @@ function cartPage(products: IProduct[]) {
     const orderedHeader = document.createElement('div');
     orderedHeader.className = 'ordered__header';
     orderedHeader.innerHTML = `<h2>Products in cart</h2>
-<div class=" ">Items: <input type="text" id="numberOfItems" value="${cartAmount?.textContent}"></div>
+<div>Items: <input type="text" id="numberOfItems" value="${cartAmount?.textContent}"></div>
 <div class="ordered__pages">
   <div>Page: 
     <button> &lt; </button>
@@ -36,7 +34,6 @@ function cartPage(products: IProduct[]) {
     <button> &gt; </button>
   </div>
 </div>`;
-
     return orderedHeader;
   }
 
@@ -55,18 +52,6 @@ function cartPage(products: IProduct[]) {
   <button class="buy-now">Buy Now</button>`;
     return summarySection;
   }
-
-  // function showTotalPrice() {
-  //   return products.reduce((total: number, product) => {
-  //     const { id, price } = product;
-  //     for (const orderedId of cartProducts) {
-  //       if (orderedId == id) {
-  //         total += price;
-  //       }
-  //     }
-  //     return total;
-  //   }, 0);
-  // }
 
   function showOrderedItems() {
     return products.map((product) => {
@@ -142,105 +127,62 @@ function cartPage(products: IProduct[]) {
   if (buyButton !== null) {
     buyButton.addEventListener('click', () => {
       createPurchaseModal();
+      localStorage.setItem('cartProducts', '[]');
+    });
+  }
+  const summaryProducts = document?.querySelector('.summary__products span');
+  const summaryTotal = document?.querySelector('.summary__total');
+  const summaryTotalValue = document?.querySelector('.summary__total span');
+  const inputCode: HTMLInputElement | null = document.querySelector('#promo');
+  const total = document.querySelector('.order__sum');
+  const newTotal = document.querySelector('.summary__new-total');
+
+  if (summaryProducts !== null && summaryTotalValue !== null) {
+    summaryProducts.textContent = String(document.querySelector('.order__amount')?.textContent);
+    summaryTotalValue.textContent = String(total?.textContent);
+    inputCode?.addEventListener('input', function () {
+      const promoCodeValue: string = this.value.toUpperCase();
+
+      switch (promoCodeValue.toUpperCase()) {
+        case 'RS':
+          return promoAdding(10, promoCodeValue);
+        case 'JS':
+          return promoAdding(20, promoCodeValue);
+        default:
+          return;
+      }
     });
   }
 
-  function getSummary() {
-    const summaryProducts = document?.querySelector('.summary__products span');
-    const summaryTotal = document?.querySelector('.summary__total span');
-    const inputCode: HTMLInputElement | null = document.querySelector('#promo');
-    // const aboutPromo = document.querySelector('.about-promo');
-    const newTotal = document.querySelector('.summary__new-total');
-
-    if (summaryProducts !== null && summaryTotal !== null) {
-      summaryProducts.textContent = String(document.querySelector('.order__amount')?.textContent);
-      const summaryPrice = Number(document.querySelector('.order__sum')?.textContent);
-      summaryTotal.textContent = String(summaryPrice);
-
-      function promoAdding(discount: number, promo: string) {
-        const promoDescription = document.querySelector('.promo-description');
-        console.log(promoDescription);
-
-        if (promoDescription !== null) {const div = document.createElement('div');
-            div.innerHTML = `Promo "${promo}" -${discount}%
+  function promoAdding(discount: number, promo: string) {
+    const promoDescription = document.querySelector('.promo-description');
+    if (promoDescription !== null) {
+      const promoItem = document.createElement('div');
+      promoItem.innerHTML = `Promo "${promo}" -${discount}%
         <button>add</button>
         `;
-          promoDescription.append(
-            
-             div
-          );
-        }
-        const button = promoDescription?.querySelector('button');
-        button?.addEventListener('click', (e) => {
-          const newTotalSum = summaryPrice * (1 - discount * 0.01);
-          if (e.target instanceof HTMLButtonElement && newTotal !== null) {
-            if (e.target.textContent === 'add') {
-              newTotal.innerHTML = `Total: $<span>${newTotalSum}</span>`;
-              button.textContent = 'drop';
-            } else {
-              newTotal.innerHTML = '';
-              button.textContent = 'add';
-            }
+      promoDescription.append(promoItem);
+    }
+    const buttons = promoDescription?.querySelectorAll('button');
+    buttons?.forEach((button => {
 
-            console.log(e.target.textContent);
+      button.addEventListener('click', (e) => {
+        const summaryPrice = Number(total?.textContent);
+        const newTotalSum = Math.round(summaryPrice * (1 - discount * 0.01));
+        if (e.target instanceof HTMLButtonElement && newTotal !== null) {
+          if (e.target.textContent === 'add') {
+            summaryTotal?.classList.add('through');
+            newTotal.innerHTML = `Total: $<span>${newTotalSum}</span>`;
+            e.target.textContent = 'drop';
+          } else {
+            e.target.textContent = 'add';
+            summaryTotal?.classList.remove('through');
+            newTotal.innerHTML = ''
           }
-        });
-      }
-
-      inputCode?.addEventListener('input', function () {
-        const promoCodeValue: string = this.value;
-
-        switch (promoCodeValue.toUpperCase()) {
-          case 'RS':
-            return promoAdding(10, promoCodeValue);
-          case 'JS':
-            return promoAdding(20, promoCodeValue);
-          default:
-            return;
         }
       });
-    }
+    }))
   }
-
-  getSummary();
-  // function showAddingPromoRsButton() {
-  //   return (document?.querySelector('.about-promo').innerHTML =
-  //     'Rolling Scopes - 20% <button class="add-promo">Add</button>');
-  // }
-
-  // function showAddingPromoJsButton() {
-  //   return (document.querySelector('.about-promo').innerHTML =
-  //     'Java Script - 10% <button class="add-promo">Add</button>');
-  // }
-
-  // function showAddingPromoNoButton() {
-  //   return (document.querySelector('.about-promo').innerHTML = `promo for test 'RS', 'JS'`);
-  // }
-
-  const inputPromoCode = document.getElementById('promo');
-
-  // inputPromoCode.oninput = function () {
-  //   // const promoCodeValue = document.getElementById('promo').value;
-  //   console.log('object :>> ',);
-  //   const promoDescription = document.querySelector('.about-promo');
-  //   if (promoDescription !== null) {
-  //     promoDescription.innerHTML = promoCodeValue;
-
-  //     switch (promoCodeValue) {
-  //       case 'RS':
-  //         return showAddingPromoRsButton();
-  //       case 'JS':
-  //         return showAddingPromoJsButton();
-  //       default:
-  //         return showAddingPromoNoButton();
-  //     }
-  //   }
-  // };
-
-  // const buttonDiscountAdd = document.querySelector('.add-promo');
-  // buttonDiscountAdd.addEventListener('click', function () {
-  //   console.log('promo');
-  // });
 }
 
 export { cartPage };
