@@ -37,7 +37,7 @@ function mainFilters(products: IProduct[]) {
       el.addEventListener('change', (e): void => {
         if (e.target instanceof HTMLElement) {
           const inputCategory: string | null = e.target.id;
-          console.log(inputCategory);
+          //console.log(inputCategory);
           (e.target as HTMLElement).style.color = 'white';
           if (filteredCategoryBrandProducts.length) {
             filteredCategoryBrandProducts.map((product) => {
@@ -50,7 +50,7 @@ function mainFilters(products: IProduct[]) {
           }
 
           showProductCards(filteredProducts);
-          console.log(filteredProducts);
+          //console.log(filteredProducts);
         }
       })
     );
@@ -61,13 +61,13 @@ function mainFilters(products: IProduct[]) {
       el.addEventListener('change', (e): void => {
         if (e.target instanceof HTMLElement) {
           const inputBrand: string | null = e.target.id;
-          console.log(inputBrand);
+          //console.log(inputBrand);
           (e.target as HTMLInputElement).checked = true;
           if (filteredProducts.length) {
             filteredProducts.map((product) => {
               if (inputBrand == product.brand) filteredCategoryBrandProducts.push(product);
             });
-            console.log(filteredCategoryBrandProducts);
+            //console.log(filteredCategoryBrandProducts);
           } else {
             products.map((product) => {
               if (inputBrand == product.brand) filteredCategoryBrandProducts.push(product);
