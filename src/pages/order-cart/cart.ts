@@ -6,16 +6,13 @@ function cartPage(products: IProduct[]) {
   const main: HTMLDivElement | null = document.querySelector('.main');
   if (main !== null) {
     main.innerHTML = ``;
-  };
+  }
   const cartProducts: number[] = JSON.parse(localStorage.getItem('cartProducts') || '');
 
   let position = 0;
 
   const cartAmount: HTMLDivElement | null = document.querySelector('.order__amount');
-  const amountOfItems = cartProducts.length;
-  if (cartAmount !== null) {
-    cartAmount.innerHTML = String(amountOfItems);
-  }
+  const totalPrice: HTMLDivElement | null = document.querySelector('.order__sum');
 
   const productSection = document.createElement('section');
   const summarySection = document.createElement('section');
@@ -31,7 +28,7 @@ function cartPage(products: IProduct[]) {
     const orderedHeader = document.createElement('div');
     orderedHeader.className = 'ordered__header';
     orderedHeader.innerHTML = `<h2>Products in cart</h2>
-<div class="ordered__amount">Items: <input type="text" id="numberOfItems" value="${amountOfItems}"></div>
+<div class=" ">Items: <input type="text" id="numberOfItems" value="${cartAmount?.textContent}"></div>
 <div class="ordered__pages">
   <div>Page: 
     <button> &lt; </button>
@@ -48,27 +45,28 @@ function cartPage(products: IProduct[]) {
     <h2>Summary</h2>
   </div>
   <div class="summary__products">
-    Products: <span class="summary__products_amount">${amountOfItems}</span>
+    Products: <span>${cartAmount?.textContent}</span>
   </div>
-  <div class="summary__total">Total: $<span class="summary__total_amount">
-  ${showTotalPrice()}</span></div>
+  <div class="summary__total">Total: $<span>${totalPrice?.textContent}</span></div>
+  <div class="summary__new-total"></div>
   <div class="summary__promo"><input type="text" id="promo" placeholder="Enter code" /></div>
+  <div class="promo-description"></div>
   <p class="about-promo">promo for test 'RS', 'JS'</p>
   <button class="buy-now">Buy Now</button>`;
     return summarySection;
   }
 
-  function showTotalPrice() {
-    return products.reduce((total: number, product) => {
-      const { id, price } = product;
-      for (const orderedId of cartProducts) {
-        if (orderedId == id) {
-          total += price;
-        }
-      }
-      return total;
-    }, 0);
-  }
+  // function showTotalPrice() {
+  //   return products.reduce((total: number, product) => {
+  //     const { id, price } = product;
+  //     for (const orderedId of cartProducts) {
+  //       if (orderedId == id) {
+  //         total += price;
+  //       }
+  //     }
+  //     return total;
+  //   }, 0);
+  // }
 
   function showOrderedItems() {
     return products.map((product) => {
@@ -79,21 +77,12 @@ function cartPage(products: IProduct[]) {
 
   function orderedItem(product: IProduct) {
     position++;
-    const {
-      id,
-      title,
-      description,
-      price,
-      discountPercentage,
-      rating,
-      stock,
-      thumbnail,
-    } = product;
+    const { id, title, description, price, discountPercentage, rating, stock, thumbnail } = product;
 
     const amount = cartProducts.filter((el) => {
       if (el == id) {
-        return true
-      } else return false
+        return true;
+      } else return false;
     }).length;
 
     const orderedProduct = document.createElement('div');
@@ -156,6 +145,64 @@ function cartPage(products: IProduct[]) {
     });
   }
 
+  function getSummary() {
+    const summaryProducts = document?.querySelector('.summary__products span');
+    const summaryTotal = document?.querySelector('.summary__total span');
+    const inputCode: HTMLInputElement | null = document.querySelector('#promo');
+    // const aboutPromo = document.querySelector('.about-promo');
+    const newTotal = document.querySelector('.summary__new-total');
+
+    if (summaryProducts !== null && summaryTotal !== null) {
+      summaryProducts.textContent = String(document.querySelector('.order__amount')?.textContent);
+      const summaryPrice = Number(document.querySelector('.order__sum')?.textContent);
+      summaryTotal.textContent = String(summaryPrice);
+
+      function promoAdding(discount: number, promo: string) {
+        const promoDescription = document.querySelector('.promo-description');
+        console.log(promoDescription);
+
+        if (promoDescription !== null) {const div = document.createElement('div');
+            div.innerHTML = `Promo "${promo}" -${discount}%
+        <button>add</button>
+        `;
+          promoDescription.append(
+            
+             div
+          );
+        }
+        const button = promoDescription?.querySelector('button');
+        button?.addEventListener('click', (e) => {
+          const newTotalSum = summaryPrice * (1 - discount * 0.01);
+          if (e.target instanceof HTMLButtonElement && newTotal !== null) {
+            if (e.target.textContent === 'add') {
+              newTotal.innerHTML = `Total: $<span>${newTotalSum}</span>`;
+              button.textContent = 'drop';
+            } else {
+              newTotal.innerHTML = '';
+              button.textContent = 'add';
+            }
+
+            console.log(e.target.textContent);
+          }
+        });
+      }
+
+      inputCode?.addEventListener('input', function () {
+        const promoCodeValue: string = this.value;
+
+        switch (promoCodeValue.toUpperCase()) {
+          case 'RS':
+            return promoAdding(10, promoCodeValue);
+          case 'JS':
+            return promoAdding(20, promoCodeValue);
+          default:
+            return;
+        }
+      });
+    }
+  }
+
+  getSummary();
   // function showAddingPromoRsButton() {
   //   return (document?.querySelector('.about-promo').innerHTML =
   //     'Rolling Scopes - 20% <button class="add-promo">Add</button>');
@@ -169,8 +216,8 @@ function cartPage(products: IProduct[]) {
   // function showAddingPromoNoButton() {
   //   return (document.querySelector('.about-promo').innerHTML = `promo for test 'RS', 'JS'`);
   // }
-  // //console.log(showAddingPromoButton());
-  // const inputPromoCode = document.getElementById('promo');
+
+  const inputPromoCode = document.getElementById('promo');
 
   // inputPromoCode.oninput = function () {
   //   // const promoCodeValue = document.getElementById('promo').value;
@@ -195,4 +242,5 @@ function cartPage(products: IProduct[]) {
   //   console.log('promo');
   // });
 }
+
 export { cartPage };

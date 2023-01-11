@@ -50,20 +50,14 @@
     border-bottom: 1px solid $color-yellow;
   }
 
-  // .ordered__number
-
   &__number {
     font-size: 18px;
     font-weight: bold;
   }
 
-  // .ordered__item
-
   &__item {
     flex-grow: 1;
   }
-
-  // .ordered__manage
 
   &__manage {
     text-align: center;
@@ -73,14 +67,10 @@
     align-items: flex-end;
   }
 
-  // .ordered__stock
-
   &__stock {
     font-size: 0.9rem;
     white-space: nowrap;
   }
-
-  // .ordered__how-many
 
   &__how-many {
     display: flex;
@@ -94,11 +84,6 @@
       padding: 4px;
       cursor: pointer;
     }
-  }
-
-  // .ordered__item-price
-
-  &__item-price {
   }
 }
 
@@ -114,16 +99,12 @@
     max-height: 60px;
   }
 
-  // .item__info
-
   &__info {
     width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
-  // .item__title
 
   &__title {
     color: $color-white;
@@ -132,13 +113,9 @@
     border-bottom: 1px solid $color-grey-s;
   }
 
-  // .item__description
-
   &__description {
     text-align: center;
   }
-
-  // .item__additionally
 
   &__additionally {
     display: flex;
@@ -146,16 +123,6 @@
     justify-content: space-around;
     width: 100%;
     color: $color-brown-xl;
-  }
-
-  // .item__rating
-
-  &__rating {
-  }
-
-  // .item__discount
-
-  &__discount {
   }
 }
 
@@ -170,6 +137,7 @@
   border: 1px solid $color-yellow;
   width: 26%;
   height: fit-content;
+  
   &__header {
     justify-content: space-around;
     color: $color-yellow;
@@ -178,27 +146,7 @@
     width: 100%;
     text-align: center;
   }
-
-  // .summary__products
-
-  &__products {
-    // .summary__products_amount
-
-    &_amount {
-    }
-  }
-
-  // .summary__total
-
-  &__total {
-    // .summary__total_amount
-
-    &_amount {
-    }
-  }
-
-  // .summary__promo
-
+  
   &__promo {
     text-align: center;
   }
@@ -206,7 +154,11 @@
     font-size: 0.8rem;
     color: $color-white-tr;
   }
+
 }
+ .promo-description button{
+    background-color: red;
+  }
 
 #promo {
   width: 80%;
