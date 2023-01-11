@@ -985,7 +985,7 @@ input[type=range]::-moz-range-thumb {
   border-bottom: 2px solid #eec353;
   padding: 10px;
 }
-.ordered__amount input {
+.ordered__header #numberOfItems {
   color: #ffffff;
   background-color: transparent;
   text-align: center;
@@ -993,17 +993,13 @@ input[type=range]::-moz-range-thumb {
   border-radius: 6px;
   pointer-events: none;
 }
-
-.ordered {
-  width: 70%;
-}
 .ordered__product {
   width: 96%;
   color: #d7d7d7;
   display: flex;
   flex-direction: row;
   gap: 4px;
-  align-items: center;
+  align-items: space-between;
   margin: 4px;
   padding-bottom: 4px;
   border-bottom: 1px solid #eec353;
@@ -1038,40 +1034,43 @@ input[type=range]::-moz-range-thumb {
   padding: 4px;
   cursor: pointer;
 }
-.item {
+.ordered .item {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   gap: 4px;
   cursor: pointer;
 }
-.item__img {
+.ordered .item__img {
   border: 1px solid #eec353;
   border-radius: 6px;
   max-width: 60px;
   max-height: 60px;
 }
-.item__info {
+.ordered .item__info {
+  margin: 0 auto;
   width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.item__title {
+.ordered .item__title {
   color: #ffffff;
   text-align: center;
   width: 100%;
   border-bottom: 1px solid #d7d7d7;
 }
-.item__description {
+.ordered .item__description {
   text-align: center;
 }
-.item__additionally {
+.ordered .item__additionally {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   width: 100%;
   color: #383838;
 }
+
 .summary {
   display: flex;
   flex-direction: column;
@@ -1101,8 +1100,21 @@ input[type=range]::-moz-range-thumb {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.47);
 }
-
-#promo {
+.summary .promo-description button {
+  margin-left: 5px;
+  padding: 3px;
+  border: solid 1px #eec353;
+  border-radius: 5px;
+}
+.summary .promo-description button:hover {
+  color: #ffffff;
+  background: #a59568;
+}
+.summary .through {
+  color: #ffffff;
+  text-decoration: line-through;
+}
+.summary #promo {
   width: 80%;
   color: rgba(255, 255, 255, 0.47);
   font-size: 1rem;
@@ -1113,8 +1125,7 @@ input[type=range]::-moz-range-thumb {
   outline: none;
   text-align: center;
 }
-
-.buy-now {
+.summary .buy-now {
   color: rgba(255, 255, 255, 0.47);
   font-size: 1rem;
   padding: 6px 10px;
@@ -1125,15 +1136,14 @@ input[type=range]::-moz-range-thumb {
   transition: 0.3s;
   margin-bottom: 10px;
 }
-.buy-now:hover {
+.summary .buy-now:hover {
   color: #ffffff;
   background: #7b6a3f;
 }
-.buy-now:active {
+.summary .buy-now:active {
   background: #a59568;
 }
-
-.add-promo {
+.summary .add-promo {
   padding: 4px 8px;
   color: #ffffff;
   background-color: rgba(196, 196, 196, 0.25);
@@ -1141,10 +1151,10 @@ input[type=range]::-moz-range-thumb {
   border-radius: 4px;
   transition: 0.3s;
 }
-.add-promo:hover {
+.summary .add-promo:hover {
   background-color: #a59568;
 }
-.add-promo:active {
+.summary .add-promo:active {
   background: #7b6a3f;
 }
 

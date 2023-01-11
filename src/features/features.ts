@@ -1,4 +1,4 @@
-import products from '../pages/data/data';
+import products from '../data/products';
 import { cartPage } from '../pages/order-cart/cart';
 
 function trackingProducts(target: HTMLButtonElement) {
@@ -6,6 +6,8 @@ function trackingProducts(target: HTMLButtonElement) {
   const cartAmount: HTMLElement | null = document.querySelector('.order__amount');
   const orderSum: HTMLElement | null = document.querySelector('.order__sum');
   let orderSumValue = Number(orderSum?.textContent);
+  const summaryProducts = document?.querySelector('.summary__products span')
+  const summaryTotal = document?.querySelector('.summary__total span')
 
   if (target.textContent === '+' || target.textContent === '-') {
     const orderManage = target.closest('.ordered__manage');
@@ -14,6 +16,7 @@ function trackingProducts(target: HTMLButtonElement) {
     const orderStock = orderManage?.querySelector('.ordered__stock span');
     const orderStockValue = Number(orderStock?.textContent);
     const itemPrice = orderManage?.querySelector('.ordered__item-price span');
+    
     if (target.textContent === '+') {
       if (orderStockValue !== 0) {
         cartProductsArr.push(Number(orderManage?.id) - 1);
@@ -43,6 +46,10 @@ function trackingProducts(target: HTMLButtonElement) {
       itemPrice.textContent = String(
         products[Number(orderManage?.id) - 1].price * Number(itemsQuantity?.textContent)
       );
+    }
+    if (summaryProducts !== null && summaryTotal !== null){
+      summaryProducts.textContent = String(cartProductsArr.length);
+      summaryTotal.textContent = String(orderSumValue);
     }
   } else if (target.textContent === 'Add To Cart') {
     cartProductsArr.push(Number(target.id));
