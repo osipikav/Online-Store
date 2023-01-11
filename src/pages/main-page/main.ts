@@ -1,10 +1,10 @@
 import { IProduct } from '../../types/types';
+import { mainFilters } from './mainFilters';
 import { renderProducts } from './renderProducts';
 
 const mainPage = (products: IProduct[]): void => {
   renderProducts(products);
 
-  //adding data to filters
   const showTopButtons = (): HTMLDivElement => {
     const topButtons = document.createElement('div');
     topButtons.className = 'filters__buttons';
@@ -209,7 +209,7 @@ const mainPage = (products: IProduct[]): void => {
       });
     });
   }
-
+  mainFilters(products);
   //details
 };
 
