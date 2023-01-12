@@ -1,10 +1,19 @@
 import { IProduct } from '../../types/types';
+import { mainFilters } from './mainFilters';
 import { renderProducts } from './renderProducts';
 
 const mainPage = (products: IProduct[]): void => {
+  const mainContent: HTMLDivElement | null = document.querySelector('.main');
+  if (mainContent !== null) {
+    mainContent.innerHTML = `
+  <section class="main__filters filters"></section>
+  <section class="main__products">
+    <div class="products__top-panel"></div>
+    <div class="products">
+    Товаров не нашлось</div>
+  </section>`;
+  }
   renderProducts(products);
-
-  //adding data to filters
   const showTopButtons = (): HTMLDivElement => {
     const topButtons = document.createElement('div');
     topButtons.className = 'filters__buttons';
@@ -13,7 +22,9 @@ const mainPage = (products: IProduct[]): void => {
     return topButtons;
   };
   const filters: HTMLElement | null = document.querySelector('.filters');
-  if (filters !== null) { filters.append(showTopButtons()) };
+  if (filters !== null) {
+    filters.append(showTopButtons());
+  }
 
   //filter-blocks
   const category = document.createElement('div');
@@ -35,7 +46,10 @@ const mainPage = (products: IProduct[]): void => {
   function getProductsCategories() {
     return products
       .map(({ category }) => category)
-      .reduce((arr: string[], item: string): string[] => (arr.includes(item) ? arr : [...arr, item]), []);
+      .reduce(
+        (arr: string[], item: string): string[] => (arr.includes(item) ? arr : [...arr, item]),
+        []
+      );
   }
 
   function getProductsBrands(): string[] {
@@ -112,16 +126,26 @@ const mainPage = (products: IProduct[]): void => {
   }
 
   //price progress-bar
-  const rangeInput: NodeListOf<HTMLInputElement> = document.querySelectorAll('.price__range-input input');
+  const rangeInput: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+    '.price__range-input input'
+  );
+
   const priceInput: NodeListOf<HTMLInputElement> = document.querySelectorAll('.price__list input');
-  const priceProgress: HTMLElement | null = document.querySelector('.price__slider .price__progress');
+  const priceProgress: HTMLElement | null = document.querySelector(
+    '.price__slider .price__progress'
+  );
   const priceGap = 10;
   const priceSelector = 'price__range-min';
 
   //stock progress-bar
-  const stockRangeInput: NodeListOf<HTMLInputElement> = document.querySelectorAll('.stock__range-input input');
+  const stockRangeInput: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+    '.stock__range-input input'
+  );
   const stockInput: NodeListOf<HTMLInputElement> = document.querySelectorAll('.stock__list input');
-  const stockProgress: HTMLElement | null = document.querySelector('.stock__slider .stock__progress');
+
+  const stockProgress: HTMLElement | null = document.querySelector(
+    '.stock__slider .stock__progress'
+  );
   const stockGap = 10;
   const stockSelector = 'stock__range-min';
 
@@ -134,49 +158,64 @@ const mainPage = (products: IProduct[]): void => {
   ): void {
     numberInput.forEach((input): void => {
       input.addEventListener('input', (e): void => {
-        const minValue = parseInt(numberInput[0].value);
-        const maxValue = parseInt(numberInput[1].value);
+        const minValue: number = parseInt(numberInput[0].value);
+        const maxValue: number = parseInt(numberInput[1].value);
         if (maxValue - minValue < gap) {
-          if (e.target instanceof HTMLElement) {
-            if (e.target.className == rangeSelector) {
-              numberInput[0].value = String(maxValue - gap);
-            } else {
-              numberInput[1].value = String(minValue + gap);
-            }
+          if ((e.target as HTMLTextAreaElement).className == rangeSelector) {
+            (numberInput[0] as HTMLInputElement).value = String(maxValue - gap);
           } else {
-            progressBarInput[0].value = String(minValue);
-            progressBarInput[1].value = String(maxValue);
-            progressBar.style.left = (minValue / Number(numberInput[0].max)) * 100 + '%';
-            progressBar.style.right = 100 - (maxValue / Number(numberInput[1].max)) * 100 + '%';
+            (numberInput[1] as HTMLInputElement).value = String(minValue + gap);
           }
+        } else {
+          (progressBarInput[0] as HTMLInputElement).value = String(minValue);
+          (progressBarInput[1] as HTMLInputElement).value = String(maxValue);
+          progressBar.style.left = (minValue / Number(numberInput[0].max)) * 100 + '%';
+          progressBar.style.right = 100 - (maxValue / Number(numberInput[1].max)) * 100 + '%';
         }
       });
     });
   }
   if (priceProgress !== null) {
     progressBarControls(rangeInput, priceInput, priceProgress, priceGap, priceSelector);
+
+    priceInput.forEach((input): void => {
+      input.addEventListener('input', (e): void => {
+        const minValue = parseInt(priceInput[0].value);
+        const maxValue = parseInt(priceInput[1].value);
+        if (maxValue - minValue >= priceGap && maxValue <= 1000) {
+          if ((e.target as HTMLTextAreaElement).className == 'price__min-input') {
+            rangeInput[0].value = String(minValue);
+            priceProgress.style.left = (minValue / Number(rangeInput[0].max)) * 100 + '%';
+          } else {
+            rangeInput[1].value = String(maxValue);
+            priceProgress.style.right = 100 - (maxValue / Number(rangeInput[0].max)) * 100 + '%';
+          }
+        }
+      });
+    });
   }
   if (stockProgress !== null) {
     progressBarControls(stockRangeInput, stockInput, stockProgress, stockGap, stockSelector);
 
     stockInput.forEach((input): void => {
       input.addEventListener('input', (e): void => {
-        const minValue = parseInt((stockInput[0]).value);
-        const maxValue = parseInt((stockInput[1]).value);
+        const minValue = parseInt(stockInput[0].value);
+        const maxValue = parseInt(stockInput[1].value);
+
         if (maxValue - minValue >= stockGap && maxValue <= 1000) {
-          if (e.target instanceof HTMLElement) {
-            if ((e.target).className == 'stock__min-input') {
-              (stockRangeInput[0]).value = String(minValue);
-              stockProgress.style.left = (minValue / Number(stockRangeInput[0].max)) * 100 + '%';
-            } else {
-              (stockRangeInput[1]).value = String(maxValue);
-              stockProgress.style.right = 100 - (maxValue / Number(stockRangeInput[0].max)) * 100 + '%';
-            }
+          if ((e.target as HTMLTextAreaElement).className == 'stock__min-input') {
+            stockRangeInput[0].value = String(minValue);
+            stockProgress.style.left = (minValue / Number(stockRangeInput[0].max)) * 100 + '%';
+          } else {
+            stockRangeInput[1].value = String(maxValue);
+            stockProgress.style.right =
+              100 - (maxValue / Number(stockRangeInput[0].max)) * 100 + '%';
           }
         }
       });
     });
   }
+  mainFilters(products);
 };
 
 export { mainPage };
