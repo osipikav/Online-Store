@@ -127,7 +127,6 @@ function cartPage(products: IProduct[]) {
   if (buyButton !== null) {
     buyButton.addEventListener('click', () => {
       createPurchaseModal();
-      localStorage.setItem('cartProducts', '[]');
     });
   }
   const summaryProducts = document?.querySelector('.summary__products span');

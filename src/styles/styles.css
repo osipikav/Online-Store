@@ -974,6 +974,7 @@ input[type=range]::-moz-range-thumb {
   flex-direction: column;
   background-color: rgba(196, 196, 196, 0.25);
   border-radius: 20px;
+  width: 65%;
 }
 .ordered__header {
   display: flex;
