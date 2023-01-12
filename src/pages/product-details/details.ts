@@ -3,7 +3,6 @@ import { trackingProducts } from '../../features/features';
 import { createPurchaseModal } from '../purchase-page/purchase';
 
 function createDetails(product: IProduct) {
-  console.log('object :>> ', product);
   const main: HTMLDivElement | null = document.querySelector('.main');
   if (main !== null) {
     main.innerHTML = '';

@@ -2,7 +2,7 @@ import { createDetails } from '../pages/product-details/details';
 import { create404 } from '../pages/page-404/page-404';
 import { mainPage } from '../pages/main-page/main';
 import { cartPage } from '../pages/order-cart/cart';
-import { products } from '../pages/data/data';
+import { products } from '../data/products';
 
 export const locationHandler = () => {
   const routes = {

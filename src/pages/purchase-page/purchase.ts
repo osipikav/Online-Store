@@ -1,3 +1,6 @@
+import products from "../../data/products";
+import { cartPage } from "../order-cart/cart";
+
 function createPurchaseModal() {
   const purchase = document.createElement('section')
   document.querySelector('.main')?.append(purchase)
@@ -45,9 +48,10 @@ function createPurchaseModal() {
   const cardNumber: HTMLInputElement | null = document.querySelector('#card-number');
   const expiration: HTMLInputElement | null = document.querySelector('#expiration');
   const cvc: HTMLInputElement | null = document.querySelector('#cvc');
+  const orderSum = document.querySelector('.order__sum');
 
   purchase.onclick = function (e) {
-    if (e.target instanceof HTMLElement && e.target.id !== "form") {
+    if (e.target instanceof HTMLElement && !e.target.closest("#form")) {
       purchase.remove()
     };
   };
@@ -70,7 +74,12 @@ function createPurchaseModal() {
       fieldValidation(cvc, regExpValue.cvc)) {
       setTimeout(() => {
         alert('Заказ оформлен');
-        purchase.remove()
+        purchase.remove();
+        localStorage.setItem('cartProducts', '[]');
+        if (orderSum) {
+          orderSum.innerHTML = '0'
+        };
+        cartPage(products);
       }, 2000);
     }
   })

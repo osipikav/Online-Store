@@ -216,7 +216,6 @@ const mainPage = (products: IProduct[]): void => {
     });
   }
   mainFilters(products);
-  //details
 };
 
 export { mainPage };

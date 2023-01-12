@@ -46,6 +46,7 @@ function renderProducts(products: IProduct[]) {
   });
   const select: HTMLSelectElement | null = document.querySelector('select');
   select?.addEventListener('change', function () {
+
     if (this.value === 'Lowest price') {
       products = products.sort((x, y) => x.price - y.price);
     } else if (this.value === 'Highest price') {
@@ -58,6 +59,26 @@ function renderProducts(products: IProduct[]) {
       products = products.sort((x, y) => x.id - y.id);
     }
     showProductCards(products);
+
+    switch (this.value) {
+      case "Lowest price":
+        products = products.sort((x, y) => x.price - y.price);
+        break;
+      case "Highest price":
+        products = products.sort((x, y) => y.price - x.price);
+        break;
+      case "Highest rating":
+        products = products.sort((x, y) => x.rating - y.rating);
+        break;
+      case "Highest discount %":
+        products = products.sort((x, y) => x.discountPercentage - y.discountPercentage);
+        break;
+      default: products = products.sort((x, y) => x.id - y.id);
+        break;
+    }
+
+    showProductCards(products)
+
   });
 
   const search: HTMLInputElement | null = document.querySelector('.search input');
@@ -132,3 +153,4 @@ function renderProducts(products: IProduct[]) {
 }
 
 export { renderProducts };
+
