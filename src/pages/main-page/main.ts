@@ -177,9 +177,6 @@ const mainPage = (products: IProduct[]): void => {
       });
     });
   }
-
-  //details
-
 };
 
 export { mainPage };
