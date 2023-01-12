@@ -1,84 +1,13 @@
+import { renderProducts } from './renderProducts';
 import { IProduct } from '../../types/types';
 
 function mainFilters(products: IProduct[]) {
-  const productsField: HTMLDivElement | null = document.querySelector('.products');
-  const showProductCards = (products: IProduct[]): void => {
-    if (productsField !== null) {
-      productsField.innerHTML = products
-        .map((product: IProduct) => {
-          const { id, title, thumbnail, price } = product;
-          let buttonValue = 'Add To Cart';
-          if (JSON.parse(localStorage.getItem('cartProducts') || '').includes(id)) {
-            buttonValue = 'Drop From Cart';
-          }
-          return `<div class="products__item">
-    <div class="products__title">${title}</div>
-    <div class="products__photo" style="background-image: url(${thumbnail})"></div>
-    <div class="products__price">${price} $</div>
-    <div class="products__options">
-      <button class="products__details" id="${id}">Details</button>
-      <button class="products__cart" id="${id}">${buttonValue}</button>
-    </div>
-  </div>`;
-        })
-        .join('');
-    }
-  };
-
   const categoryFilterList: NodeListOf<ChildNode> | undefined =
     document.querySelector('.category__list')?.childNodes;
   const brandFilterList: NodeListOf<ChildNode> | undefined =
     document.querySelector('.brand__list')?.childNodes;
-  const filteredProducts: IProduct[] = [];
   const filteredCategoryBrandProducts: IProduct[] = [];
-
-  if (categoryFilterList !== undefined) {
-    categoryFilterList.forEach((el): void =>
-      el.addEventListener('change', (e): void => {
-        if (e.target instanceof HTMLElement) {
-          const inputCategory: string | null = e.target.id;
-          //console.log(inputCategory);
-          (e.target as HTMLElement).style.color = 'white';
-          if (filteredCategoryBrandProducts.length) {
-            filteredCategoryBrandProducts.map((product) => {
-              if (inputCategory == product.category) filteredProducts.push(product);
-            });
-          } else {
-            products.map((product) => {
-              if (inputCategory == product.category) filteredProducts.push(product);
-            });
-          }
-
-          showProductCards(filteredProducts);
-          //console.log(filteredProducts);
-        }
-      })
-    );
-  }
-
-  if (brandFilterList !== undefined) {
-    brandFilterList.forEach((el): void =>
-      el.addEventListener('change', (e): void => {
-        if (e.target instanceof HTMLElement) {
-          const inputBrand: string | null = e.target.id;
-          //console.log(inputBrand);
-          (e.target as HTMLInputElement).checked = true;
-          if (filteredProducts.length) {
-            filteredProducts.map((product) => {
-              if (inputBrand == product.brand) filteredCategoryBrandProducts.push(product);
-            });
-            //console.log(filteredCategoryBrandProducts);
-          } else {
-            products.map((product) => {
-              if (inputBrand == product.brand) filteredCategoryBrandProducts.push(product);
-            });
-          }
-          showProductCards(filteredCategoryBrandProducts);
-        }
-      })
-    );
-  }
-
+  const filteredProducts: IProduct[] = [];
   const resetFiltersButton = document.querySelector('.filters__buttons-reset');
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
   if (resetFiltersButton !== null) {
@@ -90,18 +19,103 @@ function mainFilters(products: IProduct[]) {
           filteredProducts.splice(0, filteredProducts.length);
         });
       }
-      showProductCards(products);
+      renderProducts(products);
     });
-
-    /* 
-  const productsArea: HTMLDivElement | null = document.querySelector('.products');
-  if (productsArea !== null && filteredCategoryBrandProducts.length !== 0) {
-    if (filteredCategoryBrandProducts.length === 0) {
-      productsArea.innerHTML = 'Not found...';
-    } else {
-      
-    }
-  } */
   }
+
+  if (categoryFilterList !== undefined) {
+    categoryFilterList.forEach((inputFilterLine): void =>
+      inputFilterLine.addEventListener('change', (checkBox): void => {
+        if (checkBox.target instanceof HTMLElement || checkBox.target !== null) {
+          const inputCategory: string | null = (checkBox.target as HTMLElement).id;
+
+          if ((checkBox.target as HTMLInputElement).checked) {
+            if (filteredCategoryBrandProducts.length) {
+              products.map((product: IProduct) => {
+                if (inputCategory == product.category) {
+                  filteredProducts.push(product);
+                }
+              });
+              renderProducts(filteredProducts);
+            } else {
+              products.map((product: IProduct) => {
+                if (inputCategory == product.category) {
+                  filteredProducts.push(product);
+                }
+              });
+              console.log(filteredProducts);
+              console.log(filteredCategoryBrandProducts);
+              renderProducts(filteredProducts);
+            }
+            //brandFilter(filteredProducts);
+            renderProducts(filteredProducts);
+          } else {
+            if (filteredProducts.length) {
+              filteredProducts.filter((product: IProduct, index: number) => {
+                //return product.category !== inputCategory;
+                const indexToDelete = index;
+
+                if (indexToDelete > -1) {
+                  return filteredProducts.splice(indexToDelete, 1);
+                }
+              });
+              renderProducts(filteredProducts);
+            } else {
+              renderProducts(products);
+            }
+          }
+        }
+      })
+    );
+  }
+
+  //const brandFilter = (filteredProducts: IProduct[]) => {
+  if (brandFilterList !== undefined) {
+    brandFilterList.forEach((inputFilterLine): void =>
+      inputFilterLine.addEventListener('change', (checkBox): void => {
+        if (checkBox.target instanceof HTMLElement || checkBox.target !== null) {
+          const inputBrand: string | null = (checkBox.target as HTMLElement).id;
+          console.log(filteredProducts);
+          console.log(filteredCategoryBrandProducts);
+
+          if ((checkBox.target as HTMLInputElement).checked) {
+            if (filteredProducts.length) {
+              filteredProducts.map((product) => {
+                if (inputBrand == product.brand) {
+                  filteredCategoryBrandProducts.push(product);
+                }
+              });
+            } else {
+              products.map((product) => {
+                if (inputBrand == product.brand) {
+                  filteredCategoryBrandProducts.push(product);
+                }
+              });
+            }
+            //renderProducts(filteredCategoryBrandProducts);
+          } else {
+            if (filteredCategoryBrandProducts.length) {
+              filteredCategoryBrandProducts.filter((product: IProduct, index: number) => {
+                //return product.brand !== inputBrand;
+                const indexToDelete = index;
+
+                if (indexToDelete > -1) {
+                  return filteredProducts.splice(indexToDelete, 1);
+                  //return filteredProducts;
+                }
+              });
+              renderProducts(filteredCategoryBrandProducts);
+            } else {
+              renderProducts(filteredProducts);
+            }
+          }
+          renderProducts(filteredCategoryBrandProducts);
+        }
+      })
+    );
+  }
+  //  };
+
+  //renderProducts(products);
 }
 export { mainFilters };

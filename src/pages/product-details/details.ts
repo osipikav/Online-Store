@@ -1,6 +1,6 @@
-import { IProduct } from "../../types/types";
-import { trackingProducts } from "../../features/features"
-import { createPurchaseModal } from "../purchase-page/purchase";
+import { IProduct } from '../../types/types';
+import { trackingProducts } from '../../features/features';
+import { createPurchaseModal } from '../purchase-page/purchase';
 
 function createDetails(product: IProduct) {
   console.log('object :>> ', product);
@@ -49,7 +49,7 @@ function createDetails(product: IProduct) {
 
   const cartProductsArr: number[] = JSON.parse(localStorage.getItem('cartProducts') || '');
   if (cartProductsArr.includes(product.id)) {
-    addButton.innerHTML = "Drop From Cart"
+    addButton.innerHTML = 'Drop From Cart';
   }
 
   product.images.forEach((img, i) => {
@@ -58,10 +58,11 @@ function createDetails(product: IProduct) {
       miniatureImg.src = img;
       miniatureImg.alt = 'img';
       if (miniaturesDiv !== null) {
-        miniaturesDiv.append(miniatureImg)
-      };
+        miniaturesDiv.append(miniatureImg);
+      }
       miniatureImg.addEventListener('click', (e: Event) => {
-        const miniatureImgEl: HTMLImageElement | null = document.querySelector('.info__thumbnail img');
+        const miniatureImgEl: HTMLImageElement | null =
+          document.querySelector('.info__thumbnail img');
         if (miniatureImgEl !== null && e.target instanceof HTMLImageElement) {
           miniatureImgEl.src = e.target.src;
         }
@@ -73,7 +74,7 @@ function createDetails(product: IProduct) {
   thumbnailImg.src = product.thumbnail;
   if (thumbnailDiv !== null) {
     thumbnailDiv.append(thumbnailImg);
-  };
+  }
 
   itemsCategories.forEach((itemsCategoriesElement) => {
     const descriptionElement = document.createElement('div');
@@ -99,15 +100,13 @@ function createDetails(product: IProduct) {
 
   addButton.addEventListener('click', (e) => {
     if (e.target instanceof HTMLButtonElement) {
-      trackingProducts(e.target)
+      trackingProducts(e.target);
     }
   });
 
   buyButton.addEventListener('click', () => {
-    createPurchaseModal()
+    createPurchaseModal();
   });
 }
 
 export { createDetails };
-
-

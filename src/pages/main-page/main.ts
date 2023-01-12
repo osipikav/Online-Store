@@ -3,8 +3,17 @@ import { mainFilters } from './mainFilters';
 import { renderProducts } from './renderProducts';
 
 const mainPage = (products: IProduct[]): void => {
+  const mainContent: HTMLDivElement | null = document.querySelector('.main');
+  if (mainContent !== null) {
+    mainContent.innerHTML = `
+  <section class="main__filters filters"></section>
+  <section class="main__products">
+    <div class="products__top-panel"></div>
+    <div class="products">
+    Товаров не нашлось</div>
+  </section>`;
+  }
   renderProducts(products);
-
   const showTopButtons = (): HTMLDivElement => {
     const topButtons = document.createElement('div');
     topButtons.className = 'filters__buttons';
@@ -120,6 +129,7 @@ const mainPage = (products: IProduct[]): void => {
   const rangeInput: NodeListOf<HTMLInputElement> = document.querySelectorAll(
     '.price__range-input input'
   );
+
   const priceInput: NodeListOf<HTMLInputElement> = document.querySelectorAll('.price__list input');
   const priceProgress: HTMLElement | null = document.querySelector(
     '.price__slider .price__progress'
