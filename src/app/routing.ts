@@ -40,9 +40,12 @@ export const locationHandler = () => {
     if (location.length === 0) {
       route = routes['main'];
     } else if (location.startsWith('product/')) {
-      if (products[Number(window.location.hash.slice(9))] !== undefined) {
+      if (products[Number(window.location.hash.slice(9)) - 1] !== undefined) {
         route = routes['product/'];
-      } else route = routes['404'];
+      }
+      else {
+        route = routes['404'];
+      }
     } else {
       route = routes['404'];
     }
