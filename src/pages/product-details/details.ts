@@ -1,4 +1,4 @@
-import { IProduct } from "../../types/types";
+import { IProduct, DetailsCategory } from "../../types/types";
 import { trackingProducts } from "../../features/features"
 import { createPurchaseModal } from "../purchase-page/purchase";
 
@@ -37,7 +37,7 @@ function createDetails(product: IProduct) {
   const price: HTMLDivElement | null = document.querySelector('.price');
   const addButton: Element | null = document.querySelectorAll('.buttons')[1];
   const buyButton: Element | null = document.querySelectorAll('.buttons')[0];
-  const itemsCategories: string[] = [
+  const itemsCategories: DetailsCategory[] = [
     'description',
     'discountPercentage',
     'rating',

@@ -11,3 +11,5 @@ export interface IProduct {
     thumbnail: string,
     images: string[]
 }
+export type DetailsCategory =
+    'description' | 'discountPercentage' | 'rating' | 'stock' | 'brand' | 'category';
