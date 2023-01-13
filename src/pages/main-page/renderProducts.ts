@@ -2,16 +2,6 @@ import { trackingProducts } from '../../features/features';
 import { IProduct } from '../../types/types';
 
 function renderProducts(products: IProduct[]) {
-  const mainContent: HTMLDivElement | null = document.querySelector('.main');
-  if (mainContent !== null) {
-    mainContent.innerHTML = `
-  <section class="main__filters filters"></section>
-  <section class="main__products">
-    <div class="products__top-panel"></div>
-    <div class="products">
-    ТОваров не нашлось</div>
-  </section>`;
-  }
   const productsField: HTMLDivElement | null = document.querySelector('.products');
   const productsTopPanel: HTMLDivElement | null = document.querySelector('.products__top-panel');
   if (productsTopPanel !== null) {
@@ -46,16 +36,30 @@ function renderProducts(products: IProduct[]) {
   </div>`;
   }
 
-  const displayOptions = document.querySelectorAll(".options");
+  const displayOptions = document.querySelectorAll('.options');
   displayOptions.forEach((displayValue) => {
     displayValue.addEventListener('click', () => {
-      displayOptions[1].classList.toggle('display-active')
-      displayOptions[0].classList.toggle('display-active')
-      productsField?.classList.toggle('products-inline')
-    })
-  })
+      displayOptions[1].classList.toggle('display-active');
+      displayOptions[0].classList.toggle('display-active');
+      productsField?.classList.toggle('products-inline');
+    });
+  });
   const select: HTMLSelectElement | null = document.querySelector('select');
   select?.addEventListener('change', function () {
+
+    if (this.value === 'Lowest price') {
+      products = products.sort((x, y) => x.price - y.price);
+    } else if (this.value === 'Highest price') {
+      products = products.sort((x, y) => y.price - x.price);
+    } else if (this.value === 'Highest rating') {
+      products = products.sort((x, y) => x.rating - y.rating);
+    } else if (this.value === 'Highest discount %') {
+      products = products.sort((x, y) => x.discountPercentage - y.discountPercentage);
+    } else {
+      products = products.sort((x, y) => x.id - y.id);
+    }
+    showProductCards(products);
+
     switch (this.value) {
       case "Lowest price":
         products = products.sort((x, y) => x.price - y.price);
@@ -74,29 +78,35 @@ function renderProducts(products: IProduct[]) {
     }
 
     showProductCards(products)
+
   });
 
   const search: HTMLInputElement | null = document.querySelector('.search input');
   search?.addEventListener('input', function () {
     const searchValue = this.value;
     const fieldsComparator = (value: string, searchValue: string) => {
-      return value.toLowerCase().includes(searchValue.toLowerCase())
-    }
+      return value.toLowerCase().includes(searchValue.toLowerCase());
+    };
     const result = products.filter((product, index, array) => {
       const { title, description, price, rating, stock, brand, category } = product;
-      if (fieldsComparator([title, description, price, rating, stock, brand, category].join(''), searchValue)) {
+      if (
+        fieldsComparator(
+          [title, description, price, rating, stock, brand, category].join(''),
+          searchValue
+        )
+      ) {
         return array;
       }
-    })
+    });
     showProductCards(result);
 
     const quantity: HTMLDivElement | null = document.querySelector('.found');
     if (quantity !== null && productsField !== null) {
-      quantity.innerHTML = `Found: ${result.length}`
+      quantity.innerHTML = `Found: ${result.length}`;
       if (result.length === 0) {
         productsField.innerHTML = 'Not found...';
       }
-    };
+    }
   });
 
   const showProductCards = (products: IProduct[]): void => {
@@ -107,7 +117,7 @@ function renderProducts(products: IProduct[]) {
           let buttonValue = 'Add To Cart';
           if (JSON.parse(localStorage.getItem('cartProducts') || '').includes(id)) {
             buttonValue = 'Drop From Cart';
-          };
+          }
           return `<div class="products__item">
     <div class="products__title">${title}</div>
     <div class="products__photo" style="background-image: url(${thumbnail})"></div>
@@ -134,12 +144,13 @@ function renderProducts(products: IProduct[]) {
     productCartBtns.forEach((el) =>
       el.addEventListener('click', function (e: Event) {
         if (e.target instanceof HTMLButtonElement) {
-          trackingProducts(e.target)
+          trackingProducts(e.target);
         }
-      }
-      ))
+      })
+    );
   };
-  showProductCards(products)
+  showProductCards(products);
 }
 
-export { renderProducts }
+export { renderProducts };
+
