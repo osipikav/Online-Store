@@ -2,12 +2,16 @@ html {
   scroll-behavior: smooth;
   box-sizing: border-box;
   height: 100%;
+  display: flex;
+  justify-content: center;
 }
 body {
   background-color: $color-brown-xl;
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 1600px;
+  width: 1600px;
 }
 *,
 *::before,
@@ -33,7 +37,6 @@ ul {
 }
 .section {
   display: flex;
-  //flex-flow: column wrap;
   align-content: center;
   align-items: center;
 }

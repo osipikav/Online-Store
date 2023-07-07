@@ -43,8 +43,8 @@ function mainFilters(products: IProduct[]) {
                   filteredProducts.push(product);
                 }
               });
-              console.log(filteredProducts);
-              console.log(filteredCategoryBrandProducts);
+              console.log('1', filteredProducts);
+              console.log('2', filteredCategoryBrandProducts);
               renderProducts(filteredProducts);
             }
             //brandFilter(filteredProducts);

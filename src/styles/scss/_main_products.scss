@@ -13,12 +13,12 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: space-around;
+    justify-content: space-between;
 
     &__item {
       display: flex;
       flex-direction: column;
-      width: 23%;
+      width: 24%;
       background-color: $color-grey-s-tr;
       border-radius: 10px;
       border: 1px solid $color-brown-s;
